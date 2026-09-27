@@ -16,6 +16,9 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap' },
     ],
   }),
   component: RootComponent,
@@ -30,7 +33,7 @@ function RootComponent() {
         <meta name="description" content={t('appDescription')} />
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-(--background) text-(--foreground) antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <Outlet />
         <Scripts />
       </body>
