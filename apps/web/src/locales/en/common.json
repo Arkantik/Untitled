@@ -1,0 +1,37 @@
+{
+  "appName": "Pulsarr",
+  "appDescription": "Self-hosted social media scheduling and publishing platform",
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading...",
+    "retry": "Retry"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "posts": "Posts",
+    "accounts": "Accounts",
+    "analytics": "Analytics",
+    "settings": "Settings"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "signUp": "Sign up",
+    "email": "Email",
+    "password": "Password"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "notFound": "Page not found",
+    "unauthorized": "You need to sign in",
+    "forbidden": "You don't have access to this"
+  }
+}

@@ -11,7 +11,8 @@
     "test": "turbo test",
     "db:generate": "turbo db:generate",
     "db:migrate": "turbo db:migrate",
-    "clean": "turbo clean"
+    "clean": "turbo clean",
+    "i18n:audit": "pnpm --filter @pulsarr/web i18n:audit"
   },
   "devDependencies": {
     "turbo": "^2.11.4",

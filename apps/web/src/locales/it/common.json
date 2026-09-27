@@ -1,0 +1,37 @@
+{
+  "appName": "Pulsarr",
+  "appDescription": "Piattaforma self-hosted per la programmazione e la pubblicazione sui social media",
+  "actions": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "create": "Crea",
+    "confirm": "Conferma",
+    "back": "Indietro",
+    "next": "Avanti",
+    "loading": "Caricamento...",
+    "retry": "Riprova"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "posts": "Post",
+    "accounts": "Account",
+    "analytics": "Statistiche",
+    "settings": "Impostazioni"
+  },
+  "auth": {
+    "signIn": "Accedi",
+    "signOut": "Esci",
+    "signUp": "Registrati",
+    "email": "Email",
+    "password": "Password"
+  },
+  "errors": {
+    "generic": "Qualcosa è andato storto",
+    "notFound": "Pagina non trovata",
+    "unauthorized": "Devi accedere",
+    "forbidden": "Non hai accesso a questa pagina"
+  }
+}

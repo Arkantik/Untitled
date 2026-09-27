@@ -1,0 +1,37 @@
+{
+  "appName": "Pulsarr",
+  "appDescription": "Selbstgehostete Plattform zur Planung und Veröffentlichung in sozialen Medien",
+  "actions": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "loading": "Wird geladen...",
+    "retry": "Erneut versuchen"
+  },
+  "nav": {
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "posts": "Beiträge",
+    "accounts": "Konten",
+    "analytics": "Statistiken",
+    "settings": "Einstellungen"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "signUp": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort"
+  },
+  "errors": {
+    "generic": "Etwas ist schiefgelaufen",
+    "notFound": "Seite nicht gefunden",
+    "unauthorized": "Sie müssen sich anmelden",
+    "forbidden": "Sie haben keinen Zugriff"
+  }
+}

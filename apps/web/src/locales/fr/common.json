@@ -1,0 +1,37 @@
+{
+  "appName": "Pulsarr",
+  "appDescription": "Plateforme auto-hébergée de planification et de publication sur les réseaux sociaux",
+  "actions": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "loading": "Chargement...",
+    "retry": "Réessayer"
+  },
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "posts": "Publications",
+    "accounts": "Comptes",
+    "analytics": "Statistiques",
+    "settings": "Paramètres"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "signUp": "S'inscrire",
+    "email": "E-mail",
+    "password": "Mot de passe"
+  },
+  "errors": {
+    "generic": "Une erreur est survenue",
+    "notFound": "Page introuvable",
+    "unauthorized": "Vous devez vous connecter",
+    "forbidden": "Vous n'avez pas accès à cette page"
+  }
+}

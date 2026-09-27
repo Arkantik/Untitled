@@ -1,11 +1,11 @@
-import type { ReactNode } from 'react';
 import {
   Outlet,
   createRootRoute,
   HeadContent,
   Scripts,
 } from '@tanstack/react-router';
-import { APP_NAME, APP_DESCRIPTION } from '@pulsarr/shared';
+import { useTranslation } from 'react-i18next';
+import { APP_NAME } from '@pulsarr/shared';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -13,7 +13,6 @@ export const Route = createRootRoute({
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: APP_NAME },
-      { name: 'description', content: APP_DESCRIPTION },
     ],
     links: [
       { rel: 'icon', href: '/favicon.ico' },
@@ -23,12 +22,15 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const { i18n, t } = useTranslation();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={i18n.language} suppressHydrationWarning>
       <head>
+        <meta name="description" content={t('appDescription')} />
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
+      <body className="min-h-screen bg-(--background) text-(--foreground) antialiased">
         <Outlet />
         <Scripts />
       </body>

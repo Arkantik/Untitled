@@ -1,0 +1,8 @@
+{
+  "title": "Pulsarr",
+  "subtitle": "Plateforme auto-hébergée de planification et de publication sur les réseaux sociaux",
+  "cta": {
+    "apiDocs": "Docs API",
+    "github": "GitHub"
+  }
+}
