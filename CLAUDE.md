@@ -79,6 +79,20 @@ prose surface, including your replies.
 
 Maintenance: `/audit-foundation`. Run when the session-start hook reports drift.
 
+## Code comments
+
+Default: write no comment. The only valid comment explains a non-obvious WHY — a hidden
+constraint, a workaround for a specific bug, an invariant that would surprise a reader.
+
+Never write:
+
+- Decorative separators: `// ── Section ──`, `// =========`
+- JSX labels restating the element below: `{/* Header */}` above `<header>`
+- Section headers above their own function or export
+- Narration of what the code does: `// fetch the user`, `// set state`
+- Empty-catch narration: `} catch { // ignore }` — leave the block empty
+- Multi-line blocks explaining what code does
+
 ## Working agreement
 
 - Plan before editing anything that crosses a file boundary. Show the plan, wait for a yes.
@@ -86,4 +100,4 @@ Maintenance: `/audit-foundation`. Run when the session-start hook reports drift.
 - Never mark work done without running the verification the relevant skill requires.
 - A passing build is not a passing feature. Exercise the real path.
 - Prose follows `.claude/skills/unslop/SKILL.md`. That covers commit messages, PR descriptions,
-  ADRs, session logs, ticket text, docs, and your replies in this session. Not code.
+  ADRs, session logs, ticket text, docs, your replies in this session, and code comments.

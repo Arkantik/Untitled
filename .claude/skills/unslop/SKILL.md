@@ -90,6 +90,7 @@ Default to no comments. Well-named identifiers already say what the code does.
 
 - No decorative separators: `// ── Section ─────`, `// =========`, `// ***********`. The code structure is visible without a banner.
 - No section headers restating the next declaration. `// Users` above `export const users = pgTable(...)` says nothing the code does not.
+- No JSX label comments restating visible structure. `{/* Foo */}` above any code which names what the code already shows.
 - No narration of what changed: "added for the X flow", "handles the case from issue #123". That belongs in the commit message.
 - No multi-line comment blocks explaining what code does. One short line explaining why, only when the reason is not obvious.
 - A comment that could be deleted without confusing a future reader should be deleted now.
