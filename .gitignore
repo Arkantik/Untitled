@@ -7,3 +7,27 @@ build/
 *.log
 .DS_Store
 .shell-projects
+
+# Turborepo
+.turbo/
+
+# Database
+*.db
+drizzle/*/
+
+# TanStack Start
+.vinxi/
+.output/
+.tanstack/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# Test coverage
+coverage/
