@@ -25,7 +25,7 @@ docker compose -f docker/docker-compose.production.yml up -d
 ### Development
 
 ```bash
-# Prerequisites: Node.js 22+, pnpm
+# Prerequisites: Node.js 24+, pnpm
 pnpm install
 pnpm dev
 ```

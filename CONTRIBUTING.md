@@ -4,7 +4,7 @@ Thanks for your interest in contributing. This guide covers what you need to get
 
 ## Prerequisites
 
-- Node.js 22+
+- Node.js 24+
 - pnpm 10+
 - Docker and Docker Compose (for PostgreSQL and Valkey)
 
@@ -12,7 +12,7 @@ Thanks for your interest in contributing. This guide covers what you need to get
 
 ```bash
 git clone https://github.com/Arkantik/Untitled.git
-cd pulsarr
+cd Untitled
 pnpm install
 ```
 

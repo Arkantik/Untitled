@@ -7,7 +7,7 @@ workspaces, and a public REST API. Open source (Apache 2.0).
 ## Stack
 
 - Language: TypeScript
-- Runtime: Node 22
+- Runtime: Node 24
 - Package manager: pnpm
 - Repo shape: Turborepo (apps/api, apps/web, packages/db, packages/shared)
 - Backend: NestJS 12 with Fastify adapter

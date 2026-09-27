@@ -15,7 +15,7 @@ scheduling, analytics, team workspaces, and a public REST API. Licensed under Ap
 ## Tech stack
 
 - **Language:** TypeScript (all source; no `.js` files outside config)
-- **Runtime:** Node 22
+- **Runtime:** Node 24
 - **Package manager:** pnpm
 - **Monorepo:** Turborepo with `apps/api`, `apps/web`, `packages/db`, `packages/shared`
 - **Backend:** NestJS 12 with Fastify adapter
