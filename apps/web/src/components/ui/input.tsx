@@ -1,11 +1,15 @@
 import { cn } from '~/lib/utils';
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, Ref } from 'react';
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & { invalid?: boolean };
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  invalid?: boolean;
+  ref?: Ref<HTMLInputElement>;
+};
 
-export function Input({ className, invalid = false, ...props }: InputProps) {
+export function Input({ className, invalid = false, ref, ...props }: InputProps) {
   return (
     <input
+      ref={ref}
       aria-invalid={invalid || undefined}
       className={cn(
         'bg-card text-card-foreground flex h-10 w-full rounded-md border px-3 py-2 text-sm transition-colors',

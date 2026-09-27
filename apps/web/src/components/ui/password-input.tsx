@@ -1,18 +1,20 @@
 import { cn } from '~/lib/utils';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ViewIcon, ViewOffIcon } from '@hugeicons/core-free-icons';
-import { type InputHTMLAttributes, useState } from 'react';
+import { type InputHTMLAttributes, type Ref, useState } from 'react';
 
 type PasswordInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
   invalid?: boolean;
+  ref?: Ref<HTMLInputElement>;
 };
 
-export function PasswordInput({ className, invalid = false, ...props }: PasswordInputProps) {
+export function PasswordInput({ className, invalid = false, ref, ...props }: PasswordInputProps) {
   const [visible, setVisible] = useState(false);
 
   return (
     <div className="relative">
       <input
+        ref={ref}
         type={visible ? 'text' : 'password'}
         aria-invalid={invalid || undefined}
         className={cn(

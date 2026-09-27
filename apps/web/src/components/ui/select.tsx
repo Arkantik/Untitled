@@ -25,7 +25,11 @@ export function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <HugeiconsIcon icon={ArrowDown01Icon} className="text-muted-foreground size-4 shrink-0" aria-hidden />
+        <HugeiconsIcon
+          icon={ArrowDown01Icon}
+          className="text-muted-foreground size-4 shrink-0"
+          aria-hidden
+        />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );

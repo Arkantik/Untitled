@@ -1,6 +1,7 @@
 {
   "appName": "Pulsarr",
-  "appDescription": "Selbstgehostete Plattform zur Planung und Veröffentlichung in sozialen Medien",
+  "appDescription": "Selbst gehostete Plattform für Social-Media-Planung und -Veröffentlichung",
+  "close": "Schließen",
   "actions": {
     "save": "Speichern",
     "cancel": "Abbrechen",
@@ -10,16 +11,45 @@
     "confirm": "Bestätigen",
     "back": "Zurück",
     "next": "Weiter",
-    "loading": "Wird geladen...",
-    "retry": "Erneut versuchen"
+    "loading": "Laden...",
+    "retry": "Erneut versuchen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "remove": "Entfernen",
+    "enable": "Aktivieren",
+    "disable": "Deaktivieren"
   },
   "nav": {
     "home": "Startseite",
     "dashboard": "Dashboard",
     "posts": "Beiträge",
+    "calendar": "Kalender",
+    "queue": "Warteschlange",
     "accounts": "Konten",
-    "analytics": "Statistiken",
-    "settings": "Einstellungen"
+    "engagement": "Engagement",
+    "messages": "Nachrichten",
+    "analytics": "Analysen",
+    "sync": "Synchronisierung",
+    "settings": "Einstellungen",
+    "workspace": "Arbeitsbereich",
+    "compose": "Beitrag verfassen",
+    "signOut": "Abmelden",
+    "viewProfile": "Profil anzeigen",
+    "switchToLight": "Zum hellen Modus wechseln",
+    "switchToDark": "Zum dunklen Modus wechseln"
+  },
+  "workspace": {
+    "overview": "Übersicht",
+    "members": "Mitglieder",
+    "apiKeys": "API-Schlüssel",
+    "subscription": "Abonnement"
+  },
+  "settings": {
+    "profile": "Profil",
+    "security": "Sicherheit",
+    "notifications": "Benachrichtigungen",
+    "connections": "Verbindungen",
+    "appearance": "Erscheinungsbild"
   },
   "auth": {
     "signIn": "Anmelden",
@@ -32,6 +62,6 @@
     "generic": "Etwas ist schiefgelaufen",
     "notFound": "Seite nicht gefunden",
     "unauthorized": "Sie müssen sich anmelden",
-    "forbidden": "Sie haben keinen Zugriff"
+    "forbidden": "Sie haben keinen Zugriff darauf"
   }
 }

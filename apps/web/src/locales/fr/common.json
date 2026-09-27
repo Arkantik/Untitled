@@ -1,6 +1,7 @@
 {
   "appName": "Pulsarr",
   "appDescription": "Plateforme auto-hébergée de planification et de publication sur les réseaux sociaux",
+  "close": "Fermer",
   "actions": {
     "save": "Enregistrer",
     "cancel": "Annuler",
@@ -11,15 +12,44 @@
     "back": "Retour",
     "next": "Suivant",
     "loading": "Chargement...",
-    "retry": "Réessayer"
+    "retry": "Réessayer",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "remove": "Retirer",
+    "enable": "Activer",
+    "disable": "Désactiver"
   },
   "nav": {
     "home": "Accueil",
     "dashboard": "Tableau de bord",
     "posts": "Publications",
+    "calendar": "Calendrier",
+    "queue": "File d'attente",
     "accounts": "Comptes",
-    "analytics": "Statistiques",
-    "settings": "Paramètres"
+    "engagement": "Engagement",
+    "messages": "Messages",
+    "analytics": "Analytiques",
+    "sync": "Synchronisation",
+    "settings": "Paramètres",
+    "workspace": "Espace de travail",
+    "compose": "Composer une publication",
+    "signOut": "Se déconnecter",
+    "viewProfile": "Voir le profil",
+    "switchToLight": "Passer en mode clair",
+    "switchToDark": "Passer en mode sombre"
+  },
+  "workspace": {
+    "overview": "Vue d'ensemble",
+    "members": "Membres",
+    "apiKeys": "Clés API",
+    "subscription": "Abonnement"
+  },
+  "settings": {
+    "profile": "Profil",
+    "security": "Sécurité",
+    "notifications": "Notifications",
+    "connections": "Connexions",
+    "appearance": "Apparence"
   },
   "auth": {
     "signIn": "Se connecter",
@@ -29,9 +59,9 @@
     "password": "Mot de passe"
   },
   "errors": {
-    "generic": "Une erreur est survenue",
+    "generic": "Une erreur s'est produite",
     "notFound": "Page introuvable",
     "unauthorized": "Vous devez vous connecter",
-    "forbidden": "Vous n'avez pas accès à cette page"
+    "forbidden": "Vous n'avez pas accès à ceci"
   }
 }

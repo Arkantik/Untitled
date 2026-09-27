@@ -1,6 +1,7 @@
 {
   "appName": "Pulsarr",
-  "appDescription": "Piattaforma self-hosted per la programmazione e la pubblicazione sui social media",
+  "appDescription": "Piattaforma self-hosted per la pianificazione e la pubblicazione sui social media",
+  "close": "Chiudi",
   "actions": {
     "save": "Salva",
     "cancel": "Annulla",
@@ -11,27 +12,56 @@
     "back": "Indietro",
     "next": "Avanti",
     "loading": "Caricamento...",
-    "retry": "Riprova"
+    "retry": "Riprova",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "remove": "Rimuovi",
+    "enable": "Abilita",
+    "disable": "Disabilita"
   },
   "nav": {
     "home": "Home",
     "dashboard": "Dashboard",
     "posts": "Post",
+    "calendar": "Calendario",
+    "queue": "Coda",
     "accounts": "Account",
-    "analytics": "Statistiche",
-    "settings": "Impostazioni"
+    "engagement": "Engagement",
+    "messages": "Messaggi",
+    "analytics": "Analisi",
+    "sync": "Sincronizzazione",
+    "settings": "Impostazioni",
+    "workspace": "Area di lavoro",
+    "compose": "Crea post",
+    "signOut": "Esci",
+    "viewProfile": "Visualizza profilo",
+    "switchToLight": "Passa alla modalità chiara",
+    "switchToDark": "Passa alla modalità scura"
+  },
+  "workspace": {
+    "overview": "Panoramica",
+    "members": "Membri",
+    "apiKeys": "Chiavi API",
+    "subscription": "Abbonamento"
+  },
+  "settings": {
+    "profile": "Profilo",
+    "security": "Sicurezza",
+    "notifications": "Notifiche",
+    "connections": "Connessioni",
+    "appearance": "Aspetto"
   },
   "auth": {
     "signIn": "Accedi",
     "signOut": "Esci",
     "signUp": "Registrati",
-    "email": "Email",
+    "email": "E-mail",
     "password": "Password"
   },
   "errors": {
     "generic": "Qualcosa è andato storto",
     "notFound": "Pagina non trovata",
     "unauthorized": "Devi accedere",
-    "forbidden": "Non hai accesso a questa pagina"
+    "forbidden": "Non hai accesso a questo"
   }
 }

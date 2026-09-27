@@ -28,7 +28,7 @@ export function DialogContent({
         {children}
         <DialogPrimitive.Close
           className="text-muted-foreground hover:text-foreground focus-visible:ring-ring absolute top-4 right-4 cursor-pointer rounded-md focus-visible:ring-2 focus-visible:outline-none"
-          aria-label={t('common.close')}
+          aria-label={t('close')}
         >
           <HugeiconsIcon icon={Cancel01Icon} className="size-4" aria-hidden />
         </DialogPrimitive.Close>
@@ -42,9 +42,7 @@ export function DialogHeader({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function DialogTitle({ className, ...props }: ComponentProps<typeof DialogPrimitive.Title>) {
-  return (
-    <DialogPrimitive.Title className={cn('text-base font-semibold', className)} {...props} />
-  );
+  return <DialogPrimitive.Title className={cn('text-base font-semibold', className)} {...props} />;
 }
 
 export function DialogDescription({

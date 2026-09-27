@@ -61,7 +61,9 @@ export function Segmented<T extends string>({
             className={cn(
               'focus-visible:ring-ring flex flex-1 items-center justify-center gap-1.5 border-l px-2 py-2 text-xs font-medium whitespace-nowrap transition-colors first:border-l-0 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset border-border',
               selected && 'bg-primary/12 text-primary',
-              !selected && !option.disabled && 'text-muted-foreground hover:bg-muted active:bg-accent cursor-pointer',
+              !selected &&
+                !option.disabled &&
+                'text-muted-foreground hover:bg-muted active:bg-accent cursor-pointer',
               option.disabled && 'text-muted-foreground/55 bg-muted/40 cursor-not-allowed',
             )}
           >

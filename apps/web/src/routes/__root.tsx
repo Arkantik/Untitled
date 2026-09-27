@@ -1,11 +1,9 @@
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from '@tanstack/react-router';
+import { Outlet, createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { APP_NAME } from '@pulsarr/shared';
+import { Toaster } from '~/components/ui/sonner';
+import { themeScript } from '~/hooks/use-theme';
+import '~/styles/globals.css';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -18,7 +16,10 @@ export const Route = createRootRoute({
       { rel: 'icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
+      },
     ],
   }),
   component: RootComponent,
@@ -31,10 +32,12 @@ function RootComponent() {
     <html lang={i18n.language} suppressHydrationWarning>
       <head>
         <meta name="description" content={t('appDescription')} />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <HeadContent />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Outlet />
+        <Toaster />
         <Scripts />
       </body>
     </html>

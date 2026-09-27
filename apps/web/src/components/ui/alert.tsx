@@ -8,9 +8,9 @@ import {
 import type { ReactNode } from 'react';
 
 const TONE = {
-  error:   { box: 'border-destructive/30 bg-destructive/10 text-destructive', Icon: AlertCircleIcon },
-  success: { box: 'border-success/30 bg-success/10 text-success',             Icon: CheckmarkCircle01Icon },
-  info:    { box: 'border-primary/40 bg-primary/5 text-primary',               Icon: InformationCircleIcon },
+  error: { box: 'border-destructive/30 bg-destructive/10 text-destructive', Icon: AlertCircleIcon },
+  success: { box: 'border-success/30 bg-success/10 text-success', Icon: CheckmarkCircle01Icon },
+  info: { box: 'border-primary/40 bg-primary/5 text-primary', Icon: InformationCircleIcon },
 } as const;
 
 export function Alert({

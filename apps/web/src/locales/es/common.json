@@ -1,6 +1,7 @@
 {
   "appName": "Pulsarr",
   "appDescription": "Plataforma autoalojada de programación y publicación en redes sociales",
+  "close": "Cerrar",
   "actions": {
     "save": "Guardar",
     "cancel": "Cancelar",
@@ -11,15 +12,44 @@
     "back": "Volver",
     "next": "Siguiente",
     "loading": "Cargando...",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "remove": "Eliminar",
+    "enable": "Activar",
+    "disable": "Desactivar"
   },
   "nav": {
     "home": "Inicio",
     "dashboard": "Panel",
     "posts": "Publicaciones",
+    "calendar": "Calendario",
+    "queue": "Cola",
     "accounts": "Cuentas",
-    "analytics": "Estadísticas",
-    "settings": "Configuración"
+    "engagement": "Interacción",
+    "messages": "Mensajes",
+    "analytics": "Analíticas",
+    "sync": "Sincronización",
+    "settings": "Ajustes",
+    "workspace": "Espacio de trabajo",
+    "compose": "Redactar publicación",
+    "signOut": "Cerrar sesión",
+    "viewProfile": "Ver perfil",
+    "switchToLight": "Cambiar a modo claro",
+    "switchToDark": "Cambiar a modo oscuro"
+  },
+  "workspace": {
+    "overview": "Descripción general",
+    "members": "Miembros",
+    "apiKeys": "Claves API",
+    "subscription": "Suscripción"
+  },
+  "settings": {
+    "profile": "Perfil",
+    "security": "Seguridad",
+    "notifications": "Notificaciones",
+    "connections": "Conexiones",
+    "appearance": "Apariencia"
   },
   "auth": {
     "signIn": "Iniciar sesión",
@@ -32,6 +62,6 @@
     "generic": "Algo salió mal",
     "notFound": "Página no encontrada",
     "unauthorized": "Necesitas iniciar sesión",
-    "forbidden": "No tienes acceso a esta página"
+    "forbidden": "No tienes acceso a esto"
   }
 }

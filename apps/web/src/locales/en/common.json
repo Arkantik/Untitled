@@ -1,6 +1,7 @@
 {
   "appName": "Pulsarr",
   "appDescription": "Self-hosted social media scheduling and publishing platform",
+  "close": "Close",
   "actions": {
     "save": "Save",
     "cancel": "Cancel",
@@ -11,15 +12,44 @@
     "back": "Back",
     "next": "Next",
     "loading": "Loading...",
-    "retry": "Retry"
+    "retry": "Retry",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "remove": "Remove",
+    "enable": "Enable",
+    "disable": "Disable"
   },
   "nav": {
     "home": "Home",
     "dashboard": "Dashboard",
     "posts": "Posts",
+    "calendar": "Calendar",
+    "queue": "Queue",
     "accounts": "Accounts",
+    "engagement": "Engagement",
+    "messages": "Messages",
     "analytics": "Analytics",
-    "settings": "Settings"
+    "sync": "Sync",
+    "settings": "Settings",
+    "workspace": "Workspace",
+    "compose": "Compose post",
+    "signOut": "Sign out",
+    "viewProfile": "View profile",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "workspace": {
+    "overview": "Overview",
+    "members": "Members",
+    "apiKeys": "API Keys",
+    "subscription": "Subscription"
+  },
+  "settings": {
+    "profile": "Profile",
+    "security": "Security",
+    "notifications": "Notifications",
+    "connections": "Connections",
+    "appearance": "Appearance"
   },
   "auth": {
     "signIn": "Sign in",

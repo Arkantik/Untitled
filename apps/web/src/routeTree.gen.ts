@@ -10,33 +10,330 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as AppAccountsRouteImport } from './routes/_app/accounts'
+import { Route as AppAnalyticsRouteImport } from './routes/_app/analytics'
+import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppEngagementRouteImport } from './routes/_app/engagement'
+import { Route as AppMessagesRouteImport } from './routes/_app/messages'
+import { Route as AppQueueRouteImport } from './routes/_app/queue'
+import { Route as AppSyncRouteImport } from './routes/_app/sync'
+import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
+import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
+import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
+import { Route as AuthTwoFactorRouteImport } from './routes/_auth/two-factor'
+import { Route as AuthVerifyEmailRouteImport } from './routes/_auth/verify-email'
+import { Route as AppPostsIndexRouteImport } from './routes/_app/posts/index'
+import { Route as AppPostsCalendarRouteImport } from './routes/_app/posts/calendar'
+import { Route as AppSettingsAppearanceRouteImport } from './routes/_app/settings/appearance'
+import { Route as AppSettingsConnectionsRouteImport } from './routes/_app/settings/connections'
+import { Route as AppSettingsNotificationsRouteImport } from './routes/_app/settings/notifications'
+import { Route as AppSettingsProfileRouteImport } from './routes/_app/settings/profile'
+import { Route as AppSettingsSecurityRouteImport } from './routes/_app/settings/security'
+import { Route as AppWorkspaceApiKeysRouteImport } from './routes/_app/workspace/api-keys'
+import { Route as AppWorkspaceMembersRouteImport } from './routes/_app/workspace/members'
+import { Route as AppWorkspaceOverviewRouteImport } from './routes/_app/workspace/overview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAccountsRoute = AppAccountsRouteImport.update({
+  id: '/accounts',
+  path: '/accounts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEngagementRoute = AppEngagementRouteImport.update({
+  id: '/engagement',
+  path: '/engagement',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesRoute = AppMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppQueueRoute = AppQueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSyncRoute = AppSyncRouteImport.update({
+  id: '/sync',
+  path: '/sync',
+  getParentRoute: () => AppRoute,
+} as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthTwoFactorRoute = AuthTwoFactorRouteImport.update({
+  id: '/two-factor',
+  path: '/two-factor',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthVerifyEmailRoute = AuthVerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AppPostsIndexRoute = AppPostsIndexRouteImport.update({
+  id: '/posts/',
+  path: '/posts/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPostsCalendarRoute = AppPostsCalendarRouteImport.update({
+  id: '/posts/calendar',
+  path: '/posts/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsAppearanceRoute = AppSettingsAppearanceRouteImport.update({
+  id: '/settings/appearance',
+  path: '/settings/appearance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsConnectionsRoute = AppSettingsConnectionsRouteImport.update({
+  id: '/settings/connections',
+  path: '/settings/connections',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsNotificationsRoute =
+  AppSettingsNotificationsRouteImport.update({
+    id: '/settings/notifications',
+    path: '/settings/notifications',
+    getParentRoute: () => AppRoute,
+  } as any)
+const AppSettingsProfileRoute = AppSettingsProfileRouteImport.update({
+  id: '/settings/profile',
+  path: '/settings/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsSecurityRoute = AppSettingsSecurityRouteImport.update({
+  id: '/settings/security',
+  path: '/settings/security',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWorkspaceApiKeysRoute = AppWorkspaceApiKeysRouteImport.update({
+  id: '/workspace/api-keys',
+  path: '/workspace/api-keys',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWorkspaceMembersRoute = AppWorkspaceMembersRouteImport.update({
+  id: '/workspace/members',
+  path: '/workspace/members',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWorkspaceOverviewRoute = AppWorkspaceOverviewRouteImport.update({
+  id: '/workspace/overview',
+  path: '/workspace/overview',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accounts': typeof AppAccountsRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/engagement': typeof AppEngagementRoute
+  '/messages': typeof AppMessagesRoute
+  '/queue': typeof AppQueueRoute
+  '/sync': typeof AppSyncRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/two-factor': typeof AuthTwoFactorRoute
+  '/verify-email': typeof AuthVerifyEmailRoute
+  '/posts/calendar': typeof AppPostsCalendarRoute
+  '/settings/appearance': typeof AppSettingsAppearanceRoute
+  '/settings/connections': typeof AppSettingsConnectionsRoute
+  '/settings/notifications': typeof AppSettingsNotificationsRoute
+  '/settings/profile': typeof AppSettingsProfileRoute
+  '/settings/security': typeof AppSettingsSecurityRoute
+  '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
+  '/workspace/members': typeof AppWorkspaceMembersRoute
+  '/workspace/overview': typeof AppWorkspaceOverviewRoute
+  '/posts/': typeof AppPostsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accounts': typeof AppAccountsRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/engagement': typeof AppEngagementRoute
+  '/messages': typeof AppMessagesRoute
+  '/queue': typeof AppQueueRoute
+  '/sync': typeof AppSyncRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/two-factor': typeof AuthTwoFactorRoute
+  '/verify-email': typeof AuthVerifyEmailRoute
+  '/posts/calendar': typeof AppPostsCalendarRoute
+  '/settings/appearance': typeof AppSettingsAppearanceRoute
+  '/settings/connections': typeof AppSettingsConnectionsRoute
+  '/settings/notifications': typeof AppSettingsNotificationsRoute
+  '/settings/profile': typeof AppSettingsProfileRoute
+  '/settings/security': typeof AppSettingsSecurityRoute
+  '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
+  '/workspace/members': typeof AppWorkspaceMembersRoute
+  '/workspace/overview': typeof AppWorkspaceOverviewRoute
+  '/posts': typeof AppPostsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/_auth': typeof AuthRouteWithChildren
+  '/_app/accounts': typeof AppAccountsRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/engagement': typeof AppEngagementRoute
+  '/_app/messages': typeof AppMessagesRoute
+  '/_app/queue': typeof AppQueueRoute
+  '/_app/sync': typeof AppSyncRoute
+  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/_auth/login': typeof AuthLoginRoute
+  '/_auth/register': typeof AuthRegisterRoute
+  '/_auth/reset-password': typeof AuthResetPasswordRoute
+  '/_auth/two-factor': typeof AuthTwoFactorRoute
+  '/_auth/verify-email': typeof AuthVerifyEmailRoute
+  '/_app/posts/calendar': typeof AppPostsCalendarRoute
+  '/_app/settings/appearance': typeof AppSettingsAppearanceRoute
+  '/_app/settings/connections': typeof AppSettingsConnectionsRoute
+  '/_app/settings/notifications': typeof AppSettingsNotificationsRoute
+  '/_app/settings/profile': typeof AppSettingsProfileRoute
+  '/_app/settings/security': typeof AppSettingsSecurityRoute
+  '/_app/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
+  '/_app/workspace/members': typeof AppWorkspaceMembersRoute
+  '/_app/workspace/overview': typeof AppWorkspaceOverviewRoute
+  '/_app/posts/': typeof AppPostsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/accounts'
+    | '/analytics'
+    | '/dashboard'
+    | '/engagement'
+    | '/messages'
+    | '/queue'
+    | '/sync'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/reset-password'
+    | '/two-factor'
+    | '/verify-email'
+    | '/posts/calendar'
+    | '/settings/appearance'
+    | '/settings/connections'
+    | '/settings/notifications'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/workspace/api-keys'
+    | '/workspace/members'
+    | '/workspace/overview'
+    | '/posts/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/accounts'
+    | '/analytics'
+    | '/dashboard'
+    | '/engagement'
+    | '/messages'
+    | '/queue'
+    | '/sync'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/reset-password'
+    | '/two-factor'
+    | '/verify-email'
+    | '/posts/calendar'
+    | '/settings/appearance'
+    | '/settings/connections'
+    | '/settings/notifications'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/workspace/api-keys'
+    | '/workspace/members'
+    | '/workspace/overview'
+    | '/posts'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_auth'
+    | '/_app/accounts'
+    | '/_app/analytics'
+    | '/_app/dashboard'
+    | '/_app/engagement'
+    | '/_app/messages'
+    | '/_app/queue'
+    | '/_app/sync'
+    | '/_auth/forgot-password'
+    | '/_auth/login'
+    | '/_auth/register'
+    | '/_auth/reset-password'
+    | '/_auth/two-factor'
+    | '/_auth/verify-email'
+    | '/_app/posts/calendar'
+    | '/_app/settings/appearance'
+    | '/_app/settings/connections'
+    | '/_app/settings/notifications'
+    | '/_app/settings/profile'
+    | '/_app/settings/security'
+    | '/_app/workspace/api-keys'
+    | '/_app/workspace/members'
+    | '/_app/workspace/overview'
+    | '/_app/posts/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +345,250 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/accounts': {
+      id: '/_app/accounts'
+      path: '/accounts'
+      fullPath: '/accounts'
+      preLoaderRoute: typeof AppAccountsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/engagement': {
+      id: '/_app/engagement'
+      path: '/engagement'
+      fullPath: '/engagement'
+      preLoaderRoute: typeof AppEngagementRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/messages': {
+      id: '/_app/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof AppMessagesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/queue': {
+      id: '/_app/queue'
+      path: '/queue'
+      fullPath: '/queue'
+      preLoaderRoute: typeof AppQueueRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/sync': {
+      id: '/_app/sync'
+      path: '/sync'
+      fullPath: '/sync'
+      preLoaderRoute: typeof AppSyncRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_auth/forgot-password': {
+      id: '/_auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/reset-password': {
+      id: '/_auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/two-factor': {
+      id: '/_auth/two-factor'
+      path: '/two-factor'
+      fullPath: '/two-factor'
+      preLoaderRoute: typeof AuthTwoFactorRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/verify-email': {
+      id: '/_auth/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof AuthVerifyEmailRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_app/posts/': {
+      id: '/_app/posts/'
+      path: '/posts'
+      fullPath: '/posts/'
+      preLoaderRoute: typeof AppPostsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/posts/calendar': {
+      id: '/_app/posts/calendar'
+      path: '/posts/calendar'
+      fullPath: '/posts/calendar'
+      preLoaderRoute: typeof AppPostsCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/appearance': {
+      id: '/_app/settings/appearance'
+      path: '/settings/appearance'
+      fullPath: '/settings/appearance'
+      preLoaderRoute: typeof AppSettingsAppearanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/connections': {
+      id: '/_app/settings/connections'
+      path: '/settings/connections'
+      fullPath: '/settings/connections'
+      preLoaderRoute: typeof AppSettingsConnectionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/notifications': {
+      id: '/_app/settings/notifications'
+      path: '/settings/notifications'
+      fullPath: '/settings/notifications'
+      preLoaderRoute: typeof AppSettingsNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/profile': {
+      id: '/_app/settings/profile'
+      path: '/settings/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof AppSettingsProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/security': {
+      id: '/_app/settings/security'
+      path: '/settings/security'
+      fullPath: '/settings/security'
+      preLoaderRoute: typeof AppSettingsSecurityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/workspace/api-keys': {
+      id: '/_app/workspace/api-keys'
+      path: '/workspace/api-keys'
+      fullPath: '/workspace/api-keys'
+      preLoaderRoute: typeof AppWorkspaceApiKeysRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/workspace/members': {
+      id: '/_app/workspace/members'
+      path: '/workspace/members'
+      fullPath: '/workspace/members'
+      preLoaderRoute: typeof AppWorkspaceMembersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/workspace/overview': {
+      id: '/_app/workspace/overview'
+      path: '/workspace/overview'
+      fullPath: '/workspace/overview'
+      preLoaderRoute: typeof AppWorkspaceOverviewRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAccountsRoute: typeof AppAccountsRoute
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppEngagementRoute: typeof AppEngagementRoute
+  AppMessagesRoute: typeof AppMessagesRoute
+  AppQueueRoute: typeof AppQueueRoute
+  AppSyncRoute: typeof AppSyncRoute
+  AppPostsCalendarRoute: typeof AppPostsCalendarRoute
+  AppSettingsAppearanceRoute: typeof AppSettingsAppearanceRoute
+  AppSettingsConnectionsRoute: typeof AppSettingsConnectionsRoute
+  AppSettingsNotificationsRoute: typeof AppSettingsNotificationsRoute
+  AppSettingsProfileRoute: typeof AppSettingsProfileRoute
+  AppSettingsSecurityRoute: typeof AppSettingsSecurityRoute
+  AppWorkspaceApiKeysRoute: typeof AppWorkspaceApiKeysRoute
+  AppWorkspaceMembersRoute: typeof AppWorkspaceMembersRoute
+  AppWorkspaceOverviewRoute: typeof AppWorkspaceOverviewRoute
+  AppPostsIndexRoute: typeof AppPostsIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAccountsRoute: AppAccountsRoute,
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppEngagementRoute: AppEngagementRoute,
+  AppMessagesRoute: AppMessagesRoute,
+  AppQueueRoute: AppQueueRoute,
+  AppSyncRoute: AppSyncRoute,
+  AppPostsCalendarRoute: AppPostsCalendarRoute,
+  AppSettingsAppearanceRoute: AppSettingsAppearanceRoute,
+  AppSettingsConnectionsRoute: AppSettingsConnectionsRoute,
+  AppSettingsNotificationsRoute: AppSettingsNotificationsRoute,
+  AppSettingsProfileRoute: AppSettingsProfileRoute,
+  AppSettingsSecurityRoute: AppSettingsSecurityRoute,
+  AppWorkspaceApiKeysRoute: AppWorkspaceApiKeysRoute,
+  AppWorkspaceMembersRoute: AppWorkspaceMembersRoute,
+  AppWorkspaceOverviewRoute: AppWorkspaceOverviewRoute,
+  AppPostsIndexRoute: AppPostsIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
+interface AuthRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthTwoFactorRoute: typeof AuthTwoFactorRoute
+  AuthVerifyEmailRoute: typeof AuthVerifyEmailRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthTwoFactorRoute: AuthTwoFactorRoute,
+  AuthVerifyEmailRoute: AuthVerifyEmailRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
