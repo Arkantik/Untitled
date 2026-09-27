@@ -64,7 +64,7 @@ function AppLayout() {
             type="button"
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation"
-            className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground [&_svg]:transition-transform [&_svg]:duration-120 [&_svg]:ease-out [&:hover_svg]:scale-110 [&:hover_svg]:-rotate-6"
           >
             <HugeiconsIcon icon={Menu01Icon} className="size-5" aria-hidden />
           </button>

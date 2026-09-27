@@ -32,6 +32,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/comp
 import { Separator } from '~/components/ui/separator';
 import type { IconSvgElement } from '@hugeicons/react';
 
+const iconAnim = '[&_svg]:transition-transform [&_svg]:duration-120 [&_svg]:ease-out [&:hover_svg]:scale-110 [&:hover_svg]:-rotate-6' as const;
+
 type NavLeaf = {
   kind: 'item';
   to: LinkProps['to'];
@@ -124,6 +126,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
             className={cn(
               'flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground',
               'transition-colors hover:bg-muted hover:text-foreground regular:hidden',
+              iconAnim,
               effectiveCollapsed && 'mx-auto',
             )}
           >
@@ -137,6 +140,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
             className={cn(
               'hidden h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground',
               'transition-colors hover:bg-muted hover:text-foreground regular:flex',
+              iconAnim,
               effectiveCollapsed && 'mx-auto',
             )}
           >
@@ -266,6 +270,7 @@ function CollapsibleGroup({
             onClick={onNavigate}
             className={cn(
               'mx-auto flex h-9 w-10 items-center justify-center rounded-md transition-colors',
+              iconAnim,
               groupActive
                 ? 'bg-primary/10 text-primary'
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -287,13 +292,17 @@ function CollapsibleGroup({
         onClick={toggle}
         aria-expanded={open}
         className={cn(
-          'flex h-9 w-full items-center gap-3 rounded-md px-2.5 text-sm font-medium transition-colors',
+          'group flex h-9 w-full items-center gap-3 rounded-md px-2.5 text-sm font-medium transition-colors',
           groupActive
             ? 'text-foreground'
             : 'text-muted-foreground hover:bg-muted hover:text-foreground',
         )}
       >
-        <HugeiconsIcon icon={group.icon} className="size-4 shrink-0" aria-hidden />
+        <HugeiconsIcon
+          icon={group.icon}
+          className="size-4 shrink-0 transition-transform duration-120 ease-out group-hover:scale-110 group-hover:-rotate-6"
+          aria-hidden
+        />
         <span className="flex-1 truncate text-left">{group.label}</span>
         <HugeiconsIcon
           icon={ArrowDown01Icon}
@@ -320,6 +329,7 @@ function CollapsibleGroup({
                 onClick={onNavigate}
                 className={cn(
                   'flex h-8 items-center gap-3 rounded-md px-2.5 text-sm font-medium transition-colors',
+                  iconAnim,
                   pathname === child.to
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -357,6 +367,7 @@ function NavItem({
       onClick={onNavigate}
       className={cn(
         'flex h-9 items-center gap-3 rounded-md px-2.5 text-sm font-medium transition-colors',
+        iconAnim,
         active
           ? 'bg-primary/10 text-primary'
           : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -427,14 +438,14 @@ function UserArea({ collapsed, onNavigate }: { collapsed: boolean; onNavigate: (
         to="/settings/profile"
         preload="intent"
         onClick={onNavigate}
-        className="flex h-8 w-full items-center gap-2.5 rounded-md px-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className={cn('flex h-8 w-full items-center gap-2.5 rounded-md px-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground', iconAnim)}
       >
         <HugeiconsIcon icon={Settings01Icon} className="size-3.5 shrink-0" aria-hidden />
         {t('nav.settings')}
       </Link>
       <button
         type="button"
-        className="flex h-8 w-full items-center gap-2.5 rounded-md px-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className={cn('flex h-8 w-full items-center gap-2.5 rounded-md px-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground', iconAnim)}
       >
         <HugeiconsIcon icon={Logout01Icon} className="size-3.5 shrink-0" aria-hidden />
         {t('nav.signOut')}
