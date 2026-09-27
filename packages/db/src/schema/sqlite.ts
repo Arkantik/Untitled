@@ -1,8 +1,6 @@
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 import { relations } from 'drizzle-orm';
 
-// ── Users ──────────────────────────────────────────
-
 export const users = sqliteTable('users', {
   id: text('id')
     .primaryKey()
@@ -20,8 +18,6 @@ export const users = sqliteTable('users', {
     .notNull()
     .$defaultFn(() => new Date().toISOString()),
 });
-
-// ── Workspaces ─────────────────────────────────────
 
 export const workspaces = sqliteTable('workspaces', {
   id: text('id')
@@ -60,8 +56,6 @@ export const workspaceMembers = sqliteTable('workspace_members', {
     .$defaultFn(() => new Date().toISOString()),
 });
 
-// ── Connected Accounts ─────────────────────────────
-
 export const connectedAccounts = sqliteTable('connected_accounts', {
   id: text('id')
     .primaryKey()
@@ -84,8 +78,6 @@ export const connectedAccounts = sqliteTable('connected_accounts', {
     .notNull()
     .$defaultFn(() => new Date().toISOString()),
 });
-
-// ── Posts ───────────────────────────────────────────
 
 export const posts = sqliteTable('posts', {
   id: text('id')
@@ -132,8 +124,6 @@ export const postTargets = sqliteTable('post_targets', {
   error: text('error'),
   publishedAt: text('published_at'),
 });
-
-// ── Relations ──────────────────────────────────────
 
 export const usersRelations = relations(users, ({ many }) => ({
   workspaces: many(workspaces),

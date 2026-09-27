@@ -6,8 +6,6 @@ async function seed() {
 
   console.log('Seeding database...');
 
-  // Seed logic will go here as the project develops
-
   console.log('Seeding complete.');
   process.exit(0);
 }

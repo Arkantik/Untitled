@@ -26,8 +26,6 @@ export const socialPlatformEnum = pgEnum('social_platform', [
   'discord',
 ]);
 
-// ── Users ──────────────────────────────────────────
-
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
   email: text('email').notNull().unique(),
@@ -37,8 +35,6 @@ export const users = pgTable('users', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
-
-// ── Workspaces ─────────────────────────────────────
 
 export const workspaces = pgTable('workspaces', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -63,8 +59,6 @@ export const workspaceMembers = pgTable('workspace_members', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// ── Connected Accounts ─────────────────────────────
-
 export const connectedAccounts = pgTable('connected_accounts', {
   id: uuid('id').defaultRandom().primaryKey(),
   workspaceId: uuid('workspace_id')
@@ -79,8 +73,6 @@ export const connectedAccounts = pgTable('connected_accounts', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
-
-// ── Posts ───────────────────────────────────────────
 
 export const posts = pgTable('posts', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -111,8 +103,6 @@ export const postTargets = pgTable('post_targets', {
   error: text('error'),
   publishedAt: timestamp('published_at'),
 });
-
-// ── Relations ──────────────────────────────────────
 
 export const usersRelations = relations(users, ({ many }) => ({
   workspaces: many(workspaces),

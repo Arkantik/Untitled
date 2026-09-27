@@ -1,6 +1,6 @@
 ---
 name: unslop
-description: Remove AI tells from prose and add voice. Applies to every prose surface this repo produces, including your own replies. Not to code.
+description: Remove AI tells from prose and add voice. Applies to every prose surface this repo produces, including your own replies and code comments.
 ---
 
 # Unslop
@@ -13,8 +13,8 @@ https://github.com/cursor/plugins/tree/main/pstack/skills/unslop
 Commit messages, PR descriptions, ADRs, session logs, ticket text, README and docs files, error
 messages a user reads, and your replies in the session. Your reply is a prose surface.
 
-Not code. The rules below are about writing, and applying them to identifiers or string literals
-produces nonsense.
+Not identifiers or string literals. The prose rules below produce nonsense on variable names.
+Code comments are prose and the rules apply to them; see the Code comments section.
 
 ## Process
 
@@ -83,3 +83,13 @@ Removing tells is half of it. Voiceless prose is equally obvious.
 - Use "I" where it fits.
 - Be specific rather than generically positive.
 - No weasel words: arguably, essentially, basically.
+
+## Code comments
+
+Default to no comments. Well-named identifiers already say what the code does.
+
+- No decorative separators: `// ── Section ─────`, `// =========`, `// ***********`. The code structure is visible without a banner.
+- No section headers restating the next declaration. `// Users` above `export const users = pgTable(...)` says nothing the code does not.
+- No narration of what changed: "added for the X flow", "handles the case from issue #123". That belongs in the commit message.
+- No multi-line comment blocks explaining what code does. One short line explaining why, only when the reason is not obvious.
+- A comment that could be deleted without confusing a future reader should be deleted now.
