@@ -27,7 +27,7 @@ survives a move from React to Angular. The implementation does not.
 | Field wrapper    |      | label, help text, error text                     | Ties label, control, and error via aria                            |
 | Badge            |      | one per semantic color role                      | Never color alone for meaning                                      |
 | Avatar           |      | image, initials fallback, loading                | Fallback is the common case, not the edge                          |
-| Icon             |      |                                                  | Decorative icons hidden from assistive tech, meaningful ones named. Use **Hugeicons** — not Lucide or any other library |
+| Icon             |      |                                                  | Decorative icons hidden from assistive tech, meaningful ones named. Use **Hugeicons**, not Lucide or any other library |
 | Spinner          |      |                                                  | Only for waits under a second. Longer waits want a skeleton        |
 | Skeleton         |      |                                                  | Must match the height of what it replaces or the layout jumps      |
 | Tooltip          |      |                                                  | Never the only place information exists. Unreachable by touch      |
