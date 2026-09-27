@@ -1,0 +1,31 @@
+# Which files the shell owns and which belong to the project.
+#
+# sync.sh push overwrites shell-owned files in registered projects.
+# It never touches anything else, whether listed here or not.
+#
+# The rule: a file the shell writes and you rarely edit per project is shell-owned.
+# A file that describes this specific project is project-owned, forever.
+
+[shell-owned]
+.claude/skills/
+.claude/agents/
+.claude/hooks/
+scripts/
+AGENTS.md
+docs/decisions/0000-template.md
+docs/tickets/_template.md
+
+[project-owned]
+CLAUDE.md
+.claude/settings.json
+docs/CONTEXT.md
+docs/RUNBOOK.md
+docs/conventions/
+docs/decisions/
+docs/sessions/
+docs/tickets/INDEX.md
+docs/tickets/open/
+docs/tickets/done/
+docs/ui/
+.github/
+.foundation-state

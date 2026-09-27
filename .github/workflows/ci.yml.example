@@ -1,0 +1,29 @@
+# Optional. Rename to ci.yml to enable.
+# Runs the commands from the CLAUDE.md commands table, which is the point: CI drifting from the
+# documented commands means one of them is lying, and /audit-foundation cannot tell which.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Replace with the runtime and package manager from CLAUDE.md.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '<22>'
+
+      - run: <pnpm install --frozen-lockfile>
+      - run: <pnpm lint>
+      - run: <pnpm typecheck>
+      - run: <pnpm test>
+      - run: <pnpm build>
+
+      - name: Scaffold integrity
+        run: ./scripts/check-scaffold.sh
