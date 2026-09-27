@@ -1,0 +1,41 @@
+{
+  "name": "@pulsarr/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema/pg": {
+      "types": "./dist/schema/pg.d.ts",
+      "default": "./dist/schema/pg.js"
+    },
+    "./schema/sqlite": {
+      "types": "./dist/schema/sqlite.d.ts",
+      "default": "./dist/schema/sqlite.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.3",
+    "better-sqlite3": "^13.0.3",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/pg": "^8.23.1",
+    "typescript": "7.0.2"
+  }
+}

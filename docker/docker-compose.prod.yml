@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - '${PORT:-3000}:3000'
+      - '${API_PORT:-3001}:3001'
+    env_file:
+      - ../.env
+    volumes:
+      - appdata:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      valkey:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pulsarr}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pulsarr}
+      POSTGRES_DB: ${POSTGRES_DB:-pulsarr}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-pulsarr}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    command: valkey-server --appendonly yes --maxmemory-policy noeviction
+    volumes:
+      - valkeydata:/data
+    healthcheck:
+      test: ['CMD', 'valkey-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  appdata:
+  pgdata:
+  valkeydata:

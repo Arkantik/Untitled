@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - better-sqlite3
+  - esbuild
+
+ignoredBuiltDependencies:
+  - '@scarf/scarf'
+  - msgpackr-extract
