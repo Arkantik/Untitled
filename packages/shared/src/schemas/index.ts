@@ -1,4 +1,6 @@
 import { z } from 'zod';
+export * from './workspace.schema.js';
+export * from './billing.schema.js';
 import { SocialPlatform, PostStatus } from '../types/index.js';
 
 export const createPostSchema = z.object({

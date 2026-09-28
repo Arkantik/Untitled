@@ -8,15 +8,16 @@ export const users = sqliteTable('users', {
   email: text('email').notNull().unique(),
   name: text('name'),
   avatarUrl: text('avatar_url'),
+  image: text('image'),
   emailVerified: integer('email_verified', { mode: 'boolean' })
     .default(false)
     .notNull(),
-  createdAt: text('created_at')
+  createdAt: integer('created_at', { mode: 'timestamp' })
     .notNull()
-    .$defaultFn(() => new Date().toISOString()),
-  updatedAt: text('updated_at')
+    .$defaultFn(() => new Date()),
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
     .notNull()
-    .$defaultFn(() => new Date().toISOString()),
+    .$defaultFn(() => new Date()),
 });
 
 export const workspaces = sqliteTable('workspaces', {
@@ -28,6 +29,9 @@ export const workspaces = sqliteTable('workspaces', {
   ownerId: text('owner_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
+  stripeCustomerId: text('stripe_customer_id').unique(),
+  subscriptionStatus: text('subscription_status').notNull().default('none'),
+  plan: text('plan').notNull().default('free'),
   createdAt: text('created_at')
     .notNull()
     .$defaultFn(() => new Date().toISOString()),
