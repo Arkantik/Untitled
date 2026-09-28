@@ -268,6 +268,22 @@ component hardcodes a pixel width; use a token or a percentage.
 
 ---
 
+## Icon conventions
+
+### Overflow menus (⋮ vs …)
+
+These two icons have distinct, non-interchangeable meanings. Using the wrong one misleads users.
+
+| Icon             | HugeIcons name        | Meaning           | When to use                                     |
+| ---------------- | --------------------- | ----------------- | ----------------------------------------------- |
+| ⋮ vertical dots  | `MoreVerticalIcon`    | More **actions**  | Dropdown trigger: edit, delete, rename, share…  |
+| … horizontal dots | `MoreHorizontalIcon` | More **content**  | Truncated text, "load more", pagination handles |
+
+**Rule**: every action-menu trigger (`DropdownMenu`, `ContextMenu`) uses `MoreVerticalIcon`.
+`MoreHorizontalIcon` is for content overflow only — never as a button that opens a menu.
+
+---
+
 ## Interactive element checklist
 
 Run through this before every PR that adds or modifies an interactive element.

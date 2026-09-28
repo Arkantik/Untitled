@@ -119,6 +119,7 @@
   --breakpoint-compact: 40rem; /* 640px  — single-column layouts */
   --breakpoint-regular: 64rem; /* 1024px — two-column layouts     */
   --breakpoint-wide: 80rem; /* 1280px — expanded dashboards    */
+  --max-width-page: 90rem;
 }
 
 @keyframes skeleton-fade {
@@ -128,11 +129,22 @@
 }
 
 @keyframes bell-ring {
-  0%, 100% { transform: rotate(0deg); }
-  20% { transform: rotate(16deg); }
-  40% { transform: rotate(-13deg); }
-  60% { transform: rotate(9deg); }
-  80% { transform: rotate(-5deg); }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(16deg);
+  }
+  40% {
+    transform: rotate(-13deg);
+  }
+  60% {
+    transform: rotate(9deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
 }
 
 body {

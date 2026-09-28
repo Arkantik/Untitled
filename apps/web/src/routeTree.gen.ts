@@ -35,6 +35,7 @@ import { Route as AppProfileSettingsRouteImport } from './routes/_app/profile/se
 import { Route as AppWorkspaceApiKeysRouteImport } from './routes/_app/workspace/api-keys'
 import { Route as AppWorkspaceMembersRouteImport } from './routes/_app/workspace/members'
 import { Route as AppWorkspaceOverviewRouteImport } from './routes/_app/workspace/overview'
+import { Route as AppWorkspaceSubscriptionRouteImport } from './routes/_app/workspace/subscription'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -164,6 +165,12 @@ const AppWorkspaceOverviewRoute = AppWorkspaceOverviewRouteImport.update({
   path: '/workspace/overview',
   getParentRoute: () => AppRoute,
 } as any)
+const AppWorkspaceSubscriptionRoute =
+  AppWorkspaceSubscriptionRouteImport.update({
+    id: '/workspace/subscription',
+    path: '/workspace/subscription',
+    getParentRoute: () => AppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -190,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
   '/workspace/members': typeof AppWorkspaceMembersRoute
   '/workspace/overview': typeof AppWorkspaceOverviewRoute
+  '/workspace/subscription': typeof AppWorkspaceSubscriptionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -216,6 +224,7 @@ export interface FileRoutesByTo {
   '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
   '/workspace/members': typeof AppWorkspaceMembersRoute
   '/workspace/overview': typeof AppWorkspaceOverviewRoute
+  '/workspace/subscription': typeof AppWorkspaceSubscriptionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -245,6 +254,7 @@ export interface FileRoutesById {
   '/_app/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
   '/_app/workspace/members': typeof AppWorkspaceMembersRoute
   '/_app/workspace/overview': typeof AppWorkspaceOverviewRoute
+  '/_app/workspace/subscription': typeof AppWorkspaceSubscriptionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -273,6 +283,7 @@ export interface FileRouteTypes {
     | '/workspace/api-keys'
     | '/workspace/members'
     | '/workspace/overview'
+    | '/workspace/subscription'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/workspace/api-keys'
     | '/workspace/members'
     | '/workspace/overview'
+    | '/workspace/subscription'
   id:
     | '__root__'
     | '/'
@@ -327,6 +339,7 @@ export interface FileRouteTypes {
     | '/_app/workspace/api-keys'
     | '/_app/workspace/members'
     | '/_app/workspace/overview'
+    | '/_app/workspace/subscription'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -519,6 +532,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceOverviewRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/workspace/subscription': {
+      id: '/_app/workspace/subscription'
+      path: '/workspace/subscription'
+      fullPath: '/workspace/subscription'
+      preLoaderRoute: typeof AppWorkspaceSubscriptionRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -540,6 +560,7 @@ interface AppRouteChildren {
   AppWorkspaceApiKeysRoute: typeof AppWorkspaceApiKeysRoute
   AppWorkspaceMembersRoute: typeof AppWorkspaceMembersRoute
   AppWorkspaceOverviewRoute: typeof AppWorkspaceOverviewRoute
+  AppWorkspaceSubscriptionRoute: typeof AppWorkspaceSubscriptionRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -560,6 +581,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppWorkspaceApiKeysRoute: AppWorkspaceApiKeysRoute,
   AppWorkspaceMembersRoute: AppWorkspaceMembersRoute,
   AppWorkspaceOverviewRoute: AppWorkspaceOverviewRoute,
+  AppWorkspaceSubscriptionRoute: AppWorkspaceSubscriptionRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

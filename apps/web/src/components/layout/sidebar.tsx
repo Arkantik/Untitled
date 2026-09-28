@@ -15,6 +15,7 @@ import {
   Building03Icon,
   UserGroupIcon,
   Key01Icon,
+  CreditCardIcon,
   PencilEdit02Icon,
   SidebarLeft01Icon,
   SidebarRight01Icon,
@@ -107,6 +108,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
     },
     { kind: 'item', to: '/workspace/members', label: t('workspace.members'), icon: UserGroupIcon },
     { kind: 'item', to: '/workspace/api-keys', label: t('workspace.apiKeys'), icon: Key01Icon },
+    { kind: 'item', to: '/workspace/subscription', label: t('workspace.subscription'), icon: CreditCardIcon },
   ];
 
   return (
