@@ -94,6 +94,12 @@ Never write:
 - Empty-catch narration: `} catch { // ignore }` — leave the block empty
 - Multi-line blocks explaining what code does
 
+## File size
+
+Keep files under ~150 lines. When a file would exceed that, split it by logical unit before
+writing more: types, sub-components, utilities, orchestrator each get their own file. Flag and
+propose the split — don't add to an already-long file. See `docs/conventions/README.md`.
+
 ## Working agreement
 
 - Plan before editing anything that crosses a file boundary. Show the plan, wait for a yes.

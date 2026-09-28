@@ -12,7 +12,7 @@ is dead: either enforce it or delete it.
 
 ## Structure
 
-- <rule> (evidence: `<path>`)
+- Files stay under ~150 lines. When a file exceeds that, split it by logical unit: types, sub-components, utilities, orchestrator. Each sub-file owns one clear responsibility. (evidence: `apps/web/src/components/layout/sidebar-types.ts`)
 
 ## Errors
 
