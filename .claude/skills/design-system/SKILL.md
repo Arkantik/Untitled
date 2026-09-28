@@ -53,3 +53,6 @@ their own. Wire the theme before copying in the second component, not after the 
 
 - Never let a component define a color, spacing, or radius value of its own.
 - Never add a token that has exactly one consumer.
+- Read `docs/ui/DESIGN.md` before building or modifying any interactive element.
+- Every interactive element must pass the checklist at the bottom of DESIGN.md before shipping.
+- WCAG 2.1 AA is the floor for all text and UI components. AAA is the target where achievable.

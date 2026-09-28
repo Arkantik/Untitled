@@ -45,11 +45,11 @@ themed and will break in dark mode.
 
 | Role             | Light     | Dark      | Use                             |
 | ---------------- | --------- | --------- | ------------------------------- |
-| `surface`        | `#F8F7F5` | `#0D0B1E` | page background                 |
-| `surface-raised` | `#FFFFFF` | `#151228` | cards, modals, popovers         |
-| `border`         | `#E3E0F2` | `#211E3A` | dividers, input outlines        |
+| `surface`        | `#F8F7F5` | `#111113` | page background                 |
+| `surface-raised` | `#FFFFFF` | `#1C1C1F` | cards, modals, popovers         |
+| `border`         | `#E3E0F2` | `#2C2C30` | dividers, input outlines        |
 | `text`           | `#110E24` | `#E8E6F5` | primary content                 |
-| `text-muted`     | `#6A6482` | `#8886B0` | secondary, placeholders         |
+| `text-muted`     | `#6A6482` | `#8F8F9E` | secondary, placeholders         |
 | `primary`        | `#3530D0` | `#7E78ED` | primary actions, active state   |
 | `primary-fg`     | `#FFFFFF` | `#110E24` | text/icons on `primary`         |
 | `destructive`    | `#DC2626` | `#DC2626` | delete, irreversible actions    |
@@ -64,10 +64,10 @@ themed and will break in dark mode.
 | Pair                              | Ratio    | Level |
 | --------------------------------- | -------- | ----- |
 | `primary-fg` on `primary` (light) | 8.45:1   | AAA   |
-| `primary-fg` on `primary` (dark)  | 5.21:1   | AA    |
+| `primary-fg` on `primary` (dark)  | 4.99:1   | AA    |
 | `text` on `surface-raised` (both) | > 12:1   | AAA   |
 | `text-muted` on `surface-raised` (light) | 5.21:1 | AA |
-| `text-muted` on `surface-raised` (dark)  | 5.65:1 | AA |
+| `text-muted` on `surface-raised` (dark)  | 4.79:1 | AA |
 
 ### Electric Indigo — full scale
 

@@ -57,6 +57,7 @@ Every command below must run as written from the repo root. If one is wrong, fix
 - `docs/CONTEXT.md`, domain vocabulary. Use these words exactly.
 - `docs/ui/TOKENS.md`, every visual value. Components define none of their own.
 - `docs/ui/COMPONENTS.md`, what exists. Read before building a component.
+- `docs/ui/DESIGN.md`, how to build correctly: accessibility rules, contrast requirements, motion, dark mode. Read alongside TOKENS.md and COMPONENTS.md before touching any UI.
 - `docs/tickets/`, the work queue. See `docs/tickets/README.md`.
 - `docs/RUNBOOK.md`, what to do when production breaks.
 
