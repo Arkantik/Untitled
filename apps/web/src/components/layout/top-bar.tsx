@@ -4,10 +4,11 @@ import type { IconSvgElement } from '@hugeicons/react';
 import {
   Notification01Icon,
   Menu01Icon,
-  Sun01Icon,
-  Moon01Icon,
+  Sun03Icon,
+  Moon02Icon,
   Home01Icon,
   FileEditIcon,
+  Calendar01Icon,
   Clock01Icon,
   UserMultiple02Icon,
   MessageMultiple01Icon,
@@ -18,6 +19,7 @@ import {
   Settings01Icon,
 } from '@hugeicons/core-free-icons';
 import { Button } from '~/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
 import { cn } from '~/lib/utils';
 import { useTheme } from '~/hooks/use-theme';
 
@@ -34,12 +36,12 @@ type RouteMeta = {
 
 const ROUTE_META: Record<string, RouteMeta> = {
   '/dashboard': { label: 'Dashboard', icon: Home01Icon },
-  '/posts': { label: 'Posts', icon: FileEditIcon },
-  '/posts/calendar': { label: 'Calendar', icon: FileEditIcon, parent: 'Posts', parentTo: '/posts' },
-  '/queue': { label: 'Queue', icon: Clock01Icon },
+  '/content/posts': { label: 'Posts', icon: FileEditIcon, parent: 'Content', parentTo: '/content/posts' },
+  '/content/calendar': { label: 'Calendar', icon: Calendar01Icon, parent: 'Content', parentTo: '/content/posts' },
+  '/content/queue': { label: 'Queue', icon: Clock01Icon, parent: 'Content', parentTo: '/content/posts' },
+  '/inbox/engagement': { label: 'Engagement', icon: MessageMultiple01Icon, parent: 'Inbox', parentTo: '/inbox/engagement' },
+  '/inbox/messages': { label: 'Messages', icon: BubbleChatIcon, parent: 'Inbox', parentTo: '/inbox/engagement' },
   '/accounts': { label: 'Accounts', icon: UserMultiple02Icon },
-  '/engagement': { label: 'Engagement', icon: MessageMultiple01Icon },
-  '/messages': { label: 'Messages', icon: BubbleChatIcon },
   '/analytics': { label: 'Analytics', icon: BarChartIcon },
   '/sync': { label: 'Sync', icon: RepeatIcon },
   '/workspace/overview': {
@@ -60,35 +62,35 @@ const ROUTE_META: Record<string, RouteMeta> = {
     parent: 'Workspace',
     parentTo: '/workspace/overview',
   },
-  '/settings/profile': {
-    label: 'Profile',
+  '/profile/settings': {
+    label: 'Settings',
     icon: Settings01Icon,
-    parent: 'Settings',
-    parentTo: '/settings/profile',
+    parent: 'Profile',
+    parentTo: '/profile/settings',
   },
-  '/settings/security': {
+  '/profile/security': {
     label: 'Security',
     icon: Settings01Icon,
-    parent: 'Settings',
-    parentTo: '/settings/profile',
+    parent: 'Profile',
+    parentTo: '/profile/settings',
   },
-  '/settings/notifications': {
+  '/profile/notifications': {
     label: 'Notifications',
     icon: Settings01Icon,
-    parent: 'Settings',
-    parentTo: '/settings/profile',
+    parent: 'Profile',
+    parentTo: '/profile/settings',
   },
-  '/settings/connections': {
+  '/profile/connections': {
     label: 'Connections',
     icon: Settings01Icon,
-    parent: 'Settings',
-    parentTo: '/settings/profile',
+    parent: 'Profile',
+    parentTo: '/profile/settings',
   },
-  '/settings/appearance': {
+  '/profile/appearance': {
     label: 'Appearance',
     icon: Settings01Icon,
-    parent: 'Settings',
-    parentTo: '/settings/profile',
+    parent: 'Profile',
+    parentTo: '/profile/settings',
   },
 };
 
@@ -142,29 +144,41 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
         )}
       </nav>
 
-      <div className="flex items-center gap-0.5">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="group h-8 w-8 text-muted-foreground hover:text-foreground"
-          aria-label="Notifications"
-        >
-          <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
-            <HugeiconsIcon icon={Notification01Icon} className="size-4" aria-hidden />
-          </span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggle}
-          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-          className="group h-8 w-8 text-muted-foreground hover:text-foreground"
-        >
-          <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
-            <HugeiconsIcon icon={isDark ? Sun01Icon : Moon01Icon} className="size-4" aria-hidden />
-          </span>
-        </Button>
-      </div>
+      <TooltipProvider delayDuration={200}>
+        <div className="flex items-center gap-0.5">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="group h-8 w-8 text-muted-foreground hover:text-foreground"
+                aria-label="Notifications"
+              >
+                <span className="flex origin-top group-hover:animate-bell-ring">
+                  <HugeiconsIcon icon={Notification01Icon} className="size-4" aria-hidden />
+                </span>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Notifications</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggle}
+                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                className="group h-8 w-8 text-muted-foreground hover:text-foreground"
+              >
+                <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
+                  <HugeiconsIcon icon={isDark ? Sun03Icon : Moon02Icon} className="size-4" aria-hidden />
+                </span>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{isDark ? 'Light mode' : 'Dark mode'}</TooltipContent>
+          </Tooltip>
+        </div>
+      </TooltipProvider>
     </header>
   );
 }

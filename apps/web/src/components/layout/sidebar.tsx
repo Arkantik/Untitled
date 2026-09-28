@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link, useRouterState } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
@@ -9,7 +10,8 @@ import {
   MessageMultiple01Icon,
   BubbleChatIcon,
   BarChartIcon,
-  RepeatIcon,
+  GasPipeIcon,
+  InboxIcon,
   Building03Icon,
   UserGroupIcon,
   Key01Icon,
@@ -24,16 +26,15 @@ import { cn } from '~/lib/utils';
 import { useMediaQuery } from '~/hooks/use-media-query';
 import { Button } from '~/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
-import type { NavEntry, NavLeaf, SidebarProps } from './sidebar-types';
+import type { NavEntry, NavGroup, NavLeaf, SidebarProps } from './sidebar-types';
 import { NavItem } from './sidebar-nav-item';
 import { CollapsibleGroup } from './sidebar-collapsible-group';
 import { UserArea } from './sidebar-user-area';
+import { WorkspaceSwitcher } from './sidebar-workspace-switcher';
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="whitespace-nowrap text-[10px] uppercase leading-relaxed tracking-wide text-muted-foreground/70">
-      {children}
-    </p>
+    <p className="whitespace-nowrap text-xs tracking-wide text-muted-foreground/70">{children}</p>
   );
 }
 
@@ -51,26 +52,59 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
     { kind: 'item', to: '/dashboard', label: t('nav.dashboard'), icon: Home01Icon },
     {
       kind: 'group',
-      id: 'posts',
-      label: t('nav.posts'),
+      id: 'content',
+      label: t('nav.content'),
       icon: FileEditIcon,
-      basePath: '/posts',
+      basePath: '/content',
       defaultOpen: true,
       children: [
-        { kind: 'item', to: '/posts', label: t('nav.posts'), icon: FileEditIcon },
-        { kind: 'item', to: '/posts/calendar', label: t('nav.calendar'), icon: Calendar01Icon },
+        { kind: 'item', to: '/content/posts', label: t('nav.posts'), icon: FileEditIcon },
+        { kind: 'item', to: '/content/calendar', label: t('nav.calendar'), icon: Calendar01Icon },
+        { kind: 'item', to: '/content/queue', label: t('nav.queue'), icon: Clock01Icon },
       ],
     },
-    { kind: 'item', to: '/queue', label: t('nav.queue'), icon: Clock01Icon },
-    { kind: 'item', to: '/accounts', label: t('nav.accounts'), icon: UserMultiple02Icon },
-    { kind: 'item', to: '/engagement', label: t('nav.engagement'), icon: MessageMultiple01Icon },
-    { kind: 'item', to: '/messages', label: t('nav.messages'), icon: BubbleChatIcon },
+    {
+      kind: 'group',
+      id: 'inbox',
+      label: t('nav.inbox'),
+      icon: InboxIcon,
+      basePath: '/inbox',
+      defaultOpen: false,
+      children: [
+        { kind: 'item', to: '/inbox/engagement', label: t('nav.engagement'), icon: MessageMultiple01Icon },
+        { kind: 'item', to: '/inbox/messages', label: t('nav.messages'), icon: BubbleChatIcon },
+      ],
+    },
     { kind: 'item', to: '/analytics', label: t('nav.analytics'), icon: BarChartIcon },
-    { kind: 'item', to: '/sync', label: t('nav.sync'), icon: RepeatIcon },
+    { kind: 'item', to: '/accounts', label: t('nav.accounts'), icon: UserMultiple02Icon },
+    { kind: 'item', to: '/sync', label: t('nav.pipelines'), icon: GasPipeIcon },
   ];
 
+  const [openGroupId, setOpenGroupId] = useState<string | null>(() => {
+    const match = mainNav.find(
+      (e): e is NavGroup => e.kind === 'group' && (pathname === e.basePath || pathname.startsWith(e.basePath + '/')),
+    );
+    return match ? match.id : null;
+  });
+
+  useEffect(() => {
+    const match = mainNav.find(
+      (e): e is NavGroup => e.kind === 'group' && (pathname === e.basePath || pathname.startsWith(e.basePath + '/')),
+    );
+    setOpenGroupId(match ? match.id : null);
+  }, [pathname]);
+
+  function handleGroupToggle(id: string) {
+    setOpenGroupId(prev => (prev === id ? null : id));
+  }
+
   const workspaceNav: NavLeaf[] = [
-    { kind: 'item', to: '/workspace/overview', label: t('workspace.overview'), icon: Building03Icon },
+    {
+      kind: 'item',
+      to: '/workspace/overview',
+      label: t('workspace.overview'),
+      icon: Building03Icon,
+    },
     { kind: 'item', to: '/workspace/members', label: t('workspace.members'), icon: UserGroupIcon },
     { kind: 'item', to: '/workspace/api-keys', label: t('workspace.apiKeys'), icon: Key01Icon },
   ];
@@ -80,7 +114,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
       <aside
         className={cn(
           'fixed inset-y-0 left-0 z-40 flex flex-col border-r border-border bg-card',
-          'transition-[width,transform] duration-200 ease-in-out',
+          'transition-[width,translate] duration-200 ease-in-out',
           effectiveCollapsed ? 'w-16' : 'w-60',
           mobileOpen ? 'translate-x-0' : '-translate-x-full regular:translate-x-0',
         )}
@@ -91,14 +125,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
             effectiveCollapsed ? 'justify-between px-2.5' : 'gap-2 px-3',
           )}
         >
-          <div className={cn('flex items-center gap-2.5', !effectiveCollapsed && 'flex-1')}>
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <span className="text-[10px] font-bold leading-none">P</span>
-            </div>
-            {!effectiveCollapsed && (
-              <span className="truncate text-sm font-semibold tracking-tight">Pulsarr</span>
-            )}
-          </div>
+          <WorkspaceSwitcher collapsed={effectiveCollapsed} />
 
           <button
             type="button"
@@ -144,14 +171,21 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
             </Tooltip>
           ) : (
             <label className="group/search flex h-8 cursor-text items-center gap-2 overflow-clip rounded-md border-[0.8px] border-border bg-card py-2 pl-2.5 pr-2 shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-150 hover:border-muted-foreground/30 focus-within:border-muted-foreground/40 focus-within:shadow-[0_0_0_3px_rgba(156,163,175,0.12)]">
-              <HugeiconsIcon icon={Search01Icon} className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+              <HugeiconsIcon
+                icon={Search01Icon}
+                className="size-4 shrink-0 text-muted-foreground"
+                aria-hidden
+              />
               <input
                 type="search"
                 placeholder="Search"
                 className="min-w-0 flex-1 bg-transparent text-[13px] leading-none text-foreground outline-none placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden"
                 aria-label="Search"
               />
-              <span className="flex shrink-0 items-center gap-0 transition-opacity group-focus-within/search:opacity-0" aria-hidden>
+              <span
+                className="flex shrink-0 items-center gap-0 transition-opacity group-focus-within/search:opacity-0"
+                aria-hidden
+              >
                 <span className="flex h-4 w-4 items-center justify-center rounded p-0.5 text-[10px] font-medium leading-none text-muted-foreground">
                   ⌘K
                 </span>
@@ -201,6 +235,8 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
                       collapsed={effectiveCollapsed}
                       pathname={pathname}
                       onNavigate={onMobileClose}
+                      open={openGroupId === entry.id}
+                      onToggle={() => handleGroupToggle(entry.id)}
                     />
                   ),
                 )}

@@ -1,14 +1,19 @@
 import { Link } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
-import { useState, useEffect } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
 import { cn } from '~/lib/utils';
 import type { NavGroup } from './sidebar-types';
 
 function TreeConnectorLine() {
   return (
-    <svg width="9" height="21" viewBox="0 0 9 21" fill="none" className="block size-full text-muted-foreground/45">
+    <svg
+      width="9"
+      height="21"
+      viewBox="0 0 9 21"
+      fill="none"
+      className="block size-full text-muted-foreground/45"
+    >
       <path
         d="M0.399902 0.399994V18.4C0.399902 19.5046 1.29533 20.4 2.3999 20.4H8.3999"
         stroke="currentColor"
@@ -26,7 +31,11 @@ function TreeConnectorDot({ active }: { active: boolean }) {
       height="4"
       viewBox="0 0 4 4"
       fill="none"
-      className={active ? 'absolute inset-0 block size-full text-primary' : 'absolute inset-0 block size-full text-muted-foreground/45'}
+      className={
+        active
+          ? 'absolute inset-0 block size-full text-primary'
+          : 'absolute inset-0 block size-full text-muted-foreground/45'
+      }
     >
       <path
         d="M2 0.400391C2.88366 0.400391 3.59961 1.11634 3.59961 2C3.59961 2.88366 2.88366 3.59961 2 3.59961C1.11634 3.59961 0.400391 2.88366 0.400391 2C0.400391 1.11634 1.11634 0.400391 2 0.400391Z"
@@ -43,31 +52,21 @@ export function CollapsibleGroup({
   collapsed,
   pathname,
   onNavigate,
+  open,
+  onToggle,
 }: {
   group: NavGroup;
   collapsed: boolean;
   pathname: string;
   onNavigate: () => void;
+  open: boolean;
+  onToggle: () => void;
 }) {
-  const storageKey = `pulsarr-nav-${group.id}-open`;
-  const [open, setOpen] = useState(group.defaultOpen ?? false);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(storageKey);
-      if (stored !== null) setOpen(stored === 'true');
-    } catch {}
-  }, [storageKey]);
-
-  function toggle() {
-    const next = !open;
-    setOpen(next);
-    try {
-      localStorage.setItem(storageKey, String(next));
-    } catch {}
-  }
-
-  const groupActive = pathname === group.basePath || pathname.startsWith(group.basePath + '/');
+  const childPaths = group.children.map((c) => (typeof c.to === 'string' ? c.to : ''));
+  const groupActive =
+    pathname === group.basePath ||
+    pathname.startsWith(group.basePath + '/') ||
+    childPaths.some((p) => p && (pathname === p || pathname.startsWith(p + '/')));
 
   if (collapsed) {
     return (
@@ -97,7 +96,7 @@ export function CollapsibleGroup({
     <div className="flex w-full flex-col">
       <button
         type="button"
-        onClick={toggle}
+        onClick={onToggle}
         aria-expanded={open}
         className={cn(
           'group/nav flex h-8 w-full items-center justify-between rounded-md border-[0.8px] border-transparent px-2.5 text-left text-[13px] leading-none outline-none transition-[background-color,color] duration-150',
@@ -114,7 +113,10 @@ export function CollapsibleGroup({
         </span>
         <HugeiconsIcon
           icon={ArrowDown01Icon}
-          className={cn('size-3 shrink-0 text-muted-foreground transition-transform duration-300', open && 'rotate-180')}
+          className={cn(
+            'size-3 shrink-0 text-muted-foreground transition-transform duration-300',
+            open && 'rotate-180',
+          )}
           aria-hidden
         />
       </button>
@@ -151,7 +153,10 @@ export function CollapsibleGroup({
                   />
                   <span className="relative pl-11 pr-2.5 text-[12px]">{child.label}</span>
                   <span className="pointer-events-none absolute left-4.5 -top-1.25 h-5 w-2">
-                    <span className="pointer-events-none absolute block" style={{ inset: '-2% -5%' }}>
+                    <span
+                      className="pointer-events-none absolute block"
+                      style={{ inset: '-2% -5%' }}
+                    >
                       <TreeConnectorLine />
                     </span>
                   </span>

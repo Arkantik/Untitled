@@ -114,6 +114,7 @@
 
 @theme {
   --animate-skeleton: skeleton-fade 0.8s ease-in-out infinite;
+  --animate-bell-ring: bell-ring 0.5s ease-in-out;
   /* Named breakpoints from docs/ui/TOKENS.md */
   --breakpoint-compact: 40rem; /* 640px  — single-column layouts */
   --breakpoint-regular: 64rem; /* 1024px — two-column layouts     */
@@ -124,6 +125,14 @@
   50% {
     opacity: 0.45;
   }
+}
+
+@keyframes bell-ring {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(16deg); }
+  40% { transform: rotate(-13deg); }
+  60% { transform: rotate(9deg); }
+  80% { transform: rotate(-5deg); }
 }
 
 body {

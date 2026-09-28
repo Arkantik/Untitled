@@ -11,4 +11,10 @@ export default defineConfig({
     },
   },
   plugins: [tanstackStart(), react()],
+  optimizeDeps: {
+    include: ['@hugeicons/react', '@hugeicons/core-free-icons'],
+  },
+  ssr: {
+    noExternal: ['@hugeicons/react', '@hugeicons/core-free-icons'],
+  },
 });
