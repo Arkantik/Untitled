@@ -28,10 +28,11 @@ function WorkspaceSubscriptionPage() {
 
       <Card>
         <CardHeader
-          className={cn(
-            'rounded-t-lg border-b border-border',
-            'bg-[linear-gradient(135deg,color-mix(in_srgb,var(--color-primary)_8%,transparent)_0%,var(--color-card)_60%)]',
-          )}
+          className="rounded-t-lg border-b border-border"
+          style={{
+            background:
+              'linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, color-mix(in srgb, var(--color-primary) 4%, transparent) 25%, color-mix(in srgb, var(--color-primary) 1%, transparent) 50%, var(--color-card) 75%)',
+          }}
         >
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-1.5">

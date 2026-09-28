@@ -1,7 +1,9 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createRouter } from '@tanstack/react-router';
+import { toast } from 'sonner';
 import { routeTree } from './routeTree.gen';
 import { initI18n } from './i18n';
+import { isApiError } from './lib/api-client';
 
 initI18n();
 
@@ -10,6 +12,12 @@ export function getRouter() {
     defaultOptions: {
       queries: {
         staleTime: 30_000,
+      },
+      mutations: {
+        onError: (err) => {
+          const message = isApiError(err) ? err.message : 'An unexpected error occurred.';
+          toast.error(message);
+        },
       },
     },
   });
