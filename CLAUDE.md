@@ -52,6 +52,9 @@ Every command below must run as written from the repo root. If one is wrong, fix
 - `packages/db/`, Drizzle schemas (pg + sqlite), migrations, connection factory.
 - `packages/shared/`, shared constants, TypeScript types, Zod validation schemas.
 - `docker/`, Dockerfile, compose files, supervisord config.
+- `.claude/rules/`, auto-loaded guardrails. Scoped by globs so UI rules load only for UI files.
+- `.claude/skills/`, on-demand workflows invoked with `/skill-name`.
+- `.claude/agents/`, custom agent definitions (codebase-scout, code-reviewer, docs-researcher).
 - `docs/decisions/`, ADRs. Read before proposing an architectural change.
 - `docs/conventions/`, how we write code here.
 - `docs/CONTEXT.md`, domain vocabulary. Use these words exactly.
