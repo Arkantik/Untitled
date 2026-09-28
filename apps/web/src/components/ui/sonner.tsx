@@ -7,7 +7,7 @@ export function Toaster() {
       toastOptions={{
         classNames: {
           toast:
-            'bg-card text-foreground border border-border shadow-md rounded-lg font-sans text-sm',
+            'bg-card text-foreground border border-border shadow-md rounded-md font-sans text-sm',
           error: 'bg-card text-foreground border-destructive/50',
           success: 'bg-card text-foreground border-success/50',
         },
