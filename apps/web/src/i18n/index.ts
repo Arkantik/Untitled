@@ -1,4 +1,4 @@
-export { initI18n, i18n } from './config';
+export { initI18n, i18n, localeScript } from './config';
 export {
   defaultNS,
   resources,

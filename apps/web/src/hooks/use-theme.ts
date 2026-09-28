@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { readPreference, writePreference } from '~/lib/preferences';
 
 type Theme = 'light' | 'dark';
 
-const STORAGE_KEY = 'pulsarr-theme';
+const KEY = 'pulsarr-theme';
 
 function getSystemTheme(): Theme {
   return typeof window !== 'undefined' &&
@@ -11,35 +12,30 @@ function getSystemTheme(): Theme {
     : 'light';
 }
 
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'light';
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark') return stored;
-  } catch {
-    // localStorage unavailable
+function storedTheme(): Theme {
+  if (typeof document !== 'undefined') {
+    const attr = document.documentElement.dataset.theme;
+    if (attr === 'light' || attr === 'dark') return attr;
   }
+  const stored = readPreference(KEY);
+  if (stored === 'light' || stored === 'dark') return stored;
   return getSystemTheme();
 }
 
 export function useTheme() {
-  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
+  const [theme, setThemeState] = useState<Theme>(storedTheme);
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch {
-      // ignore
-    }
-  }, [theme]);
+  function setTheme(next: Theme) {
+    document.documentElement.setAttribute('data-theme', next);
+    writePreference(KEY, next);
+    setThemeState(next);
+  }
 
   function toggle() {
-    setThemeState((t) => (t === 'dark' ? 'light' : 'dark'));
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
   return { theme, toggle };
 }
 
-/** Inlined in <head> to prevent flash of wrong theme before hydration. */
-export const themeScript = `(function(){try{var t=localStorage.getItem('${STORAGE_KEY}');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
+export const themeScript = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)pulsarr-theme=([^;]*)/);var t=m?decodeURIComponent(m[1]):null;if(!t)try{t=localStorage.getItem('pulsarr-theme')}catch(e){}if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`;

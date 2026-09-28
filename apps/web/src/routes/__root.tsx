@@ -3,9 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { APP_NAME } from '@pulsarr/shared';
 import { Toaster } from '~/components/ui/sonner';
 import { themeScript } from '~/hooks/use-theme';
+import { localeScript } from '~/i18n/config';
+import { DefaultCatchBoundary } from '~/components/default-catch-boundary';
+import { NotFound } from '~/components/not-found';
 import '~/styles/globals.css';
 
 export const Route = createRootRoute({
+  errorComponent: DefaultCatchBoundary,
+  notFoundComponent: () => <NotFound />,
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -31,8 +36,8 @@ function RootComponent() {
   return (
     <html lang={i18n.language} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript + localeScript }} />
         <meta name="description" content={t('appDescription')} />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <HeadContent />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">

@@ -1,6 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { defaultNS, resources, supportedLanguages } from './resources';
+import { readPreference } from '~/lib/preferences';
+import { defaultNS, resources, supportedLanguages, type SupportedLanguage } from './resources';
+
+function detectLng(): SupportedLanguage {
+  const stored = readPreference('pulsarr-lang');
+  if (stored && (supportedLanguages as readonly string[]).includes(stored)) {
+    return stored as SupportedLanguage;
+  }
+  return 'en';
+}
 
 export function initI18n() {
   if (i18n.isInitialized) return i18n;
@@ -8,25 +17,16 @@ export function initI18n() {
   i18n.use(initReactI18next).init({
     resources,
     defaultNS,
-    lng: 'en',
+    lng: detectLng(),
     fallbackLng: 'en',
     supportedLngs: supportedLanguages,
     interpolation: { escapeValue: false },
   });
 
-  // Apply stored language preference after hydration, not during SSR
-  if (typeof window !== 'undefined') {
-    try {
-      const stored = localStorage.getItem('pulsarr-lang');
-      if (stored && supportedLanguages.includes(stored as never)) {
-        i18n.changeLanguage(stored);
-      }
-    } catch {
-      // localStorage unavailable
-    }
-  }
-
   return i18n;
 }
+
+const localeCheck = supportedLanguages.map((l) => `l==='${l}'`).join('||');
+export const localeScript = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)pulsarr-lang=([^;]*)/);var l=m?decodeURIComponent(m[1]):null;if(!l)try{l=localStorage.getItem('pulsarr-lang')}catch(e){}if(${localeCheck})document.documentElement.lang=l}catch(e){}})();`;
 
 export { i18n };
