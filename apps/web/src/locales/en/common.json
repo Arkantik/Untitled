@@ -30,11 +30,17 @@
     "messages": "Messages",
     "analytics": "Analytics",
     "sync": "Sync",
+    "content": "Content",
+    "inbox": "Inbox",
+    "pipelines": "Pipelines",
+    "mainNav": "Navigation",
     "settings": "Settings",
     "workspace": "Workspace",
     "compose": "Compose post",
     "signOut": "Sign out",
     "viewProfile": "View profile",
+    "starOnGithub": "Star on GitHub",
+    "sponsor": "Sponsor",
     "switchToLight": "Switch to light mode",
     "switchToDark": "Switch to dark mode"
   },
@@ -42,7 +48,19 @@
     "overview": "Overview",
     "members": "Members",
     "apiKeys": "API Keys",
-    "subscription": "Subscription"
+    "subscription": "Subscription",
+    "switch": "Switch workspace",
+    "new": "New workspace"
+  },
+  "sponsor": {
+    "title": "Support Pulsarr",
+    "description": "Pulsarr is free and open source. Your support keeps it going.",
+    "github": "GitHub Sponsors",
+    "githubDesc": "Sponsor us monthly on GitHub",
+    "githubCta": "Sponsor on GitHub",
+    "stripe": "One-time donation",
+    "stripeDesc": "Make a one-time contribution",
+    "stripeCta": "Donate"
   },
   "settings": {
     "profile": "Profile",
@@ -62,6 +80,15 @@
     "generic": "Something went wrong",
     "notFound": "Page not found",
     "unauthorized": "You need to sign in",
-    "forbidden": "You don't have access to this"
+    "forbidden": "You don't have access to this",
+    "404Eyebrow": "404 — Not Found",
+    "404Title": "Page not found",
+    "404Description": "The page you're looking for doesn't exist or has been moved.",
+    "500Eyebrow": "500 — Server Error",
+    "500Title": "Something went wrong",
+    "500Description": "An unexpected error occurred. Try refreshing the page.",
+    "backToDashboard": "Back to dashboard",
+    "goBack": "Go back",
+    "technicalDetails": "Technical details"
   }
 }

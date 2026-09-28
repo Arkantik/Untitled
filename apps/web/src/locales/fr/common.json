@@ -30,11 +30,17 @@
     "messages": "Messages",
     "analytics": "Analytiques",
     "sync": "Synchronisation",
+    "content": "Contenu",
+    "inbox": "Boîte de réception",
+    "pipelines": "Pipelines",
+    "mainNav": "Navigation",
     "settings": "Paramètres",
     "workspace": "Espace de travail",
     "compose": "Composer une publication",
     "signOut": "Se déconnecter",
     "viewProfile": "Voir le profil",
+    "starOnGithub": "Étoile sur GitHub",
+    "sponsor": "Sponsoriser",
     "switchToLight": "Passer en mode clair",
     "switchToDark": "Passer en mode sombre"
   },
@@ -42,7 +48,19 @@
     "overview": "Vue d'ensemble",
     "members": "Membres",
     "apiKeys": "Clés API",
-    "subscription": "Abonnement"
+    "subscription": "Abonnement",
+    "switch": "Changer d'espace",
+    "new": "Nouvel espace"
+  },
+  "sponsor": {
+    "title": "Soutenir Pulsarr",
+    "description": "Pulsarr est gratuit et open source. Votre soutien nous aide à continuer.",
+    "github": "GitHub Sponsors",
+    "githubDesc": "Sponsorisez-nous chaque mois sur GitHub",
+    "githubCta": "Sponsoriser sur GitHub",
+    "stripe": "Don unique",
+    "stripeDesc": "Faites une contribution unique",
+    "stripeCta": "Faire un don"
   },
   "settings": {
     "profile": "Profil",
@@ -62,6 +80,15 @@
     "generic": "Une erreur s'est produite",
     "notFound": "Page introuvable",
     "unauthorized": "Vous devez vous connecter",
-    "forbidden": "Vous n'avez pas accès à ceci"
+    "forbidden": "Vous n'avez pas accès à ceci",
+    "404Eyebrow": "404 — Introuvable",
+    "404Title": "Page introuvable",
+    "404Description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "500Eyebrow": "500 — Erreur serveur",
+    "500Title": "Une erreur s'est produite",
+    "500Description": "Une erreur inattendue s'est produite. Essayez de recharger la page.",
+    "backToDashboard": "Retour au tableau de bord",
+    "goBack": "Retour",
+    "technicalDetails": "Détails techniques"
   }
 }

@@ -30,11 +30,17 @@
     "messages": "Nachrichten",
     "analytics": "Analysen",
     "sync": "Synchronisierung",
+    "content": "Inhalte",
+    "inbox": "Posteingang",
+    "pipelines": "Pipelines",
+    "mainNav": "Navigation",
     "settings": "Einstellungen",
     "workspace": "Arbeitsbereich",
     "compose": "Beitrag verfassen",
     "signOut": "Abmelden",
     "viewProfile": "Profil anzeigen",
+    "starOnGithub": "Auf GitHub markieren",
+    "sponsor": "Sponsern",
     "switchToLight": "Zum hellen Modus wechseln",
     "switchToDark": "Zum dunklen Modus wechseln"
   },
@@ -42,7 +48,19 @@
     "overview": "Übersicht",
     "members": "Mitglieder",
     "apiKeys": "API-Schlüssel",
-    "subscription": "Abonnement"
+    "subscription": "Abonnement",
+    "switch": "Arbeitsbereich wechseln",
+    "new": "Neuer Arbeitsbereich"
+  },
+  "sponsor": {
+    "title": "Pulsarr unterstützen",
+    "description": "Pulsarr ist kostenlos und open source. Ihre Unterstützung hält es am Laufen.",
+    "github": "GitHub Sponsors",
+    "githubDesc": "Unterstützen Sie uns monatlich auf GitHub",
+    "githubCta": "Auf GitHub sponsern",
+    "stripe": "Einmalige Spende",
+    "stripeDesc": "Leisten Sie einen einmaligen Beitrag",
+    "stripeCta": "Spenden"
   },
   "settings": {
     "profile": "Profil",
@@ -62,6 +80,15 @@
     "generic": "Etwas ist schiefgelaufen",
     "notFound": "Seite nicht gefunden",
     "unauthorized": "Sie müssen sich anmelden",
-    "forbidden": "Sie haben keinen Zugriff darauf"
+    "forbidden": "Sie haben keinen Zugriff darauf",
+    "404Eyebrow": "404 — Nicht gefunden",
+    "404Title": "Seite nicht gefunden",
+    "404Description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "500Eyebrow": "500 — Serverfehler",
+    "500Title": "Etwas ist schiefgelaufen",
+    "500Description": "Ein unerwarteter Fehler ist aufgetreten. Versuchen Sie, die Seite neu zu laden.",
+    "backToDashboard": "Zurück zum Dashboard",
+    "goBack": "Zurück",
+    "technicalDetails": "Technische Details"
   }
 }
