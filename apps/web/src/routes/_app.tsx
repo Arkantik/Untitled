@@ -29,13 +29,15 @@ function AppLayout() {
 
   return (
     <div className="flex min-h-screen bg-background">
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-30 bg-black/40 regular:hidden"
-          onClick={() => setMobileOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+      <div
+        className={cn(
+          'fixed inset-0 z-30 bg-black/40 regular:hidden',
+          'transition-opacity duration-200 ease-in-out',
+          mobileOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
+        )}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
 
       <Sidebar
         collapsed={collapsed}

@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar01Icon } from '@hugeicons/core-free-icons';
 import { EmptyState } from '~/components/ui/empty-state';
 
-export const Route = createFileRoute('/_app/posts/calendar')({
+export const Route = createFileRoute('/_app/content/calendar')({
   component: CalendarPage,
 });
 

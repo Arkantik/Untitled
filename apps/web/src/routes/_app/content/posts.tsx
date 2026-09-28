@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { FileEditIcon } from '@hugeicons/core-free-icons';
 import { EmptyState } from '~/components/ui/empty-state';
 
-export const Route = createFileRoute('/_app/posts/')({
+export const Route = createFileRoute('/_app/content/posts')({
   component: PostsPage,
 });
 

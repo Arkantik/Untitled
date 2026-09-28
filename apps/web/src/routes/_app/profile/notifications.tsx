@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { EmptyState } from '~/components/ui/empty-state';
 
-export const Route = createFileRoute('/_app/settings/notifications')({
+export const Route = createFileRoute('/_app/profile/notifications')({
   component: NotificationsSettingsPage,
 });
 

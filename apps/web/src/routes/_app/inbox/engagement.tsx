@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { MessageMultiple01Icon } from '@hugeicons/core-free-icons';
 import { EmptyState } from '~/components/ui/empty-state';
 
-export const Route = createFileRoute('/_app/engagement')({
+export const Route = createFileRoute('/_app/inbox/engagement')({
   component: EngagementPage,
 });
 

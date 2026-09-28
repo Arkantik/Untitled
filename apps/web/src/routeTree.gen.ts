@@ -15,9 +15,6 @@ import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppAccountsRouteImport } from './routes/_app/accounts'
 import { Route as AppAnalyticsRouteImport } from './routes/_app/analytics'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
-import { Route as AppEngagementRouteImport } from './routes/_app/engagement'
-import { Route as AppMessagesRouteImport } from './routes/_app/messages'
-import { Route as AppQueueRouteImport } from './routes/_app/queue'
 import { Route as AppSyncRouteImport } from './routes/_app/sync'
 import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
@@ -25,13 +22,16 @@ import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthTwoFactorRouteImport } from './routes/_auth/two-factor'
 import { Route as AuthVerifyEmailRouteImport } from './routes/_auth/verify-email'
-import { Route as AppPostsIndexRouteImport } from './routes/_app/posts/index'
-import { Route as AppPostsCalendarRouteImport } from './routes/_app/posts/calendar'
-import { Route as AppSettingsAppearanceRouteImport } from './routes/_app/settings/appearance'
-import { Route as AppSettingsConnectionsRouteImport } from './routes/_app/settings/connections'
-import { Route as AppSettingsNotificationsRouteImport } from './routes/_app/settings/notifications'
-import { Route as AppSettingsProfileRouteImport } from './routes/_app/settings/profile'
-import { Route as AppSettingsSecurityRouteImport } from './routes/_app/settings/security'
+import { Route as AppContentCalendarRouteImport } from './routes/_app/content/calendar'
+import { Route as AppContentPostsRouteImport } from './routes/_app/content/posts'
+import { Route as AppContentQueueRouteImport } from './routes/_app/content/queue'
+import { Route as AppInboxEngagementRouteImport } from './routes/_app/inbox/engagement'
+import { Route as AppInboxMessagesRouteImport } from './routes/_app/inbox/messages'
+import { Route as AppProfileAppearanceRouteImport } from './routes/_app/profile/appearance'
+import { Route as AppProfileConnectionsRouteImport } from './routes/_app/profile/connections'
+import { Route as AppProfileNotificationsRouteImport } from './routes/_app/profile/notifications'
+import { Route as AppProfileSecurityRouteImport } from './routes/_app/profile/security'
+import { Route as AppProfileSettingsRouteImport } from './routes/_app/profile/settings'
 import { Route as AppWorkspaceApiKeysRouteImport } from './routes/_app/workspace/api-keys'
 import { Route as AppWorkspaceMembersRouteImport } from './routes/_app/workspace/members'
 import { Route as AppWorkspaceOverviewRouteImport } from './routes/_app/workspace/overview'
@@ -62,21 +62,6 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppEngagementRoute = AppEngagementRouteImport.update({
-  id: '/engagement',
-  path: '/engagement',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppMessagesRoute = AppMessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppQueueRoute = AppQueueRouteImport.update({
-  id: '/queue',
-  path: '/queue',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSyncRoute = AppSyncRouteImport.update({
@@ -114,40 +99,54 @@ const AuthVerifyEmailRoute = AuthVerifyEmailRouteImport.update({
   path: '/verify-email',
   getParentRoute: () => AuthRoute,
 } as any)
-const AppPostsIndexRoute = AppPostsIndexRouteImport.update({
-  id: '/posts/',
-  path: '/posts/',
+const AppContentCalendarRoute = AppContentCalendarRouteImport.update({
+  id: '/content/calendar',
+  path: '/content/calendar',
   getParentRoute: () => AppRoute,
 } as any)
-const AppPostsCalendarRoute = AppPostsCalendarRouteImport.update({
-  id: '/posts/calendar',
-  path: '/posts/calendar',
+const AppContentPostsRoute = AppContentPostsRouteImport.update({
+  id: '/content/posts',
+  path: '/content/posts',
   getParentRoute: () => AppRoute,
 } as any)
-const AppSettingsAppearanceRoute = AppSettingsAppearanceRouteImport.update({
-  id: '/settings/appearance',
-  path: '/settings/appearance',
+const AppContentQueueRoute = AppContentQueueRouteImport.update({
+  id: '/content/queue',
+  path: '/content/queue',
   getParentRoute: () => AppRoute,
 } as any)
-const AppSettingsConnectionsRoute = AppSettingsConnectionsRouteImport.update({
-  id: '/settings/connections',
-  path: '/settings/connections',
+const AppInboxEngagementRoute = AppInboxEngagementRouteImport.update({
+  id: '/inbox/engagement',
+  path: '/inbox/engagement',
   getParentRoute: () => AppRoute,
 } as any)
-const AppSettingsNotificationsRoute =
-  AppSettingsNotificationsRouteImport.update({
-    id: '/settings/notifications',
-    path: '/settings/notifications',
-    getParentRoute: () => AppRoute,
-  } as any)
-const AppSettingsProfileRoute = AppSettingsProfileRouteImport.update({
-  id: '/settings/profile',
-  path: '/settings/profile',
+const AppInboxMessagesRoute = AppInboxMessagesRouteImport.update({
+  id: '/inbox/messages',
+  path: '/inbox/messages',
   getParentRoute: () => AppRoute,
 } as any)
-const AppSettingsSecurityRoute = AppSettingsSecurityRouteImport.update({
-  id: '/settings/security',
-  path: '/settings/security',
+const AppProfileAppearanceRoute = AppProfileAppearanceRouteImport.update({
+  id: '/profile/appearance',
+  path: '/profile/appearance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileConnectionsRoute = AppProfileConnectionsRouteImport.update({
+  id: '/profile/connections',
+  path: '/profile/connections',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileNotificationsRoute = AppProfileNotificationsRouteImport.update({
+  id: '/profile/notifications',
+  path: '/profile/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileSecurityRoute = AppProfileSecurityRouteImport.update({
+  id: '/profile/security',
+  path: '/profile/security',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileSettingsRoute = AppProfileSettingsRouteImport.update({
+  id: '/profile/settings',
+  path: '/profile/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppWorkspaceApiKeysRoute = AppWorkspaceApiKeysRouteImport.update({
@@ -171,9 +170,6 @@ export interface FileRoutesByFullPath {
   '/accounts': typeof AppAccountsRoute
   '/analytics': typeof AppAnalyticsRoute
   '/dashboard': typeof AppDashboardRoute
-  '/engagement': typeof AppEngagementRoute
-  '/messages': typeof AppMessagesRoute
-  '/queue': typeof AppQueueRoute
   '/sync': typeof AppSyncRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
@@ -181,25 +177,25 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof AuthResetPasswordRoute
   '/two-factor': typeof AuthTwoFactorRoute
   '/verify-email': typeof AuthVerifyEmailRoute
-  '/posts/calendar': typeof AppPostsCalendarRoute
-  '/settings/appearance': typeof AppSettingsAppearanceRoute
-  '/settings/connections': typeof AppSettingsConnectionsRoute
-  '/settings/notifications': typeof AppSettingsNotificationsRoute
-  '/settings/profile': typeof AppSettingsProfileRoute
-  '/settings/security': typeof AppSettingsSecurityRoute
+  '/content/calendar': typeof AppContentCalendarRoute
+  '/content/posts': typeof AppContentPostsRoute
+  '/content/queue': typeof AppContentQueueRoute
+  '/inbox/engagement': typeof AppInboxEngagementRoute
+  '/inbox/messages': typeof AppInboxMessagesRoute
+  '/profile/appearance': typeof AppProfileAppearanceRoute
+  '/profile/connections': typeof AppProfileConnectionsRoute
+  '/profile/notifications': typeof AppProfileNotificationsRoute
+  '/profile/security': typeof AppProfileSecurityRoute
+  '/profile/settings': typeof AppProfileSettingsRoute
   '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
   '/workspace/members': typeof AppWorkspaceMembersRoute
   '/workspace/overview': typeof AppWorkspaceOverviewRoute
-  '/posts/': typeof AppPostsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accounts': typeof AppAccountsRoute
   '/analytics': typeof AppAnalyticsRoute
   '/dashboard': typeof AppDashboardRoute
-  '/engagement': typeof AppEngagementRoute
-  '/messages': typeof AppMessagesRoute
-  '/queue': typeof AppQueueRoute
   '/sync': typeof AppSyncRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
@@ -207,16 +203,19 @@ export interface FileRoutesByTo {
   '/reset-password': typeof AuthResetPasswordRoute
   '/two-factor': typeof AuthTwoFactorRoute
   '/verify-email': typeof AuthVerifyEmailRoute
-  '/posts/calendar': typeof AppPostsCalendarRoute
-  '/settings/appearance': typeof AppSettingsAppearanceRoute
-  '/settings/connections': typeof AppSettingsConnectionsRoute
-  '/settings/notifications': typeof AppSettingsNotificationsRoute
-  '/settings/profile': typeof AppSettingsProfileRoute
-  '/settings/security': typeof AppSettingsSecurityRoute
+  '/content/calendar': typeof AppContentCalendarRoute
+  '/content/posts': typeof AppContentPostsRoute
+  '/content/queue': typeof AppContentQueueRoute
+  '/inbox/engagement': typeof AppInboxEngagementRoute
+  '/inbox/messages': typeof AppInboxMessagesRoute
+  '/profile/appearance': typeof AppProfileAppearanceRoute
+  '/profile/connections': typeof AppProfileConnectionsRoute
+  '/profile/notifications': typeof AppProfileNotificationsRoute
+  '/profile/security': typeof AppProfileSecurityRoute
+  '/profile/settings': typeof AppProfileSettingsRoute
   '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
   '/workspace/members': typeof AppWorkspaceMembersRoute
   '/workspace/overview': typeof AppWorkspaceOverviewRoute
-  '/posts': typeof AppPostsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -226,9 +225,6 @@ export interface FileRoutesById {
   '/_app/accounts': typeof AppAccountsRoute
   '/_app/analytics': typeof AppAnalyticsRoute
   '/_app/dashboard': typeof AppDashboardRoute
-  '/_app/engagement': typeof AppEngagementRoute
-  '/_app/messages': typeof AppMessagesRoute
-  '/_app/queue': typeof AppQueueRoute
   '/_app/sync': typeof AppSyncRoute
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/login': typeof AuthLoginRoute
@@ -236,16 +232,19 @@ export interface FileRoutesById {
   '/_auth/reset-password': typeof AuthResetPasswordRoute
   '/_auth/two-factor': typeof AuthTwoFactorRoute
   '/_auth/verify-email': typeof AuthVerifyEmailRoute
-  '/_app/posts/calendar': typeof AppPostsCalendarRoute
-  '/_app/settings/appearance': typeof AppSettingsAppearanceRoute
-  '/_app/settings/connections': typeof AppSettingsConnectionsRoute
-  '/_app/settings/notifications': typeof AppSettingsNotificationsRoute
-  '/_app/settings/profile': typeof AppSettingsProfileRoute
-  '/_app/settings/security': typeof AppSettingsSecurityRoute
+  '/_app/content/calendar': typeof AppContentCalendarRoute
+  '/_app/content/posts': typeof AppContentPostsRoute
+  '/_app/content/queue': typeof AppContentQueueRoute
+  '/_app/inbox/engagement': typeof AppInboxEngagementRoute
+  '/_app/inbox/messages': typeof AppInboxMessagesRoute
+  '/_app/profile/appearance': typeof AppProfileAppearanceRoute
+  '/_app/profile/connections': typeof AppProfileConnectionsRoute
+  '/_app/profile/notifications': typeof AppProfileNotificationsRoute
+  '/_app/profile/security': typeof AppProfileSecurityRoute
+  '/_app/profile/settings': typeof AppProfileSettingsRoute
   '/_app/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
   '/_app/workspace/members': typeof AppWorkspaceMembersRoute
   '/_app/workspace/overview': typeof AppWorkspaceOverviewRoute
-  '/_app/posts/': typeof AppPostsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -254,9 +253,6 @@ export interface FileRouteTypes {
     | '/accounts'
     | '/analytics'
     | '/dashboard'
-    | '/engagement'
-    | '/messages'
-    | '/queue'
     | '/sync'
     | '/forgot-password'
     | '/login'
@@ -264,25 +260,25 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/two-factor'
     | '/verify-email'
-    | '/posts/calendar'
-    | '/settings/appearance'
-    | '/settings/connections'
-    | '/settings/notifications'
-    | '/settings/profile'
-    | '/settings/security'
+    | '/content/calendar'
+    | '/content/posts'
+    | '/content/queue'
+    | '/inbox/engagement'
+    | '/inbox/messages'
+    | '/profile/appearance'
+    | '/profile/connections'
+    | '/profile/notifications'
+    | '/profile/security'
+    | '/profile/settings'
     | '/workspace/api-keys'
     | '/workspace/members'
     | '/workspace/overview'
-    | '/posts/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/accounts'
     | '/analytics'
     | '/dashboard'
-    | '/engagement'
-    | '/messages'
-    | '/queue'
     | '/sync'
     | '/forgot-password'
     | '/login'
@@ -290,16 +286,19 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/two-factor'
     | '/verify-email'
-    | '/posts/calendar'
-    | '/settings/appearance'
-    | '/settings/connections'
-    | '/settings/notifications'
-    | '/settings/profile'
-    | '/settings/security'
+    | '/content/calendar'
+    | '/content/posts'
+    | '/content/queue'
+    | '/inbox/engagement'
+    | '/inbox/messages'
+    | '/profile/appearance'
+    | '/profile/connections'
+    | '/profile/notifications'
+    | '/profile/security'
+    | '/profile/settings'
     | '/workspace/api-keys'
     | '/workspace/members'
     | '/workspace/overview'
-    | '/posts'
   id:
     | '__root__'
     | '/'
@@ -308,9 +307,6 @@ export interface FileRouteTypes {
     | '/_app/accounts'
     | '/_app/analytics'
     | '/_app/dashboard'
-    | '/_app/engagement'
-    | '/_app/messages'
-    | '/_app/queue'
     | '/_app/sync'
     | '/_auth/forgot-password'
     | '/_auth/login'
@@ -318,16 +314,19 @@ export interface FileRouteTypes {
     | '/_auth/reset-password'
     | '/_auth/two-factor'
     | '/_auth/verify-email'
-    | '/_app/posts/calendar'
-    | '/_app/settings/appearance'
-    | '/_app/settings/connections'
-    | '/_app/settings/notifications'
-    | '/_app/settings/profile'
-    | '/_app/settings/security'
+    | '/_app/content/calendar'
+    | '/_app/content/posts'
+    | '/_app/content/queue'
+    | '/_app/inbox/engagement'
+    | '/_app/inbox/messages'
+    | '/_app/profile/appearance'
+    | '/_app/profile/connections'
+    | '/_app/profile/notifications'
+    | '/_app/profile/security'
+    | '/_app/profile/settings'
     | '/_app/workspace/api-keys'
     | '/_app/workspace/members'
     | '/_app/workspace/overview'
-    | '/_app/posts/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -380,27 +379,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/engagement': {
-      id: '/_app/engagement'
-      path: '/engagement'
-      fullPath: '/engagement'
-      preLoaderRoute: typeof AppEngagementRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/messages': {
-      id: '/_app/messages'
-      path: '/messages'
-      fullPath: '/messages'
-      preLoaderRoute: typeof AppMessagesRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/queue': {
-      id: '/_app/queue'
-      path: '/queue'
-      fullPath: '/queue'
-      preLoaderRoute: typeof AppQueueRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/sync': {
       id: '/_app/sync'
       path: '/sync'
@@ -450,53 +428,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthVerifyEmailRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/_app/posts/': {
-      id: '/_app/posts/'
-      path: '/posts'
-      fullPath: '/posts/'
-      preLoaderRoute: typeof AppPostsIndexRouteImport
+    '/_app/content/calendar': {
+      id: '/_app/content/calendar'
+      path: '/content/calendar'
+      fullPath: '/content/calendar'
+      preLoaderRoute: typeof AppContentCalendarRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/posts/calendar': {
-      id: '/_app/posts/calendar'
-      path: '/posts/calendar'
-      fullPath: '/posts/calendar'
-      preLoaderRoute: typeof AppPostsCalendarRouteImport
+    '/_app/content/posts': {
+      id: '/_app/content/posts'
+      path: '/content/posts'
+      fullPath: '/content/posts'
+      preLoaderRoute: typeof AppContentPostsRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/settings/appearance': {
-      id: '/_app/settings/appearance'
-      path: '/settings/appearance'
-      fullPath: '/settings/appearance'
-      preLoaderRoute: typeof AppSettingsAppearanceRouteImport
+    '/_app/content/queue': {
+      id: '/_app/content/queue'
+      path: '/content/queue'
+      fullPath: '/content/queue'
+      preLoaderRoute: typeof AppContentQueueRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/settings/connections': {
-      id: '/_app/settings/connections'
-      path: '/settings/connections'
-      fullPath: '/settings/connections'
-      preLoaderRoute: typeof AppSettingsConnectionsRouteImport
+    '/_app/inbox/engagement': {
+      id: '/_app/inbox/engagement'
+      path: '/inbox/engagement'
+      fullPath: '/inbox/engagement'
+      preLoaderRoute: typeof AppInboxEngagementRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/settings/notifications': {
-      id: '/_app/settings/notifications'
-      path: '/settings/notifications'
-      fullPath: '/settings/notifications'
-      preLoaderRoute: typeof AppSettingsNotificationsRouteImport
+    '/_app/inbox/messages': {
+      id: '/_app/inbox/messages'
+      path: '/inbox/messages'
+      fullPath: '/inbox/messages'
+      preLoaderRoute: typeof AppInboxMessagesRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/settings/profile': {
-      id: '/_app/settings/profile'
-      path: '/settings/profile'
-      fullPath: '/settings/profile'
-      preLoaderRoute: typeof AppSettingsProfileRouteImport
+    '/_app/profile/appearance': {
+      id: '/_app/profile/appearance'
+      path: '/profile/appearance'
+      fullPath: '/profile/appearance'
+      preLoaderRoute: typeof AppProfileAppearanceRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/settings/security': {
-      id: '/_app/settings/security'
-      path: '/settings/security'
-      fullPath: '/settings/security'
-      preLoaderRoute: typeof AppSettingsSecurityRouteImport
+    '/_app/profile/connections': {
+      id: '/_app/profile/connections'
+      path: '/profile/connections'
+      fullPath: '/profile/connections'
+      preLoaderRoute: typeof AppProfileConnectionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/profile/notifications': {
+      id: '/_app/profile/notifications'
+      path: '/profile/notifications'
+      fullPath: '/profile/notifications'
+      preLoaderRoute: typeof AppProfileNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/profile/security': {
+      id: '/_app/profile/security'
+      path: '/profile/security'
+      fullPath: '/profile/security'
+      preLoaderRoute: typeof AppProfileSecurityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/profile/settings': {
+      id: '/_app/profile/settings'
+      path: '/profile/settings'
+      fullPath: '/profile/settings'
+      preLoaderRoute: typeof AppProfileSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/workspace/api-keys': {
@@ -527,40 +526,40 @@ interface AppRouteChildren {
   AppAccountsRoute: typeof AppAccountsRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppDashboardRoute: typeof AppDashboardRoute
-  AppEngagementRoute: typeof AppEngagementRoute
-  AppMessagesRoute: typeof AppMessagesRoute
-  AppQueueRoute: typeof AppQueueRoute
   AppSyncRoute: typeof AppSyncRoute
-  AppPostsCalendarRoute: typeof AppPostsCalendarRoute
-  AppSettingsAppearanceRoute: typeof AppSettingsAppearanceRoute
-  AppSettingsConnectionsRoute: typeof AppSettingsConnectionsRoute
-  AppSettingsNotificationsRoute: typeof AppSettingsNotificationsRoute
-  AppSettingsProfileRoute: typeof AppSettingsProfileRoute
-  AppSettingsSecurityRoute: typeof AppSettingsSecurityRoute
+  AppContentCalendarRoute: typeof AppContentCalendarRoute
+  AppContentPostsRoute: typeof AppContentPostsRoute
+  AppContentQueueRoute: typeof AppContentQueueRoute
+  AppInboxEngagementRoute: typeof AppInboxEngagementRoute
+  AppInboxMessagesRoute: typeof AppInboxMessagesRoute
+  AppProfileAppearanceRoute: typeof AppProfileAppearanceRoute
+  AppProfileConnectionsRoute: typeof AppProfileConnectionsRoute
+  AppProfileNotificationsRoute: typeof AppProfileNotificationsRoute
+  AppProfileSecurityRoute: typeof AppProfileSecurityRoute
+  AppProfileSettingsRoute: typeof AppProfileSettingsRoute
   AppWorkspaceApiKeysRoute: typeof AppWorkspaceApiKeysRoute
   AppWorkspaceMembersRoute: typeof AppWorkspaceMembersRoute
   AppWorkspaceOverviewRoute: typeof AppWorkspaceOverviewRoute
-  AppPostsIndexRoute: typeof AppPostsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppAccountsRoute: AppAccountsRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
   AppDashboardRoute: AppDashboardRoute,
-  AppEngagementRoute: AppEngagementRoute,
-  AppMessagesRoute: AppMessagesRoute,
-  AppQueueRoute: AppQueueRoute,
   AppSyncRoute: AppSyncRoute,
-  AppPostsCalendarRoute: AppPostsCalendarRoute,
-  AppSettingsAppearanceRoute: AppSettingsAppearanceRoute,
-  AppSettingsConnectionsRoute: AppSettingsConnectionsRoute,
-  AppSettingsNotificationsRoute: AppSettingsNotificationsRoute,
-  AppSettingsProfileRoute: AppSettingsProfileRoute,
-  AppSettingsSecurityRoute: AppSettingsSecurityRoute,
+  AppContentCalendarRoute: AppContentCalendarRoute,
+  AppContentPostsRoute: AppContentPostsRoute,
+  AppContentQueueRoute: AppContentQueueRoute,
+  AppInboxEngagementRoute: AppInboxEngagementRoute,
+  AppInboxMessagesRoute: AppInboxMessagesRoute,
+  AppProfileAppearanceRoute: AppProfileAppearanceRoute,
+  AppProfileConnectionsRoute: AppProfileConnectionsRoute,
+  AppProfileNotificationsRoute: AppProfileNotificationsRoute,
+  AppProfileSecurityRoute: AppProfileSecurityRoute,
+  AppProfileSettingsRoute: AppProfileSettingsRoute,
   AppWorkspaceApiKeysRoute: AppWorkspaceApiKeysRoute,
   AppWorkspaceMembersRoute: AppWorkspaceMembersRoute,
   AppWorkspaceOverviewRoute: AppWorkspaceOverviewRoute,
-  AppPostsIndexRoute: AppPostsIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
