@@ -1,10 +1,17 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { useState, useEffect } from 'react';
 import { Sidebar } from '~/components/layout/sidebar';
 import { TopBar } from '~/components/layout/top-bar';
 import { cn } from '~/lib/utils';
+import { WorkspaceProvider } from '~/contexts/workspace-context';
+import { fetchSession } from '~/server/session';
 
 export const Route = createFileRoute('/_app')({
+  beforeLoad: async () => {
+    const user = await fetchSession();
+    if (!user) throw redirect({ to: '/login' });
+    return { user };
+  },
   component: AppLayout,
 });
 
@@ -28,6 +35,7 @@ function AppLayout() {
   }
 
   return (
+    <WorkspaceProvider>
     <div className="flex min-h-screen bg-background">
       <div
         className={cn(
@@ -62,5 +70,6 @@ function AppLayout() {
         </main>
       </div>
     </div>
+    </WorkspaceProvider>
   );
 }

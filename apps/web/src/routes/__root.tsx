@@ -1,14 +1,19 @@
-import { Outlet, createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
+import { QueryClientProvider, type QueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { APP_NAME } from '@pulsarr/shared';
-import { Toaster } from '~/components/ui/sonner';
+import { Toaster } from '~/components/ui/toast';
 import { themeScript } from '~/hooks/use-theme';
 import { localeScript } from '~/i18n/config';
 import { DefaultCatchBoundary } from '~/components/default-catch-boundary';
 import { NotFound } from '~/components/not-found';
 import '~/styles/globals.css';
 
-export const Route = createRootRoute({
+export interface RouterContext {
+  queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   errorComponent: DefaultCatchBoundary,
   notFoundComponent: () => <NotFound />,
   head: () => ({
@@ -32,19 +37,22 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   const { i18n, t } = useTranslation();
+  const { queryClient } = Route.useRouteContext();
 
   return (
-    <html lang={i18n.language} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript + localeScript }} />
-        <meta name="description" content={t('appDescription')} />
-        <HeadContent />
-      </head>
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <Outlet />
-        <Toaster />
-        <Scripts />
-      </body>
-    </html>
+    <QueryClientProvider client={queryClient}>
+      <html lang={i18n.language} suppressHydrationWarning>
+        <head>
+          <script dangerouslySetInnerHTML={{ __html: themeScript + localeScript }} />
+          <meta name="description" content={t('appDescription')} />
+          <HeadContent />
+        </head>
+        <body className="min-h-screen bg-background text-foreground antialiased">
+          <Outlet />
+          <Toaster />
+          <Scripts />
+        </body>
+      </html>
+    </QueryClientProvider>
   );
 }

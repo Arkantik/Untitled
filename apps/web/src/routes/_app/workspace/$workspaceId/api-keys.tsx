@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NewKeyBanner, CreateKeyForm } from './api-keys-form';
 import { ApiKeyList, ApiKeyInfoNote } from './api-keys-list';
 
-export const Route = createFileRoute('/_app/workspace/api-keys')({
+export const Route = createFileRoute('/_app/workspace/$workspaceId/api-keys')({
   component: ApiKeysPage,
 });
 
@@ -17,22 +17,8 @@ export type ApiKey = {
 };
 
 const INITIAL_KEYS: ApiKey[] = [
-  {
-    id: '1',
-    name: 'Production',
-    lastFour: 'e6',
-    scope: 'read_write',
-    lastUsedAt: 'today',
-    expiresAt: null,
-  },
-  {
-    id: '2',
-    name: 'Staging integration',
-    lastFour: 'f1',
-    scope: 'read_only',
-    lastUsedAt: null,
-    expiresAt: null,
-  },
+  { id: '1', name: 'Production', lastFour: 'e6', scope: 'read_write', lastUsedAt: 'today', expiresAt: null },
+  { id: '2', name: 'Staging integration', lastFour: 'f1', scope: 'read_only', lastUsedAt: null, expiresAt: null },
 ];
 
 function ApiKeysPage() {
@@ -73,10 +59,7 @@ function ApiKeysPage() {
       />
 
       {showCreate && (
-        <CreateKeyForm
-          onCreated={handleCreated}
-          onCancel={() => setShowCreate(false)}
-        />
+        <CreateKeyForm onCreated={handleCreated} onCancel={() => setShowCreate(false)} />
       )}
 
       <ApiKeyInfoNote />

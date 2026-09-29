@@ -6,7 +6,7 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardHeader } from '~/components/ui/card';
 import { cn } from '~/lib/utils';
 
-export const Route = createFileRoute('/_app/workspace/subscription')({
+export const Route = createFileRoute('/_app/workspace/$workspaceId/subscription')({
   component: WorkspaceSubscriptionPage,
 });
 
@@ -73,12 +73,8 @@ function WorkspaceSubscriptionPage() {
               </Button>
             ) : (
               <div className="flex gap-2">
-                <Button size="sm" type="button">
-                  Subscribe to publish
-                </Button>
-                <Button variant="outline" size="sm" type="button">
-                  Billing portal
-                </Button>
+                <Button size="sm" type="button">Subscribe to publish</Button>
+                <Button variant="outline" size="sm" type="button">Billing portal</Button>
               </div>
             )}
           </div>
@@ -88,11 +84,7 @@ function WorkspaceSubscriptionPage() {
           <div>
             <div className="mb-2.5 flex items-center justify-between gap-2">
               <div className="flex items-center gap-1.5">
-                <HugeiconsIcon
-                  icon={NewTwitterIcon}
-                  className="size-3.5 text-foreground"
-                  aria-hidden
-                />
+                <HugeiconsIcon icon={NewTwitterIcon} className="size-3.5 text-foreground" aria-hidden />
                 <span className="text-sm font-semibold">X budget this month</span>
               </div>
               <span className="text-xs text-muted-foreground">

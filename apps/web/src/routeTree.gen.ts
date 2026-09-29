@@ -32,10 +32,11 @@ import { Route as AppProfileConnectionsRouteImport } from './routes/_app/profile
 import { Route as AppProfileNotificationsRouteImport } from './routes/_app/profile/notifications'
 import { Route as AppProfileSecurityRouteImport } from './routes/_app/profile/security'
 import { Route as AppProfileSettingsRouteImport } from './routes/_app/profile/settings'
-import { Route as AppWorkspaceApiKeysRouteImport } from './routes/_app/workspace/api-keys'
-import { Route as AppWorkspaceMembersRouteImport } from './routes/_app/workspace/members'
-import { Route as AppWorkspaceOverviewRouteImport } from './routes/_app/workspace/overview'
-import { Route as AppWorkspaceSubscriptionRouteImport } from './routes/_app/workspace/subscription'
+import { Route as AppWorkspaceWorkspaceIdRouteImport } from './routes/_app/workspace/$workspaceId'
+import { Route as AppWorkspaceWorkspaceIdApiKeysRouteImport } from './routes/_app/workspace/$workspaceId/api-keys'
+import { Route as AppWorkspaceWorkspaceIdMembersRouteImport } from './routes/_app/workspace/$workspaceId/members'
+import { Route as AppWorkspaceWorkspaceIdOverviewRouteImport } from './routes/_app/workspace/$workspaceId/overview'
+import { Route as AppWorkspaceWorkspaceIdSubscriptionRouteImport } from './routes/_app/workspace/$workspaceId/subscription'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -150,26 +151,34 @@ const AppProfileSettingsRoute = AppProfileSettingsRouteImport.update({
   path: '/profile/settings',
   getParentRoute: () => AppRoute,
 } as any)
-const AppWorkspaceApiKeysRoute = AppWorkspaceApiKeysRouteImport.update({
-  id: '/workspace/api-keys',
-  path: '/workspace/api-keys',
+const AppWorkspaceWorkspaceIdRoute = AppWorkspaceWorkspaceIdRouteImport.update({
+  id: '/workspace/$workspaceId',
+  path: '/workspace/$workspaceId',
   getParentRoute: () => AppRoute,
 } as any)
-const AppWorkspaceMembersRoute = AppWorkspaceMembersRouteImport.update({
-  id: '/workspace/members',
-  path: '/workspace/members',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppWorkspaceOverviewRoute = AppWorkspaceOverviewRouteImport.update({
-  id: '/workspace/overview',
-  path: '/workspace/overview',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppWorkspaceSubscriptionRoute =
-  AppWorkspaceSubscriptionRouteImport.update({
-    id: '/workspace/subscription',
-    path: '/workspace/subscription',
-    getParentRoute: () => AppRoute,
+const AppWorkspaceWorkspaceIdApiKeysRoute =
+  AppWorkspaceWorkspaceIdApiKeysRouteImport.update({
+    id: '/api-keys',
+    path: '/api-keys',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdMembersRoute =
+  AppWorkspaceWorkspaceIdMembersRouteImport.update({
+    id: '/members',
+    path: '/members',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdOverviewRoute =
+  AppWorkspaceWorkspaceIdOverviewRouteImport.update({
+    id: '/overview',
+    path: '/overview',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdSubscriptionRoute =
+  AppWorkspaceWorkspaceIdSubscriptionRouteImport.update({
+    id: '/subscription',
+    path: '/subscription',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -194,10 +203,11 @@ export interface FileRoutesByFullPath {
   '/profile/notifications': typeof AppProfileNotificationsRoute
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
-  '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
-  '/workspace/members': typeof AppWorkspaceMembersRoute
-  '/workspace/overview': typeof AppWorkspaceOverviewRoute
-  '/workspace/subscription': typeof AppWorkspaceSubscriptionRoute
+  '/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  '/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
+  '/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
+  '/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -221,10 +231,11 @@ export interface FileRoutesByTo {
   '/profile/notifications': typeof AppProfileNotificationsRoute
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
-  '/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
-  '/workspace/members': typeof AppWorkspaceMembersRoute
-  '/workspace/overview': typeof AppWorkspaceOverviewRoute
-  '/workspace/subscription': typeof AppWorkspaceSubscriptionRoute
+  '/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  '/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
+  '/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
+  '/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -251,10 +262,11 @@ export interface FileRoutesById {
   '/_app/profile/notifications': typeof AppProfileNotificationsRoute
   '/_app/profile/security': typeof AppProfileSecurityRoute
   '/_app/profile/settings': typeof AppProfileSettingsRoute
-  '/_app/workspace/api-keys': typeof AppWorkspaceApiKeysRoute
-  '/_app/workspace/members': typeof AppWorkspaceMembersRoute
-  '/_app/workspace/overview': typeof AppWorkspaceOverviewRoute
-  '/_app/workspace/subscription': typeof AppWorkspaceSubscriptionRoute
+  '/_app/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/_app/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  '/_app/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
+  '/_app/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
+  '/_app/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -280,10 +292,11 @@ export interface FileRouteTypes {
     | '/profile/notifications'
     | '/profile/security'
     | '/profile/settings'
-    | '/workspace/api-keys'
-    | '/workspace/members'
-    | '/workspace/overview'
-    | '/workspace/subscription'
+    | '/workspace/$workspaceId'
+    | '/workspace/$workspaceId/api-keys'
+    | '/workspace/$workspaceId/members'
+    | '/workspace/$workspaceId/overview'
+    | '/workspace/$workspaceId/subscription'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -307,10 +320,11 @@ export interface FileRouteTypes {
     | '/profile/notifications'
     | '/profile/security'
     | '/profile/settings'
-    | '/workspace/api-keys'
-    | '/workspace/members'
-    | '/workspace/overview'
-    | '/workspace/subscription'
+    | '/workspace/$workspaceId'
+    | '/workspace/$workspaceId/api-keys'
+    | '/workspace/$workspaceId/members'
+    | '/workspace/$workspaceId/overview'
+    | '/workspace/$workspaceId/subscription'
   id:
     | '__root__'
     | '/'
@@ -336,10 +350,11 @@ export interface FileRouteTypes {
     | '/_app/profile/notifications'
     | '/_app/profile/security'
     | '/_app/profile/settings'
-    | '/_app/workspace/api-keys'
-    | '/_app/workspace/members'
-    | '/_app/workspace/overview'
-    | '/_app/workspace/subscription'
+    | '/_app/workspace/$workspaceId'
+    | '/_app/workspace/$workspaceId/api-keys'
+    | '/_app/workspace/$workspaceId/members'
+    | '/_app/workspace/$workspaceId/overview'
+    | '/_app/workspace/$workspaceId/subscription'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -511,36 +526,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProfileSettingsRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/workspace/api-keys': {
-      id: '/_app/workspace/api-keys'
-      path: '/workspace/api-keys'
-      fullPath: '/workspace/api-keys'
-      preLoaderRoute: typeof AppWorkspaceApiKeysRouteImport
+    '/_app/workspace/$workspaceId': {
+      id: '/_app/workspace/$workspaceId'
+      path: '/workspace/$workspaceId'
+      fullPath: '/workspace/$workspaceId'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/workspace/members': {
-      id: '/_app/workspace/members'
-      path: '/workspace/members'
-      fullPath: '/workspace/members'
-      preLoaderRoute: typeof AppWorkspaceMembersRouteImport
-      parentRoute: typeof AppRoute
+    '/_app/workspace/$workspaceId/api-keys': {
+      id: '/_app/workspace/$workspaceId/api-keys'
+      path: '/api-keys'
+      fullPath: '/workspace/$workspaceId/api-keys'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdApiKeysRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
-    '/_app/workspace/overview': {
-      id: '/_app/workspace/overview'
-      path: '/workspace/overview'
-      fullPath: '/workspace/overview'
-      preLoaderRoute: typeof AppWorkspaceOverviewRouteImport
-      parentRoute: typeof AppRoute
+    '/_app/workspace/$workspaceId/members': {
+      id: '/_app/workspace/$workspaceId/members'
+      path: '/members'
+      fullPath: '/workspace/$workspaceId/members'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdMembersRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
-    '/_app/workspace/subscription': {
-      id: '/_app/workspace/subscription'
-      path: '/workspace/subscription'
-      fullPath: '/workspace/subscription'
-      preLoaderRoute: typeof AppWorkspaceSubscriptionRouteImport
-      parentRoute: typeof AppRoute
+    '/_app/workspace/$workspaceId/overview': {
+      id: '/_app/workspace/$workspaceId/overview'
+      path: '/overview'
+      fullPath: '/workspace/$workspaceId/overview'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdOverviewRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
+    '/_app/workspace/$workspaceId/subscription': {
+      id: '/_app/workspace/$workspaceId/subscription'
+      path: '/subscription'
+      fullPath: '/workspace/$workspaceId/subscription'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdSubscriptionRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
   }
 }
+
+interface AppWorkspaceWorkspaceIdRouteChildren {
+  AppWorkspaceWorkspaceIdApiKeysRoute: typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  AppWorkspaceWorkspaceIdMembersRoute: typeof AppWorkspaceWorkspaceIdMembersRoute
+  AppWorkspaceWorkspaceIdOverviewRoute: typeof AppWorkspaceWorkspaceIdOverviewRoute
+  AppWorkspaceWorkspaceIdSubscriptionRoute: typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+}
+
+const AppWorkspaceWorkspaceIdRouteChildren: AppWorkspaceWorkspaceIdRouteChildren =
+  {
+    AppWorkspaceWorkspaceIdApiKeysRoute: AppWorkspaceWorkspaceIdApiKeysRoute,
+    AppWorkspaceWorkspaceIdMembersRoute: AppWorkspaceWorkspaceIdMembersRoute,
+    AppWorkspaceWorkspaceIdOverviewRoute: AppWorkspaceWorkspaceIdOverviewRoute,
+    AppWorkspaceWorkspaceIdSubscriptionRoute:
+      AppWorkspaceWorkspaceIdSubscriptionRoute,
+  }
+
+const AppWorkspaceWorkspaceIdRouteWithChildren =
+  AppWorkspaceWorkspaceIdRoute._addFileChildren(
+    AppWorkspaceWorkspaceIdRouteChildren,
+  )
 
 interface AppRouteChildren {
   AppAccountsRoute: typeof AppAccountsRoute
@@ -557,10 +600,7 @@ interface AppRouteChildren {
   AppProfileNotificationsRoute: typeof AppProfileNotificationsRoute
   AppProfileSecurityRoute: typeof AppProfileSecurityRoute
   AppProfileSettingsRoute: typeof AppProfileSettingsRoute
-  AppWorkspaceApiKeysRoute: typeof AppWorkspaceApiKeysRoute
-  AppWorkspaceMembersRoute: typeof AppWorkspaceMembersRoute
-  AppWorkspaceOverviewRoute: typeof AppWorkspaceOverviewRoute
-  AppWorkspaceSubscriptionRoute: typeof AppWorkspaceSubscriptionRoute
+  AppWorkspaceWorkspaceIdRoute: typeof AppWorkspaceWorkspaceIdRouteWithChildren
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -578,10 +618,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppProfileNotificationsRoute: AppProfileNotificationsRoute,
   AppProfileSecurityRoute: AppProfileSecurityRoute,
   AppProfileSettingsRoute: AppProfileSettingsRoute,
-  AppWorkspaceApiKeysRoute: AppWorkspaceApiKeysRoute,
-  AppWorkspaceMembersRoute: AppWorkspaceMembersRoute,
-  AppWorkspaceOverviewRoute: AppWorkspaceOverviewRoute,
-  AppWorkspaceSubscriptionRoute: AppWorkspaceSubscriptionRoute,
+  AppWorkspaceWorkspaceIdRoute: AppWorkspaceWorkspaceIdRouteWithChildren,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
