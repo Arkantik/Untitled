@@ -1,9 +1,14 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import { fetchSession } from '~/server/session';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar01Icon, BarChartIcon, MessageMultiple01Icon } from '@hugeicons/core-free-icons';
 import { APP_NAME, APP_DESCRIPTION } from '@pulsarr/shared';
 
 export const Route = createFileRoute('/_auth')({
+  beforeLoad: async () => {
+    const authenticated = await fetchSession();
+    if (authenticated) throw redirect({ to: '/dashboard' });
+  },
   component: AuthLayout,
 });
 

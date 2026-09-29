@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -7,7 +7,8 @@ import { Field } from '~/components/ui/field';
 import { Input } from '~/components/ui/input';
 import { PasswordInput } from '~/components/ui/password-input';
 import { Button } from '~/components/ui/button';
-import { toast } from '~/components/ui/sonner';
+import { toast } from '~/components/ui/toast';
+import { authClient } from '~/lib/auth-client';
 
 export const Route = createFileRoute('/_auth/login')({
   component: LoginPage,
@@ -22,15 +23,23 @@ type LoginData = z.infer<typeof loginSchema>;
 
 function LoginPage() {
   const { t } = useTranslation('auth');
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
 
-  async function onSubmit(_data: LoginData) {
-    // TODO: wire up Better Auth signIn.email()
-    toast.error('Auth not yet connected.');
+  async function onSubmit(data: LoginData) {
+    const { error } = await authClient.signIn.email({
+      email: data.email,
+      password: data.password,
+    });
+    if (error) {
+      toast.error(error.message ?? 'Sign in failed.');
+      return;
+    }
+    await router.navigate({ to: '/dashboard' });
   }
 
   return (

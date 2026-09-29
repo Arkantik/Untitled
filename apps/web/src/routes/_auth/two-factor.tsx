@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Field } from '~/components/ui/field';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
-import { toast } from '~/components/ui/sonner';
+import { toast } from '~/components/ui/toast';
 
 export const Route = createFileRoute('/_auth/two-factor')({
   component: TwoFactorPage,
