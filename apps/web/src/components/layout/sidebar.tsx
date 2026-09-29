@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouterState } from '@tanstack/react-router';
+import { Link, useRouterState, useParams } from '@tanstack/react-router';
+import { useWorkspaceContext } from '~/contexts/workspace-context';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Home01Icon,
@@ -20,8 +21,8 @@ import {
   SidebarLeft01Icon,
   SidebarRight01Icon,
   Cancel01Icon,
-  Search01Icon,
 } from '@hugeicons/core-free-icons';
+import { APP_NAME } from '@pulsarr/shared';
 import { useTranslation } from 'react-i18next';
 import { cn } from '~/lib/utils';
 import { useMediaQuery } from '~/hooks/use-media-query';
@@ -45,6 +46,9 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
   const { t } = useTranslation();
   const { location } = useRouterState();
   const pathname = location.pathname;
+  const params = useParams({ strict: false }) as { workspaceId?: string };
+  const { workspaces } = useWorkspaceContext();
+  const workspaceId = params.workspaceId ?? workspaces[0]?.id;
 
   const isDesktop = useMediaQuery('(min-width: 64rem)');
   const effectiveCollapsed = isDesktop && collapsed;
@@ -99,17 +103,19 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
     setOpenGroupId(prev => (prev === id ? null : id));
   }
 
-  const workspaceNav: NavLeaf[] = [
-    {
-      kind: 'item',
-      to: '/workspace/overview',
-      label: t('workspace.overview'),
-      icon: Building03Icon,
-    },
-    { kind: 'item', to: '/workspace/members', label: t('workspace.members'), icon: UserGroupIcon },
-    { kind: 'item', to: '/workspace/api-keys', label: t('workspace.apiKeys'), icon: Key01Icon },
-    { kind: 'item', to: '/workspace/subscription', label: t('workspace.subscription'), icon: CreditCardIcon },
+  const WORKSPACE_ITEMS = [
+    { label: t('workspace.overview'), icon: Building03Icon, sub: 'overview' },
+    { label: t('workspace.members'), icon: UserGroupIcon, sub: 'members' },
+    { label: t('workspace.apiKeys'), icon: Key01Icon, sub: 'api-keys' },
+    { label: t('workspace.subscription'), icon: CreditCardIcon, sub: 'subscription' },
   ];
+
+  const workspaceNav: NavLeaf[] = workspaceId ? (WORKSPACE_ITEMS.map((item) => ({
+    kind: 'item' as const,
+    to: `/workspace/${workspaceId}/${item.sub}`,
+    label: item.label,
+    icon: item.icon,
+  })) as NavLeaf[]) : [];
 
   return (
     <TooltipProvider delayDuration={200}>
@@ -127,7 +133,14 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
             effectiveCollapsed ? 'justify-between px-2.5' : 'gap-2 px-3',
           )}
         >
-          <WorkspaceSwitcher collapsed={effectiveCollapsed} />
+          <div className={cn('flex items-center gap-2.5', !effectiveCollapsed && 'flex-1')}>
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <span className="text-[10px] font-bold leading-none">{APP_NAME.charAt(0)}</span>
+            </div>
+            {!effectiveCollapsed && (
+              <span className="truncate text-sm font-semibold tracking-tight">{APP_NAME}</span>
+            )}
+          </div>
 
           <button
             type="button"
@@ -157,43 +170,9 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col gap-4 px-3 pb-4 pt-3">
-          {effectiveCollapsed ? (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  className="group mx-auto flex h-8 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
-                    <HugeiconsIcon icon={Search01Icon} className="size-4" aria-hidden />
-                  </span>
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="right">Search</TooltipContent>
-            </Tooltip>
-          ) : (
-            <label className="group/search flex h-8 cursor-text items-center gap-2 overflow-clip rounded-md border-[0.8px] border-border bg-card py-2 pl-2.5 pr-2 shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-150 hover:border-muted-foreground/30 focus-within:border-muted-foreground/40 focus-within:shadow-[0_0_0_3px_rgba(156,163,175,0.12)]">
-              <HugeiconsIcon
-                icon={Search01Icon}
-                className="size-4 shrink-0 text-muted-foreground"
-                aria-hidden
-              />
-              <input
-                type="search"
-                placeholder="Search"
-                className="min-w-0 flex-1 bg-transparent text-[13px] leading-none text-foreground outline-none placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden"
-                aria-label="Search"
-              />
-              <span
-                className="flex shrink-0 items-center gap-0 transition-opacity group-focus-within/search:opacity-0"
-                aria-hidden
-              >
-                <span className="flex h-4 w-4 items-center justify-center rounded p-0.5 text-[10px] font-medium leading-none text-muted-foreground">
-                  ⌘K
-                </span>
-              </span>
-            </label>
-          )}
+          <div>
+            <WorkspaceSwitcher collapsed={effectiveCollapsed} />
+          </div>
 
           <div className="-mt-1">
             {effectiveCollapsed ? (
@@ -217,7 +196,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
             )}
           </div>
 
-          <nav className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto scrollbar-none">
+          <nav className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto scrollbar-thin">
             <div className="flex w-full flex-col gap-3">
               {!effectiveCollapsed && <SectionLabel>{t('nav.mainNav', 'Navigation')}</SectionLabel>}
               <div className="flex w-full flex-col gap-0.5">
@@ -252,15 +231,31 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
                 <div className="border-t border-border" />
               )}
               <div className="flex w-full flex-col gap-0.5">
-                {workspaceNav.map((item) => (
-                  <NavItem
-                    key={String(item.to)}
-                    item={item}
-                    collapsed={effectiveCollapsed}
-                    pathname={pathname}
-                    onNavigate={onMobileClose}
-                  />
-                ))}
+                {workspaceId ? (
+                  workspaceNav.map((item) => (
+                    <NavItem
+                      key={String(item.to)}
+                      item={item}
+                      collapsed={effectiveCollapsed}
+                      pathname={pathname}
+                      onNavigate={onMobileClose}
+                    />
+                  ))
+                ) : (
+                  WORKSPACE_ITEMS.map((item) => (
+                    <div
+                      key={item.sub}
+                      className={cn(
+                        'flex w-full items-center gap-2.5 rounded-md border-[0.8px] border-transparent px-2.5 text-[13px] leading-none text-muted-foreground/40',
+                        'h-8 cursor-default',
+                        effectiveCollapsed && 'mx-auto w-10 justify-center px-0',
+                      )}
+                    >
+                      <HugeiconsIcon icon={item.icon} className="size-4 shrink-0" aria-hidden />
+                      {!effectiveCollapsed && <span className="whitespace-nowrap">{item.label}</span>}
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </nav>

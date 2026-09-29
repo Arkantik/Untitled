@@ -17,6 +17,7 @@ import {
   RepeatIcon,
   Building03Icon,
   Settings01Icon,
+  Search01Icon,
 } from '@hugeicons/core-free-icons';
 import { Button } from '~/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
@@ -36,32 +37,39 @@ type RouteMeta = {
 
 const ROUTE_META: Record<string, RouteMeta> = {
   '/dashboard': { label: 'Dashboard', icon: Home01Icon },
-  '/content/posts': { label: 'Posts', icon: FileEditIcon, parent: 'Content', parentTo: '/content/posts' },
-  '/content/calendar': { label: 'Calendar', icon: Calendar01Icon, parent: 'Content', parentTo: '/content/posts' },
-  '/content/queue': { label: 'Queue', icon: Clock01Icon, parent: 'Content', parentTo: '/content/posts' },
-  '/inbox/engagement': { label: 'Engagement', icon: MessageMultiple01Icon, parent: 'Inbox', parentTo: '/inbox/engagement' },
-  '/inbox/messages': { label: 'Messages', icon: BubbleChatIcon, parent: 'Inbox', parentTo: '/inbox/engagement' },
+  '/content/posts': {
+    label: 'Posts',
+    icon: FileEditIcon,
+    parent: 'Content',
+    parentTo: '/content/posts',
+  },
+  '/content/calendar': {
+    label: 'Calendar',
+    icon: Calendar01Icon,
+    parent: 'Content',
+    parentTo: '/content/posts',
+  },
+  '/content/queue': {
+    label: 'Queue',
+    icon: Clock01Icon,
+    parent: 'Content',
+    parentTo: '/content/posts',
+  },
+  '/inbox/engagement': {
+    label: 'Engagement',
+    icon: MessageMultiple01Icon,
+    parent: 'Inbox',
+    parentTo: '/inbox/engagement',
+  },
+  '/inbox/messages': {
+    label: 'Messages',
+    icon: BubbleChatIcon,
+    parent: 'Inbox',
+    parentTo: '/inbox/engagement',
+  },
   '/accounts': { label: 'Accounts', icon: UserMultiple02Icon },
   '/analytics': { label: 'Analytics', icon: BarChartIcon },
   '/sync': { label: 'Sync', icon: RepeatIcon },
-  '/workspace/overview': {
-    label: 'Overview',
-    icon: Building03Icon,
-    parent: 'Workspace',
-    parentTo: '/workspace/overview',
-  },
-  '/workspace/members': {
-    label: 'Members',
-    icon: Building03Icon,
-    parent: 'Workspace',
-    parentTo: '/workspace/overview',
-  },
-  '/workspace/api-keys': {
-    label: 'API Keys',
-    icon: Building03Icon,
-    parent: 'Workspace',
-    parentTo: '/workspace/overview',
-  },
   '/profile/settings': {
     label: 'Settings',
     icon: Settings01Icon,
@@ -94,11 +102,27 @@ const ROUTE_META: Record<string, RouteMeta> = {
   },
 };
 
+const WORKSPACE_SUB_LABELS: Record<string, string> = {
+  overview: 'Overview',
+  members: 'Members',
+  'api-keys': 'API keys',
+  subscription: 'Subscription',
+};
+
 export function TopBar({ onMobileOpen }: TopBarProps) {
   const { location } = useRouterState();
   const pathname = location.pathname;
-  const meta = ROUTE_META[pathname];
   const { theme, toggle } = useTheme();
+
+  const workspaceMatch = pathname.match(/^\/workspace\/([^/]+)\/(.+)$/);
+  const meta: RouteMeta | undefined = workspaceMatch
+    ? {
+        label: WORKSPACE_SUB_LABELS[workspaceMatch[2]] ?? workspaceMatch[2],
+        icon: Building03Icon,
+        parent: 'Workspace',
+        parentTo: `/workspace/${workspaceMatch[1]}/overview`,
+      }
+    : ROUTE_META[pathname];
   const isDark = theme === 'dark';
 
   return (
@@ -117,7 +141,12 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
         </span>
       </button>
 
-      <nav className="flex flex-1 items-center gap-1.5 text-sm" aria-label="Breadcrumb">
+      <div className="flex-1 compact:hidden" aria-hidden />
+
+      <nav
+        className="hidden flex-1 items-center gap-1.5 text-sm compact:flex"
+        aria-label="Breadcrumb"
+      >
         {meta ? (
           <>
             <span className="flex shrink-0 items-center justify-center text-muted-foreground">
@@ -127,7 +156,7 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
             {meta.parent && meta.parentTo ? (
               <>
                 <Link
-                  to={meta.parentTo as string & '/'}
+                  to={meta.parentTo as never}
                   preload="intent"
                   className="whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground"
                 >
@@ -143,9 +172,46 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
           <span className="font-medium text-foreground">Pulsarr</span>
         )}
       </nav>
-
       <TooltipProvider delayDuration={200}>
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center gap-1">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="group h-8 w-8 text-muted-foreground hover:text-foreground compact:hidden"
+                aria-label="Search"
+              >
+                <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
+                  <HugeiconsIcon icon={Search01Icon} className="size-4" aria-hidden />
+                </span>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Search</TooltipContent>
+          </Tooltip>
+
+          <label className="group/search mr-1 hidden h-8 w-44 cursor-text items-center gap-2 overflow-clip rounded-md border-[0.8px] border-border bg-card py-2 pl-2.5 pr-2 shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-150 hover:border-muted-foreground/30 focus-within:border-muted-foreground/40 focus-within:shadow-[0_0_0_3px_rgba(156,163,175,0.12)] compact:flex regular:w-56">
+            <HugeiconsIcon
+              icon={Search01Icon}
+              className="size-4 shrink-0 text-muted-foreground"
+              aria-hidden
+            />
+            <input
+              type="search"
+              placeholder="Search"
+              className="min-w-0 flex-1 bg-transparent text-[13px] leading-none text-foreground outline-none placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden"
+              aria-label="Search"
+            />
+            <span
+              className="flex shrink-0 items-center transition-opacity group-focus-within/search:opacity-0"
+              aria-hidden
+            >
+              <span className="flex h-4 w-4 items-center justify-center rounded p-0.5 text-[10px] font-medium leading-none text-muted-foreground">
+                ⌘K
+              </span>
+            </span>
+          </label>
+
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -171,7 +237,11 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
                 className="group h-8 w-8 text-muted-foreground hover:text-foreground"
               >
                 <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
-                  <HugeiconsIcon icon={isDark ? Sun03Icon : Moon02Icon} className="size-4" aria-hidden />
+                  <HugeiconsIcon
+                    icon={isDark ? Sun03Icon : Moon02Icon}
+                    className="size-4"
+                    aria-hidden
+                  />
                 </span>
               </Button>
             </TooltipTrigger>

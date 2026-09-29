@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useRouter } from '@tanstack/react-router';
+import { useMediaQuery } from '~/hooks/use-media-query';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Settings01Icon,
@@ -20,11 +21,34 @@ import {
 } from '~/components/ui/dropdown-menu';
 import { cn } from '~/lib/utils';
 import { APP_GITHUB_URL } from '@pulsarr/shared';
+import { authClient } from '~/lib/auth-client';
+import { useCurrentUser } from '~/hooks/use-session';
 import { SponsorDialog } from './sidebar-sponsor-dialog';
 
-export function UserArea({ collapsed, onNavigate }: { collapsed: boolean; onNavigate: () => void }) {
+export function UserArea({
+  collapsed,
+  onNavigate,
+}: {
+  collapsed: boolean;
+  onNavigate: () => void;
+}) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const user = useCurrentUser();
   const [sponsorOpen, setSponsorOpen] = useState(false);
+  const isDesktop = useMediaQuery('(min-width: 64rem)');
+
+  async function handleSignOut() {
+    await authClient.signOut();
+    await router.navigate({ to: '/login' });
+  }
+
+  const initials = user.name
+    .split(' ')
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join('')
+    .toUpperCase();
 
   const trigger = (
     <button
@@ -35,14 +59,14 @@ export function UserArea({ collapsed, onNavigate }: { collapsed: boolean; onNavi
       )}
     >
       <Avatar className="h-7 w-7 shrink-0">
-        <AvatarImage src="" alt="" />
-        <AvatarFallback>U</AvatarFallback>
+        <AvatarImage src={user.image ?? ''} alt={user.name} />
+        <AvatarFallback>{initials}</AvatarFallback>
       </Avatar>
       {!collapsed && (
         <>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-xs font-medium">User</p>
-            <p className="truncate text-[10px] text-muted-foreground">user@example.com</p>
+            <p className="truncate text-xs font-medium">{user.name}</p>
+            <p className="truncate text-[10px] text-muted-foreground">{user.email}</p>
           </div>
           <HugeiconsIcon
             icon={ArrowDown01Icon}
@@ -56,8 +80,10 @@ export function UserArea({ collapsed, onNavigate }: { collapsed: boolean; onNavi
 
   const content = (
     <DropdownMenuContent
-      side={collapsed ? 'right' : 'top'}
-      align="start"
+      side={isDesktop ? 'right' : 'top'}
+      align={isDesktop ? 'end' : 'start'}
+      sideOffset={10}
+      collisionPadding={10}
       className="w-(--radix-dropdown-menu-trigger-width)"
     >
       <DropdownMenuItem asChild className="group gap-2.5">
@@ -78,12 +104,21 @@ export function UserArea({ collapsed, onNavigate }: { collapsed: boolean; onNavi
       </DropdownMenuItem>
       <DropdownMenuItem className="group gap-2.5" onClick={() => setSponsorOpen(true)}>
         <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
-          <HugeiconsIcon icon={FavouriteIcon} className="size-3.5 shrink-0 text-rose-500" aria-hidden />
+          <HugeiconsIcon
+            icon={FavouriteIcon}
+            className="size-3.5 shrink-0 text-rose-500"
+            aria-hidden
+          />
         </span>
         {t('nav.sponsor')}
       </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem className="group gap-2.5 text-destructive focus:text-destructive">
+      <DropdownMenuItem
+        className="group gap-2.5 text-destructive focus:text-destructive"
+        onClick={() => {
+          void handleSignOut();
+        }}
+      >
         <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
           <HugeiconsIcon icon={Logout01Icon} className="size-3.5 shrink-0" aria-hidden />
         </span>
