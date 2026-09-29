@@ -21,6 +21,7 @@ import { BillingWebhookService } from './billing.webhook.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';
 import { CurrentUser } from '../auth/session.decorator.js';
 import { ZodValidationPipe } from '../common/zod-validation.pipe.js';
+import { Public } from '../auth/public.decorator.js';
 
 @ApiTags('Billing')
 @Controller('billing')
@@ -51,6 +52,7 @@ export class BillingController {
   }
 
   @Post('webhook')
+  @Public()
   @HttpCode(HttpStatus.OK)
   webhook(
     @Req() req: FastifyRequest & { rawBody?: Buffer },
