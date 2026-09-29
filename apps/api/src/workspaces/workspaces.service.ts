@@ -22,8 +22,9 @@ export class WorkspacesService {
 
   async create(userId: string, dto: CreateWorkspaceInput): Promise<WorkspaceRow> {
     const id = crypto.randomUUID();
+    const slug = dto.slug ?? dto.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + id.slice(0, 6);
     try {
-      await this.q.insert(workspaces).values({ id, ...dto, ownerId: userId });
+      await this.q.insert(workspaces).values({ id, ...dto, slug, ownerId: userId });
     } catch (e) {
       if (isUniqueViolation(e)) throw conflict('Slug already taken');
       throw e;
@@ -45,6 +46,8 @@ export class WorkspacesService {
         name: workspaces.name,
         slug: workspaces.slug,
         ownerId: workspaces.ownerId,
+        timezone: workspaces.timezone,
+        avatarUrl: workspaces.avatarUrl,
         createdAt: workspaces.createdAt,
         updatedAt: workspaces.updatedAt,
       })

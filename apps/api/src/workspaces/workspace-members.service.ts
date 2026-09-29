@@ -3,11 +3,21 @@ import { eq, and } from 'drizzle-orm';
 import { sqliteSchema } from '@pulsarr/db';
 import type { DbClient } from '@pulsarr/db';
 import type { InviteMemberInput, UpdateMemberRoleInput } from '@pulsarr/shared';
-import type { MemberRow } from './workspaces.types.js';
+import type { MemberRow, MemberWithUser } from './workspaces.types.js';
 import { assertMember, assertRole, assertMemberLimit } from './workspaces.helpers.js';
 import { notFound, conflict, badRequest } from '../common/app.exception.js';
 
 const { users, workspaces, workspaceMembers } = sqliteSchema;
+
+const memberWithUserSelect = {
+  id: workspaceMembers.id,
+  workspaceId: workspaceMembers.workspaceId,
+  userId: workspaceMembers.userId,
+  role: workspaceMembers.role,
+  createdAt: workspaceMembers.createdAt,
+  name: users.name,
+  email: users.email,
+} as const;
 
 @Injectable()
 export class WorkspaceMembersService {
@@ -16,13 +26,14 @@ export class WorkspaceMembersService {
   // Drizzle's dialect union can't be narrowed to a single schema; cast once here.
   private get q() { return this.db as any; }
 
-  async listMembers(workspaceId: string, userId: string): Promise<MemberRow[]> {
+  async listMembers(workspaceId: string, userId: string): Promise<MemberWithUser[]> {
     await assertMember(this.q, workspaceId, userId);
     const rows = await this.q
-      .select()
+      .select(memberWithUserSelect)
       .from(workspaceMembers)
+      .leftJoin(users, eq(users.id, workspaceMembers.userId))
       .where(eq(workspaceMembers.workspaceId, workspaceId));
-    return rows as MemberRow[];
+    return rows as MemberWithUser[];
   }
 
   async addMember(
@@ -52,13 +63,14 @@ export class WorkspaceMembersService {
     const id = crypto.randomUUID();
     await this.q
       .insert(workspaceMembers)
-      .values({ id, workspaceId, userId: target.id, role: 'editor' });
+      .values({ id, workspaceId, userId: target.id, role: dto.role ?? 'editor' });
     const [row] = await this.q
-      .select()
+      .select(memberWithUserSelect)
       .from(workspaceMembers)
+      .leftJoin(users, eq(users.id, workspaceMembers.userId))
       .where(eq(workspaceMembers.id, id))
       .limit(1);
-    return row as MemberRow;
+    return row as MemberWithUser;
   }
 
   async updateMemberRole(

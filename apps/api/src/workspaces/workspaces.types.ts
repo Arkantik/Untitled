@@ -8,6 +8,8 @@ export interface WorkspaceRow {
   stripeCustomerId: string | null;
   subscriptionStatus: string;
   plan: string;
+  timezone: string;
+  avatarUrl: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -22,4 +24,9 @@ export interface MemberRow {
 
 export interface WorkspaceWithRole extends WorkspaceRow {
   role: WorkspaceRole;
+}
+
+export interface MemberWithUser extends MemberRow {
+  name: string | null;
+  email: string;
 }
