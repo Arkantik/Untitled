@@ -7,6 +7,11 @@ import { db } from './db.js';
 
 const schema = getSchema();
 const env = getEnv();
+const isProd = env.NODE_ENV === 'production';
+
+const SESSION_TTL = 60 * 60 * 24 * 7;
+const SESSION_REFRESH_AGE = 60 * 60 * 24;
+const COOKIE_CACHE_MAX_AGE = 60 * 10;
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -22,4 +27,12 @@ export const auth = betterAuth({
   emailAndPassword: { enabled: true },
   secret: env.BETTER_AUTH_SECRET,
   baseURL: env.BETTER_AUTH_URL,
+  session: {
+    expiresIn: SESSION_TTL,
+    updateAge: SESSION_REFRESH_AGE,
+    cookieCache: { enabled: true, maxAge: COOKIE_CACHE_MAX_AGE },
+  },
+  advanced: {
+    defaultCookieAttributes: { sameSite: 'lax', secure: isProd },
+  },
 });
