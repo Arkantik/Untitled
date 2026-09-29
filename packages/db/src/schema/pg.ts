@@ -47,6 +47,8 @@ export const workspaces = pgTable('workspaces', {
   stripeCustomerId: text('stripe_customer_id').unique(),
   subscriptionStatus: text('subscription_status').notNull().default('none'),
   plan: text('plan').notNull().default('free'),
+  timezone: text('timezone').notNull().default('UTC'),
+  avatarUrl: text('avatar_url'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });

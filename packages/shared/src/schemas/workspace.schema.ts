@@ -4,16 +4,19 @@ const slugPattern = /^[a-z0-9-]+$/;
 
 export const createWorkspaceSchema = z.object({
   name: z.string().min(1).max(100),
-  slug: z.string().min(1).max(50).regex(slugPattern),
+  slug: z.string().min(1).max(50).regex(slugPattern).optional(),
 });
 
 export const updateWorkspaceSchema = z.object({
   name: z.string().min(1).max(100).optional(),
   slug: z.string().min(1).max(50).regex(slugPattern).optional(),
+  timezone: z.string().min(1).max(100).optional(),
+  avatarUrl: z.string().optional().nullable(),
 });
 
 export const inviteMemberSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
+  role: z.enum(['admin', 'editor', 'viewer']).optional().default('editor'),
 });
 
 export const updateMemberRoleSchema = z.object({
