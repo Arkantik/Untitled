@@ -1,32 +1,70 @@
+import { type ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '~/lib/utils';
-import type { ReactNode } from 'react';
 
-type EmptyStateProps = {
+const root = cva('flex flex-col items-center text-center', {
+  variants: {
+    size: {
+      sm: 'py-8 gap-3',
+      md: 'py-12 gap-4',
+      lg: 'py-20 gap-5',
+    },
+  },
+  defaultVariants: { size: 'md' },
+});
+
+const iconWrap = cva(
+  'flex shrink-0 items-center justify-center rounded-2xl border border-border',
+  {
+    variants: {
+      size: {
+        sm: 'h-10 w-10',
+        md: 'h-14 w-14',
+        lg: 'h-[72px] w-[72px]',
+      },
+    },
+    defaultVariants: { size: 'md' },
+  },
+);
+
+const titleSize = cva('font-semibold text-foreground', {
+  variants: {
+    size: { sm: 'text-sm', md: 'text-sm', lg: 'text-base' },
+  },
+  defaultVariants: { size: 'md' },
+});
+
+interface Props extends VariantProps<typeof root> {
   icon?: ReactNode;
   title: string;
-  description?: ReactNode;
+  description?: string;
   action?: ReactNode;
   className?: string;
-};
+}
 
-export function EmptyState({ icon, title, description, action, className }: EmptyStateProps) {
+export function EmptyState({ icon, title, description, action, size, className }: Props) {
   return (
-    <div
-      className={cn(
-        'border-border bg-card flex flex-col items-center rounded-md border border-dashed px-6 py-16 text-center',
-        className,
-      )}
-    >
-      {icon ? (
-        <div className="bg-primary/10 text-primary mb-4 flex size-12 items-center justify-center rounded-md [&_svg]:size-6">
+    <div className={cn(root({ size }), className)}>
+      {icon && (
+        <div
+          className={iconWrap({ size })}
+          style={{
+            background:
+              'linear-gradient(145deg, color-mix(in srgb, var(--color-primary) 12%, transparent), color-mix(in srgb, var(--color-primary) 5%, transparent))',
+          }}
+        >
           {icon}
         </div>
-      ) : null}
-      <h2 className="text-lg font-semibold">{title}</h2>
-      {description ? (
-        <p className="text-muted-foreground mt-2 max-w-md text-sm text-pretty">{description}</p>
-      ) : null}
-      {action ? <div className="mt-5">{action}</div> : null}
+      )}
+
+      <div className="space-y-1.5">
+        <p className={titleSize({ size })}>{title}</p>
+        {description && (
+          <p className="max-w-65 text-sm leading-relaxed text-muted-foreground">{description}</p>
+        )}
+      </div>
+
+      {action && <div>{action}</div>}
     </div>
   );
 }
