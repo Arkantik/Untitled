@@ -115,6 +115,10 @@
 @theme {
   --animate-skeleton: skeleton-fade 0.8s ease-in-out infinite;
   --animate-bell-ring: bell-ring 0.5s ease-in-out;
+  --animate-toast-in: toast-in 0.2s ease-out both;
+  --animate-toast-out: toast-out 0.2s ease-in forwards;
+  --animate-dropdown-in: dropdown-in 150ms ease-out;
+  --animate-dropdown-out: dropdown-out 100ms ease-in forwards;
   /* Named breakpoints from docs/ui/TOKENS.md */
   --breakpoint-compact: 40rem; /* 640px  — single-column layouts */
   --breakpoint-regular: 64rem; /* 1024px — two-column layouts     */
@@ -144,6 +148,50 @@
   }
   80% {
     transform: rotate(-5deg);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 1rem));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(calc(100% + 1rem));
+  }
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes dropdown-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
   }
 }
 

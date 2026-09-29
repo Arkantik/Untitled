@@ -92,6 +92,12 @@ Pill label. Tones: `neutral` (default), `brand`, `success`, `warning`, `destruct
 
 Animated loading placeholder. Respects `prefers-reduced-motion`.
 
+### EmptyState
+
+`empty-state.tsx`
+
+Centered empty state for pages, cards, and tables. Props: `icon` (hugeicons icon), `title`, `description?`, `action?` (ReactNode), `size` (`sm` | `md` | `lg`, default `md`). The `sm` size fits inside a table or small card; `md` suits a card body or page section; `lg` suits a full-page empty view.
+
 ---
 
 ## Composition
