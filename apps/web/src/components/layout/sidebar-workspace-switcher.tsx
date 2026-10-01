@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useParams, useRouterState } from '@tanstack/react-router';
+import { useParams, useRouterState } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { UnfoldMoreIcon, Add01Icon, CheckIcon } from '@hugeicons/core-free-icons';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuLabel,
 } from '~/components/ui/dropdown-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
 import { Skeleton } from '~/components/ui/skeleton';
@@ -39,7 +38,6 @@ function WorkspaceLogo({ initial, avatarUrl, size = 'md' }: { initial: string; a
 export function WorkspaceSwitcher({ collapsed }: { collapsed: boolean }) {
   const { t } = useTranslation();
   const { workspaces, isLoading } = useWorkspaceContext();
-  const navigate = useNavigate();
   const { location } = useRouterState();
   const params = useParams({ strict: false }) as { workspaceId?: string };
   const [createOpen, setCreateOpen] = useState(false);
@@ -56,8 +54,8 @@ export function WorkspaceSwitcher({ collapsed }: { collapsed: boolean }) {
     }
   }
 
-  function handleCreated(ws: WorkspaceRow) {
-    navigate({ to: '/workspace/$workspaceId/overview', params: { workspaceId: ws.id } });
+  function handleCreated(_ws: WorkspaceRow) {
+    setCreateOpen(false);
   }
 
   if (isLoading) {
@@ -67,6 +65,46 @@ export function WorkspaceSwitcher({ collapsed }: { collapsed: boolean }) {
       </div>
     ) : (
       <Skeleton className="h-11 w-full rounded-md" />
+    );
+  }
+
+  if (workspaces.length === 0) {
+    if (collapsed) {
+      return (
+        <>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                onClick={() => setCreateOpen(true)}
+                className="flex items-center justify-center rounded-md border border-dashed border-border p-1 text-muted-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label={t('workspace.new')}
+              >
+                <HugeiconsIcon icon={Add01Icon} className="size-4" aria-hidden />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="right">{t('workspace.new')}</TooltipContent>
+          </Tooltip>
+          <CreateWorkspaceDialog open={createOpen} onOpenChange={setCreateOpen} onCreated={handleCreated} />
+        </>
+      );
+    }
+    return (
+      <>
+        <button
+          type="button"
+          onClick={() => setCreateOpen(true)}
+          className="flex w-full cursor-pointer items-center gap-2.5 rounded-md border border-dashed border-border p-1.5 text-left transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center text-muted-foreground">
+            <HugeiconsIcon icon={Add01Icon} className="size-3.5" aria-hidden />
+          </div>
+          <span className="block truncate text-[0.8rem] font-semibold leading-snug text-muted-foreground">
+            {t('workspace.new')}
+          </span>
+        </button>
+        <CreateWorkspaceDialog open={createOpen} onOpenChange={setCreateOpen} onCreated={handleCreated} />
+      </>
     );
   }
 
@@ -90,7 +128,7 @@ export function WorkspaceSwitcher({ collapsed }: { collapsed: boolean }) {
           <WorkspaceLogo initial={initial} avatarUrl={avatarUrl} />
           <span className="min-w-0 flex-1">
             <span className="block truncate text-[0.8rem] font-semibold leading-snug">
-              {activeWorkspace?.name ?? '…'}
+              {activeWorkspace?.name}
             </span>
             <span className="block truncate text-xs capitalize leading-snug text-muted-foreground">
               {activeWorkspace?.plan ?? 'workspace'}
@@ -107,7 +145,6 @@ export function WorkspaceSwitcher({ collapsed }: { collapsed: boolean }) {
           side="bottom"
           align="start"
         >
-          <DropdownMenuLabel>{t('workspace.switch')}</DropdownMenuLabel>
           {workspaces.map((ws) => (
             <DropdownMenuItem key={ws.id} onClick={() => switchTo(ws)}>
               <WorkspaceLogo

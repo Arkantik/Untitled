@@ -12,7 +12,7 @@ function TreeConnectorLine() {
       height="21"
       viewBox="0 0 9 21"
       fill="none"
-      className="block size-full text-muted-foreground/45"
+      className="block size-full text-muted-foreground/75"
     >
       <path
         d="M0.399902 0.399994V18.4C0.399902 19.5046 1.29533 20.4 2.3999 20.4H8.3999"
@@ -34,7 +34,7 @@ function TreeConnectorDot({ active }: { active: boolean }) {
       className={
         active
           ? 'absolute inset-0 block size-full text-primary'
-          : 'absolute inset-0 block size-full text-muted-foreground/45'
+          : 'absolute inset-0 block size-full text-muted-foreground/75'
       }
     >
       <path

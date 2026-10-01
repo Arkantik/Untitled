@@ -52,8 +52,8 @@ themed and will break in dark mode.
 | `text-muted`     | `#6A6482` | `#8F8F9E` | secondary, placeholders         |
 | `primary`        | `#3530D0` | `#7E78ED` | primary actions, active state   |
 | `primary-fg`     | `#FFFFFF` | `#110E24` | text/icons on `primary`         |
-| `destructive`    | `#DC2626` | `#DC2626` | delete, irreversible actions    |
-| `destructive-fg` | `#FFFFFF` | `#FFFFFF` | text/icons on `destructive`     |
+| `destructive`    | `#DC2626` | `#F87171` | delete, irreversible actions    |
+| `destructive-fg` | `#FFFFFF` | `#110E24` | text/icons on `destructive`     |
 | `warning`        | `#D97706` | `#D97706` | needs attention, not yet failed |
 | `warning-fg`     | `#FFFFFF` | `#FFFFFF` | text/icons on `warning`         |
 | `success`        | `#059669` | `#059669` | confirmed outcomes              |

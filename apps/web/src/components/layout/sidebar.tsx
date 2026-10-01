@@ -197,7 +197,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
           </div>
 
           <nav className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto scrollbar-thin">
-            <div className="flex w-full flex-col gap-3">
+            <div className="flex w-full flex-col gap-1">
               {!effectiveCollapsed && <SectionLabel>{t('nav.mainNav', 'Navigation')}</SectionLabel>}
               <div className="flex w-full flex-col gap-0.5">
                 {mainNav.map((entry) =>
@@ -224,7 +224,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
               </div>
             </div>
 
-            <div className="flex w-full flex-col gap-3">
+            <div className="flex w-full flex-col gap-1">
               {!effectiveCollapsed ? (
                 <SectionLabel>{t('nav.workspace')}</SectionLabel>
               ) : (
