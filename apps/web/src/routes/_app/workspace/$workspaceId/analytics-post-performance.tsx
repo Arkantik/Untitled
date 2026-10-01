@@ -1,30 +1,33 @@
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';
 import { Skeleton } from '~/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
 import { usePostPerformance } from '~/hooks/use-post-performance';
+import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';
 import type { AnalyticsRange, PostPerformance, SocialPlatform } from '@pulsarr/shared';
 
-const PLATFORM_DOT_COLOR: Record<SocialPlatform, string> = {
-  x: '#000000',
-  bluesky: '#1d9bf0',
-  linkedin: '#2867b2',
-  facebook: '#1877f2',
-  instagram: '#e1306c',
-  threads: '#a8a8a8',
-  discord: '#5865f2',
-};
-
-function PlatformDots({ platforms }: { platforms: SocialPlatform[] }) {
+function PlatformIcons({ platforms }: { platforms: SocialPlatform[] }) {
   return (
-    <span className="flex items-center gap-0.5" aria-hidden>
-      {platforms.map((p) => (
-        <span
-          key={p}
-          className="h-1.25 w-1.25 rounded-full"
-          style={{ background: PLATFORM_DOT_COLOR[p] }}
-        />
-      ))}
-    </span>
+    <TooltipProvider>
+      <span className="flex items-center gap-0.5">
+        {platforms.map((p) => (
+          <Tooltip key={p}>
+            <TooltipTrigger asChild>
+              <span>
+                <HugeiconsIcon
+                  icon={PLATFORM_ICON[p]}
+                  size={12}
+                  style={{ color: PLATFORM_COLOR[p] }}
+                  aria-hidden
+                />
+              </span>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">{PLATFORM_LABEL[p]}</TooltipContent>
+          </Tooltip>
+        ))}
+      </span>
+    </TooltipProvider>
   );
 }
 
@@ -35,7 +38,7 @@ function PostRow({
 }: {
   post: PostPerformance;
   rank: number;
-  variant: 'good' | 'muted';
+  variant: 'good' | 'warning';
 }) {
   const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
     month: 'short',
@@ -46,7 +49,7 @@ function PostRow({
     <div className="flex min-w-0 items-center gap-2.5 border-b border-border px-4 py-2.5 last:border-b-0 hover:bg-muted">
       <span
         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
-          variant === 'good' ? 'bg-success/12 text-success' : 'bg-muted text-muted-foreground'
+          variant === 'good' ? 'bg-success/12 text-success' : 'bg-warning/12 text-warning'
         }`}
       >
         {rank}
@@ -54,7 +57,7 @@ function PostRow({
       <div className="min-w-0 flex-1">
         <p className="truncate text-[12.5px]">{post.title}</p>
         <div className="mt-0.5 flex items-center gap-1.5">
-          <PlatformDots platforms={post.platforms} />
+          <PlatformIcons platforms={post.platforms} />
           <span className="text-[11px] text-muted-foreground">{date}</span>
         </div>
       </div>
@@ -133,10 +136,10 @@ export function AnalyticsPostPerformance({ workspaceId, range }: Props) {
           <Card className="overflow-hidden">
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="text-[13px] font-semibold">Needs attention</span>
-              <Badge tone="neutral">bottom 5</Badge>
+              <Badge tone="warning">bottom 5</Badge>
             </div>
             {worst.map((p, i) => (
-              <PostRow key={p.id} post={p} rank={sorted.length - i} variant="muted" />
+              <PostRow key={p.id} post={p} rank={sorted.length - i} variant="warning" />
             ))}
           </Card>
         </div>

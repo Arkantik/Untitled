@@ -1,28 +1,29 @@
-import { useRouterState } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import type { IconSvgElement } from '@hugeicons/react';
 import {
-  Notification01Icon,
-  Menu01Icon,
-  Sun03Icon,
-  Moon02Icon,
-  Home01Icon,
-  FileEditIcon,
-  Calendar01Icon,
-  Clock01Icon,
-  UserMultiple02Icon,
-  MessageMultiple01Icon,
-  BubbleChatIcon,
   BarChartIcon,
-  RepeatIcon,
+  BubbleChatIcon,
   Building03Icon,
-  Settings01Icon,
+  Calendar01Icon,
+  ChartUpIcon,
+  Clock01Icon,
+  FileEditIcon,
+  Home01Icon,
+  Menu01Icon,
+  MessageMultiple01Icon,
+  Moon02Icon,
+  Notification01Icon,
+  RepeatIcon,
   Search01Icon,
+  Settings01Icon,
+  Sun03Icon,
+  UserMultiple02Icon,
 } from '@hugeicons/core-free-icons';
+import type { IconSvgElement } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { useRouterState } from '@tanstack/react-router';
 import { Button } from '~/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
-import { cn } from '~/lib/utils';
 import { useTheme } from '~/hooks/use-theme';
+import { cn } from '~/lib/utils';
 
 interface TopBarProps {
   onMobileOpen: () => void;
@@ -58,9 +59,12 @@ const WORKSPACE_MGMT_LABELS: Record<string, string> = {
   subscription: 'Subscription',
 };
 
-const WORKSPACE_FEATURE_META: Record<string, { label: string; icon: IconSvgElement; parent?: string }> = {
+const WORKSPACE_FEATURE_META: Record<
+  string,
+  { label: string; icon: IconSvgElement; parent?: string }
+> = {
   analytics: { label: 'Analytics', icon: BarChartIcon },
-  'analytics/growth': { label: 'Follower growth', icon: BarChartIcon, parent: 'Analytics' },
+  'analytics/growth': { label: 'Follower growth', icon: ChartUpIcon, parent: 'Analytics' },
 };
 
 export function TopBar({ onMobileOpen }: TopBarProps) {
