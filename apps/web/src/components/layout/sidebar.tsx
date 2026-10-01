@@ -76,31 +76,63 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
       basePath: '/inbox',
       defaultOpen: false,
       children: [
-        { kind: 'item', to: '/inbox/engagement', label: t('nav.engagement'), icon: MessageMultiple01Icon },
+        {
+          kind: 'item',
+          to: '/inbox/engagement',
+          label: t('nav.engagement'),
+          icon: MessageMultiple01Icon,
+        },
         { kind: 'item', to: '/inbox/messages', label: t('nav.messages'), icon: BubbleChatIcon },
       ],
     },
-    { kind: 'item', to: '/analytics', label: t('nav.analytics'), icon: BarChartIcon },
+    ...(workspaceId
+      ? ([
+          {
+            kind: 'group' as const,
+            id: 'analytics',
+            label: t('nav.analytics'),
+            icon: BarChartIcon,
+            basePath: `/workspace/${workspaceId}/analytics`,
+            defaultOpen: false,
+            children: [
+              {
+                kind: 'item' as const,
+                to: `/workspace/${workspaceId}/analytics`,
+                label: t('nav.analyticsOverview'),
+                icon: BarChartIcon,
+              },
+              {
+                kind: 'item' as const,
+                to: `/workspace/${workspaceId}/analytics/growth`,
+                label: t('nav.followerGrowth'),
+                icon: UserMultiple02Icon,
+              },
+            ],
+          },
+        ] as NavGroup[])
+      : []),
     { kind: 'item', to: '/accounts', label: t('nav.accounts'), icon: UserMultiple02Icon },
     { kind: 'item', to: '/sync', label: t('nav.pipelines'), icon: GasPipeIcon },
   ];
 
   const [openGroupId, setOpenGroupId] = useState<string | null>(() => {
     const match = mainNav.find(
-      (e): e is NavGroup => e.kind === 'group' && (pathname === e.basePath || pathname.startsWith(e.basePath + '/')),
+      (e): e is NavGroup =>
+        e.kind === 'group' && (pathname === e.basePath || pathname.startsWith(e.basePath + '/')),
     );
     return match ? match.id : null;
   });
 
   useEffect(() => {
     const match = mainNav.find(
-      (e): e is NavGroup => e.kind === 'group' && (pathname === e.basePath || pathname.startsWith(e.basePath + '/')),
+      (e): e is NavGroup =>
+        e.kind === 'group' && (pathname === e.basePath || pathname.startsWith(e.basePath + '/')),
     );
     setOpenGroupId(match ? match.id : null);
   }, [pathname]);
 
   function handleGroupToggle(id: string) {
-    setOpenGroupId(prev => (prev === id ? null : id));
+    setOpenGroupId((prev) => (prev === id ? null : id));
   }
 
   const WORKSPACE_ITEMS = [
@@ -110,12 +142,14 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
     { label: t('workspace.subscription'), icon: CreditCardIcon, sub: 'subscription' },
   ];
 
-  const workspaceNav: NavLeaf[] = workspaceId ? (WORKSPACE_ITEMS.map((item) => ({
-    kind: 'item' as const,
-    to: `/workspace/${workspaceId}/${item.sub}`,
-    label: item.label,
-    icon: item.icon,
-  })) as NavLeaf[]) : [];
+  const workspaceNav: NavLeaf[] = workspaceId
+    ? (WORKSPACE_ITEMS.map((item) => ({
+        kind: 'item' as const,
+        to: `/workspace/${workspaceId}/${item.sub}`,
+        label: item.label,
+        icon: item.icon,
+      })) as NavLeaf[])
+    : [];
 
   return (
     <TooltipProvider delayDuration={200}>
@@ -231,31 +265,31 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
                 <div className="border-t border-border" />
               )}
               <div className="flex w-full flex-col gap-0.5">
-                {workspaceId ? (
-                  workspaceNav.map((item) => (
-                    <NavItem
-                      key={String(item.to)}
-                      item={item}
-                      collapsed={effectiveCollapsed}
-                      pathname={pathname}
-                      onNavigate={onMobileClose}
-                    />
-                  ))
-                ) : (
-                  WORKSPACE_ITEMS.map((item) => (
-                    <div
-                      key={item.sub}
-                      className={cn(
-                        'flex w-full items-center gap-2.5 rounded-md border-[0.8px] border-transparent px-2.5 text-[13px] leading-none text-muted-foreground/40',
-                        'h-8 cursor-default',
-                        effectiveCollapsed && 'mx-auto w-10 justify-center px-0',
-                      )}
-                    >
-                      <HugeiconsIcon icon={item.icon} className="size-4 shrink-0" aria-hidden />
-                      {!effectiveCollapsed && <span className="whitespace-nowrap">{item.label}</span>}
-                    </div>
-                  ))
-                )}
+                {workspaceId
+                  ? workspaceNav.map((item) => (
+                      <NavItem
+                        key={String(item.to)}
+                        item={item}
+                        collapsed={effectiveCollapsed}
+                        pathname={pathname}
+                        onNavigate={onMobileClose}
+                      />
+                    ))
+                  : WORKSPACE_ITEMS.map((item) => (
+                      <div
+                        key={item.sub}
+                        className={cn(
+                          'flex w-full items-center gap-2.5 rounded-md border-[0.8px] border-transparent px-2.5 text-[13px] leading-none text-muted-foreground/40',
+                          'h-8 cursor-default',
+                          effectiveCollapsed && 'mx-auto w-10 justify-center px-0',
+                        )}
+                      >
+                        <HugeiconsIcon icon={item.icon} className="size-4 shrink-0" aria-hidden />
+                        {!effectiveCollapsed && (
+                          <span className="whitespace-nowrap">{item.label}</span>
+                        )}
+                      </div>
+                    ))}
               </div>
             </div>
           </nav>

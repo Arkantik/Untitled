@@ -78,6 +78,7 @@ export function CollapsibleGroup({
             onClick={onNavigate}
             className={cn(
               'mx-auto flex h-8 w-10 items-center justify-center rounded-md border-[0.8px] border-transparent transition-colors duration-150',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset',
               groupActive
                 ? 'bg-accent text-primary'
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -99,7 +100,8 @@ export function CollapsibleGroup({
         onClick={onToggle}
         aria-expanded={open}
         className={cn(
-          'group/nav flex h-8 w-full items-center justify-between rounded-md border-[0.8px] border-transparent px-2.5 text-left text-[13px] leading-none outline-none transition-[background-color,color] duration-150',
+          'group/nav flex h-8 w-full items-center justify-between rounded-md border-[0.8px] border-transparent px-2.5 text-left text-[13px] leading-none transition-[background-color,color] duration-150',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset',
           groupActive
             ? 'text-foreground'
             : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -138,7 +140,8 @@ export function CollapsibleGroup({
                   preload="intent"
                   onClick={onNavigate}
                   className={cn(
-                    'group/sub relative flex h-8 w-full items-center text-[13px] leading-none outline-none transition-colors duration-150',
+                    'group/sub relative flex h-8 w-full items-center text-[13px] leading-none transition-colors duration-150',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset',
                     active
                       ? 'font-medium text-primary'
                       : 'text-muted-foreground group-hover/sub:text-foreground',

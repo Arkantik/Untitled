@@ -24,10 +24,11 @@ export function NavItem({
       preload="intent"
       onClick={onNavigate}
       className={cn(
-        'group/nav flex w-full items-center justify-between rounded-md border-[0.8px] border-transparent px-2.5 text-left text-[13px] leading-none outline-none transition-[background-color,color] duration-150',
+        'group/nav flex w-full items-center justify-between rounded-md border-[0.8px] border-transparent px-2.5 text-left text-[13px] leading-none transition-[background-color,color] duration-150',
         'h-8',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset',
         active
-          ? 'bg-accent text-primary'
+          ? 'bg-accent text-primary font-medium'
           : 'text-muted-foreground hover:bg-muted hover:text-foreground',
         collapsed && 'mx-auto w-10 justify-center px-0',
       )}

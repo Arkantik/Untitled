@@ -1,4 +1,4 @@
-import { Link, useRouterState } from '@tanstack/react-router';
+import { useRouterState } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import type { IconSvgElement } from '@hugeicons/react';
 import {
@@ -32,81 +32,35 @@ type RouteMeta = {
   label: string;
   icon: IconSvgElement;
   parent?: string;
-  parentTo?: string;
 };
 
 const ROUTE_META: Record<string, RouteMeta> = {
   '/dashboard': { label: 'Dashboard', icon: Home01Icon },
-  '/content/posts': {
-    label: 'Posts',
-    icon: FileEditIcon,
-    parent: 'Content',
-    parentTo: '/content/posts',
-  },
-  '/content/calendar': {
-    label: 'Calendar',
-    icon: Calendar01Icon,
-    parent: 'Content',
-    parentTo: '/content/posts',
-  },
-  '/content/queue': {
-    label: 'Queue',
-    icon: Clock01Icon,
-    parent: 'Content',
-    parentTo: '/content/posts',
-  },
-  '/inbox/engagement': {
-    label: 'Engagement',
-    icon: MessageMultiple01Icon,
-    parent: 'Inbox',
-    parentTo: '/inbox/engagement',
-  },
-  '/inbox/messages': {
-    label: 'Messages',
-    icon: BubbleChatIcon,
-    parent: 'Inbox',
-    parentTo: '/inbox/engagement',
-  },
+  '/content/posts': { label: 'Posts', icon: FileEditIcon, parent: 'Content' },
+  '/content/calendar': { label: 'Calendar', icon: Calendar01Icon, parent: 'Content' },
+  '/content/queue': { label: 'Queue', icon: Clock01Icon, parent: 'Content' },
+  '/inbox/engagement': { label: 'Engagement', icon: MessageMultiple01Icon, parent: 'Inbox' },
+  '/inbox/messages': { label: 'Messages', icon: BubbleChatIcon, parent: 'Inbox' },
   '/accounts': { label: 'Accounts', icon: UserMultiple02Icon },
   '/analytics': { label: 'Analytics', icon: BarChartIcon },
   '/sync': { label: 'Sync', icon: RepeatIcon },
-  '/profile/settings': {
-    label: 'Settings',
-    icon: Settings01Icon,
-    parent: 'Profile',
-    parentTo: '/profile/settings',
-  },
-  '/profile/security': {
-    label: 'Security',
-    icon: Settings01Icon,
-    parent: 'Profile',
-    parentTo: '/profile/settings',
-  },
-  '/profile/notifications': {
-    label: 'Notifications',
-    icon: Settings01Icon,
-    parent: 'Profile',
-    parentTo: '/profile/settings',
-  },
-  '/profile/connections': {
-    label: 'Connections',
-    icon: Settings01Icon,
-    parent: 'Profile',
-    parentTo: '/profile/settings',
-  },
-  '/profile/appearance': {
-    label: 'Appearance',
-    icon: Settings01Icon,
-    parent: 'Profile',
-    parentTo: '/profile/settings',
-  },
+  '/profile/settings': { label: 'Settings', icon: Settings01Icon, parent: 'Profile' },
+  '/profile/security': { label: 'Security', icon: Settings01Icon, parent: 'Profile' },
+  '/profile/notifications': { label: 'Notifications', icon: Settings01Icon, parent: 'Profile' },
+  '/profile/connections': { label: 'Connections', icon: Settings01Icon, parent: 'Profile' },
+  '/profile/appearance': { label: 'Appearance', icon: Settings01Icon, parent: 'Profile' },
 };
 
-const WORKSPACE_SUB_LABELS: Record<string, string> = {
+const WORKSPACE_MGMT_LABELS: Record<string, string> = {
   overview: 'Overview',
   members: 'Members',
   'api-keys': 'API keys',
   subscription: 'Subscription',
+};
+
+const WORKSPACE_FEATURE_META: Record<string, { label: string; icon: IconSvgElement; parent?: string }> = {
+  analytics: { label: 'Analytics', icon: BarChartIcon },
+  'analytics/growth': { label: 'Follower growth', icon: BarChartIcon, parent: 'Analytics' },
 };
 
 export function TopBar({ onMobileOpen }: TopBarProps) {
@@ -115,14 +69,18 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
   const { theme, toggle } = useTheme();
 
   const workspaceMatch = pathname.match(/^\/workspace\/([^/]+)\/(.+)$/);
-  const meta: RouteMeta | undefined = workspaceMatch
-    ? {
-        label: WORKSPACE_SUB_LABELS[workspaceMatch[2]] ?? workspaceMatch[2],
-        icon: Building03Icon,
-        parent: 'Workspace',
-        parentTo: `/workspace/${workspaceMatch[1]}/overview`,
-      }
-    : ROUTE_META[pathname];
+  let meta: RouteMeta | undefined;
+  if (workspaceMatch) {
+    const sub = workspaceMatch[2];
+    if (WORKSPACE_MGMT_LABELS[sub]) {
+      meta = { label: WORKSPACE_MGMT_LABELS[sub], icon: Building03Icon, parent: 'Workspace' };
+    } else if (WORKSPACE_FEATURE_META[sub]) {
+      const fm = WORKSPACE_FEATURE_META[sub];
+      meta = { label: fm.label, icon: fm.icon, parent: fm.parent };
+    }
+  } else {
+    meta = ROUTE_META[pathname];
+  }
   const isDark = theme === 'dark';
 
   return (
@@ -153,15 +111,9 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
               <HugeiconsIcon icon={meta.icon} className="size-4" aria-hidden />
             </span>
 
-            {meta.parent && meta.parentTo ? (
+            {meta.parent ? (
               <>
-                <Link
-                  to={meta.parentTo as never}
-                  preload="intent"
-                  className="whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {meta.parent}
-                </Link>
+                <span className="whitespace-nowrap text-muted-foreground">{meta.parent}</span>
                 <span className="select-none text-muted-foreground/40">/</span>
               </>
             ) : null}
