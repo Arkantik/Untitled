@@ -41,7 +41,7 @@ Typeface: **Inter** (variable, loaded from Google Fonts). Fallback: `system-ui, 
 Semantic names only. A component that names a hex value or a palette step directly cannot be
 themed and will break in dark mode.
 
-**Palette:** Electric Indigo. **Dark mode:** yes — roles map to two palettes. No component branches on theme.
+**Palette:** Electric Indigo. **Dark mode:** yes. Roles map to two palettes. No component branches on theme.
 
 | Role             | Light     | Dark      | Use                             |
 | ---------------- | --------- | --------- | ------------------------------- |
@@ -69,7 +69,7 @@ themed and will break in dark mode.
 | `text-muted` on `surface-raised` (light) | 5.21:1 | AA |
 | `text-muted` on `surface-raised` (dark)  | 4.79:1 | AA |
 
-### Electric Indigo — full scale
+### Electric Indigo: full scale
 
 | Step | Hex       |
 | ---- | --------- |
@@ -122,8 +122,8 @@ Named by intent, not device.
 | `duration-base` | 200ms    | open, close  |
 | `easing`        | ease-out | everything   |
 
-Respect `prefers-reduced-motion`. Reduce to near-zero duration rather than removing transitions —
-state changes must remain legible without motion.
+Respect `prefers-reduced-motion`. Reduce to near-zero duration rather than removing transitions.
+State changes must remain legible without motion.
 
 ---
 
@@ -131,7 +131,7 @@ state changes must remain legible without motion.
 
 Not active. Stashed here for potential future use or white-label theming.
 
-Primary: `#CC8100`. **Primary Fg: `#1E1608` (dark text — white fails AA at 2.9:1).**
+Primary: `#CC8100`. **Primary Fg: `#1E1608` (dark text. White fails AA at 2.9:1).**
 Warning shifts to `#EA580C` (orange-red) to create hue distance from the amber primary.
 
 | Step | Hex       |

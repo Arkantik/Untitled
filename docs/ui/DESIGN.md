@@ -130,7 +130,7 @@ Use the `Field` component for every form control. It wires `id`, `aria-described
 Never suppress the focus ring with `outline-none` unless you replace it with an equally visible
 custom ring. The default is a 3px ring in the primary color.
 
-`outline-none` on a Radix trigger is acceptable — Radix applies its own managed focus style.
+`outline-none` on a Radix trigger is acceptable. Radix applies its own managed focus style.
 
 ### Keyboard navigation
 
@@ -191,7 +191,7 @@ Use token durations from `TOKENS.md`. No inline values.
 | `duration-fast` | 120ms | hover color, focus ring, icon scale        |
 | `duration-base` | 200ms | panel open/close, dropdown entrance, slide |
 
-Always respect `prefers-reduced-motion`. Reduce to near-zero, not zero — state changes must
+Always respect `prefers-reduced-motion`. Reduce to near-zero, not zero. State changes must
 remain visually legible without animation.
 
 ```css
@@ -280,7 +280,48 @@ These two icons have distinct, non-interchangeable meanings. Using the wrong one
 | … horizontal dots | `MoreHorizontalIcon` | More **content**  | Truncated text, "load more", pagination handles |
 
 **Rule**: every action-menu trigger (`DropdownMenu`, `ContextMenu`) uses `MoreVerticalIcon`.
-`MoreHorizontalIcon` is for content overflow only — never as a button that opens a menu.
+`MoreHorizontalIcon` is for content overflow only, never as a button that opens a menu.
+
+---
+
+## Tooltips
+
+Use the `Tooltip` component (`components/ui/tooltip.tsx`, Radix Tooltip) for all hover-reveal text.
+Never use the native `title` attribute. It renders an unstyled browser tooltip that ignores the
+design system, has no dark-mode support, and is inaccessible on touch devices.
+
+```tsx
+// correct
+<Tooltip>
+  <TooltipTrigger asChild>
+    <button type="button" aria-label="Copy link">
+      <HugeiconsIcon icon={Copy01Icon} aria-hidden />
+    </button>
+  </TooltipTrigger>
+  <TooltipContent>Copy link</TooltipContent>
+</Tooltip>
+
+// wrong — unstyled browser tooltip, touch-inaccessible
+<button type="button" title="Copy link">
+  <HugeiconsIcon icon={Copy01Icon} aria-hidden />
+</button>
+```
+
+**Accessibility when a visible label is absent**: `aria-label` on the trigger covers screen
+readers. The `TooltipContent` is for sighted pointer users. Both are needed on icon-only
+controls. They are not substitutes for each other.
+
+**When to add a tooltip**:
+
+| Situation | Use |
+| --- | --- |
+| Icon-only button | Always. Add `aria-label` on the trigger and `TooltipContent` as a visible hint. |
+| Truncated text | On the text element, content is the full string |
+| Data value needing context | On the value, content explains the unit or source |
+| Button whose label is already clear | Never. Tooltips on obvious controls add noise. |
+
+`TooltipProvider` is already mounted in the sidebar root. Wrap any other subtree that uses
+`Tooltip` in its own `TooltipProvider` when it sits outside the sidebar.
 
 ---
 
@@ -300,6 +341,7 @@ Run through this before every PR that adds or modifies an interactive element.
 - [ ] Form controls wrapped in `Field`
 - [ ] Input `type` is the most specific applicable value
 - [ ] Positive `tabIndex` values absent
+- [ ] No native `title` attributes. Use `Tooltip` instead.
 
 **Visual**
 

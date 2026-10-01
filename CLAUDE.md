@@ -85,7 +85,7 @@ Maintenance: `/audit-foundation`. Run when the session-start hook reports drift.
 
 ## Code comments
 
-Default: write no comment. The only valid comment explains a non-obvious WHY — a hidden
+Default: write no comment. The only valid comment explains a non-obvious WHY: a hidden
 constraint, a workaround for a specific bug, an invariant that would surprise a reader.
 
 Never write:
@@ -94,14 +94,14 @@ Never write:
 - JSX labels restating the element below: `{/* Header */}` above `<header>`
 - Section headers above their own function or export
 - Narration of what the code does: `// fetch the user`, `// set state`
-- Empty-catch narration: `} catch { // ignore }` — leave the block empty
+- Empty-catch narration: `} catch { // ignore }`. Leave the block empty.
 - Multi-line blocks explaining what code does
 
 ## File size
 
 Keep files under ~150 lines. When a file would exceed that, split it by logical unit before
 writing more: types, sub-components, utilities, orchestrator each get their own file. Flag and
-propose the split — don't add to an already-long file. See `docs/conventions/README.md`.
+propose the split. Don't add to an already-long file. See `docs/conventions/README.md`.
 
 ## Working agreement
 

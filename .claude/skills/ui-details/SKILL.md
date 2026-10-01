@@ -1,6 +1,6 @@
 ---
 name: ui-details
-description: Audit fine-grained UI details — avatar groups, stacking, active states, switches, and gradients. Use when polishing interactions or reviewing visual correctness.
+description: Audit fine-grained UI details: avatar groups, stacking, active states, switches, and gradients. Use when polishing interactions or reviewing visual correctness.
 ---
 
 # UI Details Audit
@@ -8,7 +8,7 @@ description: Audit fine-grained UI details — avatar groups, stacking, active s
 ## Avatar groups
 
 - Overlapping avatars are separated by clipping each one against its neighbour, not by a border.
-- Borders and outlines require the exact background colour, which breaks on gradients and images — use clip-path instead.
+- Borders and outlines require the exact background colour, which breaks on gradients and images. Use clip-path instead.
 - Keep initials readable inside the visible portion of each avatar after clipping is applied.
 
 ## Stacking
@@ -22,19 +22,19 @@ description: Audit fine-grained UI details — avatar groups, stacking, active s
 - Every pressable element has a visible pressed state, not just a hover state.
 - Hover and press are ranked: the pressed state is visually stronger than the hover.
 - Playful brands: use a subtle scale-down on press. Professional brands: shift tone (darken or desaturate) instead of moving.
-- Pressed states are triggered hundreds of times a day — keep them subtle and fast (under 100 ms).
+- Pressed states are triggered hundreds of times a day. Keep them subtle and fast (under 100 ms).
 
 ## Switches
 
 - While the thumb is held, stretch it slightly toward the side it will travel to.
-- Snap back quickly on release — the return is faster than the press.
+- Snap back quickly on release. The return is faster than the press.
 - Match the weight and bounciness of the motion to the brand personality.
 
 ## Gradients
 
-- Ease gradients instead of using hard linear stops — use an easing curve on the colour interpolation.
+- Ease gradients instead of using hard linear stops. Use an easing curve on the colour interpolation.
 - Use gradients over imagery to preserve as much of the image as possible while keeping text readable.
-- Eased gradients need less physical space to achieve the same legibility as linear ones — resist making them taller than necessary.
+- Eased gradients need less physical space to achieve the same legibility as linear ones. Resist making them taller than necessary.
 
 ## Verification
 

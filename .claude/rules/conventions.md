@@ -1,5 +1,5 @@
 ---
-description: Code conventions enforced on every change — file size, comments, vocabulary, shared code
+description: Code conventions enforced on every change: file size, comments, vocabulary, shared code
 ---
 
 ## File size
@@ -18,7 +18,7 @@ Never write:
 - JSX labels restating the element: `{/* Header */}` above `<header>`
 - Section headers above their own function or export
 - Narration: `// fetch the user`, `// set state`
-- Empty-catch narration: `} catch { // ignore }` — leave the block empty
+- Empty-catch narration: `} catch { // ignore }`. Leave the block empty.
 - Multi-line blocks explaining what code does
 
 ## Domain vocabulary
@@ -29,4 +29,4 @@ Do not invent synonyms.
 ## Shared code
 
 Types and constants shared between apps live in `@pulsarr/shared`. Never duplicate them.
-Database schemas exist for both SQLite and PostgreSQL — changes must cover both.
+Database schemas exist for both SQLite and PostgreSQL. Changes must cover both.

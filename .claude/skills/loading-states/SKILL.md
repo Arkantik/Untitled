@@ -1,6 +1,6 @@
 ---
 name: loading-states
-description: Audit and fix loading states across the app — prefetching, caching, skeletons, spinners, waterfalls, and static shell. Use when the app feels slow to navigate or shows too many loading indicators.
+description: Audit and fix loading states across the app: prefetching, caching, skeletons, spinners, waterfalls, and static shell. Use when the app feels slow to navigate or shows too many loading indicators.
 ---
 
 # Loading States Audit
@@ -15,7 +15,7 @@ description: Audit and fix loading states across the app — prefetching, cachin
 
 - Skeletons and shimmers should feel fast, not calm.
 - Shorten placeholder animations to under one second per cycle.
-- Resolve parts of the page as soon as their data arrives — do not wait for the slowest query before rendering anything.
+- Resolve parts of the page as soon as their data arrives. Do not wait for the slowest query before rendering anything.
 
 ## 3. Data loading analysis
 
@@ -26,13 +26,13 @@ description: Audit and fix loading states across the app — prefetching, cachin
 ## 4. Spinners
 
 - Find every spinner in the codebase (`grep -r "Spinner\|loading\|isLoading" src/`).
-- Replace each one with prefetched content, a skeleton, or nothing — in that priority order.
+- Replace each one with prefetched content, a skeleton, or nothing, in that priority order.
 - Videos: serve smaller sizes, stream instead of sending the whole file, no third-party iframes on the critical path.
 
 ## 5. Static shell
 
 - Navigation, header, and layout must render on the first frame, before any data loads.
-- A root-level loading state must never block navigation — the shell is always visible.
+- A root-level loading state must never block navigation. The shell is always visible.
 
 ## Verification
 

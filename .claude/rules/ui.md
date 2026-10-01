@@ -1,6 +1,6 @@
 ---
 globs: ["apps/web/src/**/*.tsx", "apps/web/src/**/*.css", "apps/web/src/styles/**"]
-description: UI guardrails — tokens, components, accessibility, responsive, icons
+description: UI guardrails: tokens, components, accessibility, responsive, icons
 ---
 
 ## Before any UI change

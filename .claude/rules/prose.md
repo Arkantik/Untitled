@@ -1,5 +1,5 @@
 ---
-description: Prose style — applies to replies, commits, PR descriptions, docs, error messages, code comments
+description: Prose style. Applies to replies, commits, PR descriptions, docs, error messages, code comments
 ---
 
 These rules apply to every prose surface you produce.

@@ -18,13 +18,13 @@ needs-triage -> needs-info -> ready -> in-progress -> done
                               blocked (open blockers, returns to ready when they close)
 ```
 
-- `needs-triage` — arrived, not yet assessed. Default for anything new.
-- `needs-info` — cannot proceed without an answer from a human. The question is written in the ticket.
-- `ready` — scope clear, acceptance criteria checkable, no open blockers. Pickable.
-- `blocked` — everything is clear but a blocker is open.
-- `in-progress` — someone or something is working on it now.
-- `done` — acceptance criteria met and verified.
-- `wontfix` — closed with a recorded reason. The reason is the whole point.
+- `needs-triage`: arrived, not yet assessed. Default for anything new.
+- `needs-info`: cannot proceed without an answer from a human. The question is written in the ticket.
+- `ready`: scope clear, acceptance criteria checkable, no open blockers. Pickable.
+- `blocked`: everything is clear but a blocker is open.
+- `in-progress`: someone or something is working on it now.
+- `done`: acceptance criteria met and verified.
+- `wontfix`: closed with a recorded reason. The reason is the whole point.
 
 ## Triaging one ticket
 
