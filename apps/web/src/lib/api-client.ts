@@ -34,15 +34,17 @@ async function parseError(res: Response): Promise<ApiError> {
 }
 
 export async function apiFetch<T>(url: string, init?: RequestInit): Promise<T> {
+  const hasBody = init?.body != null;
   const res = await fetch(url, {
     ...init,
     headers: {
-      'Content-Type': 'application/json',
+      ...(hasBody ? { 'Content-Type': 'application/json' } : {}),
       ...(init?.headers ?? {}),
     },
     credentials: 'include',
   });
 
   if (!res.ok) throw await parseError(res);
+  if (res.status === 204) return undefined as T;
   return res.json() as Promise<T>;
 }

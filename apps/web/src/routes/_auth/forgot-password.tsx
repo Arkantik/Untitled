@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from '~/lib/zod-resolver';
 import { z } from 'zod';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';

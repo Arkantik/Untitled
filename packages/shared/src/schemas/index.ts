@@ -1,4 +1,5 @@
 import { z } from 'zod';
+export * from './auth.schema.js';
 export * from './workspace.schema.js';
 export * from './billing.schema.js';
 import { SocialPlatform, PostStatus } from '../types/index.js';
@@ -16,7 +17,7 @@ export const createPostSchema = z.object({
       SocialPlatform.Discord,
     ]))
     .min(1),
-  scheduledAt: z.string().datetime().optional(),
+  scheduledAt: z.iso.datetime().optional(),
 });
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;

@@ -1,4 +1,5 @@
 import { betterAuth } from 'better-auth';
+import { createAuthMiddleware, APIError } from 'better-auth/api';
 import { bearer } from 'better-auth/plugins';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { getDialect, getSchema } from '@pulsarr/db';
@@ -24,7 +25,24 @@ export const auth = betterAuth({
     },
   }),
   plugins: [bearer()],
-  emailAndPassword: { enabled: true },
+  emailAndPassword: { enabled: true, minPasswordLength: 8 },
+  hooks: {
+    before: createAuthMiddleware(async (ctx) => {
+      if (ctx.path === '/sign-up/email') {
+        const password = (ctx.body as { password?: string })?.password ?? '';
+        if (
+          !/[A-Z]/.test(password) ||
+          !/[0-9]/.test(password) ||
+          !/[^A-Za-z0-9]/.test(password)
+        ) {
+          throw new APIError('BAD_REQUEST', {
+            message:
+              'Password must include at least one uppercase letter, one number, and one special character.',
+          });
+        }
+      }
+    }),
+  },
   secret: env.BETTER_AUTH_SECRET,
   baseURL: env.BETTER_AUTH_URL,
   session: {
