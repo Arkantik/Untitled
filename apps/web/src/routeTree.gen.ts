@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppAccountsRouteImport } from './routes/_app/accounts'
-import { Route as AppAnalyticsRouteImport } from './routes/_app/analytics'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppSyncRouteImport } from './routes/_app/sync'
 import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
@@ -33,10 +32,12 @@ import { Route as AppProfileNotificationsRouteImport } from './routes/_app/profi
 import { Route as AppProfileSecurityRouteImport } from './routes/_app/profile/security'
 import { Route as AppProfileSettingsRouteImport } from './routes/_app/profile/settings'
 import { Route as AppWorkspaceWorkspaceIdRouteImport } from './routes/_app/workspace/$workspaceId'
+import { Route as AppWorkspaceWorkspaceIdAnalyticsRouteImport } from './routes/_app/workspace/$workspaceId/analytics'
 import { Route as AppWorkspaceWorkspaceIdApiKeysRouteImport } from './routes/_app/workspace/$workspaceId/api-keys'
 import { Route as AppWorkspaceWorkspaceIdMembersRouteImport } from './routes/_app/workspace/$workspaceId/members'
 import { Route as AppWorkspaceWorkspaceIdOverviewRouteImport } from './routes/_app/workspace/$workspaceId/overview'
 import { Route as AppWorkspaceWorkspaceIdSubscriptionRouteImport } from './routes/_app/workspace/$workspaceId/subscription'
+import { Route as AppWorkspaceWorkspaceIdAnalyticsGrowthRouteImport } from './routes/_app/workspace/$workspaceId/analytics_/growth'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,11 +55,6 @@ const AuthRoute = AuthRouteImport.update({
 const AppAccountsRoute = AppAccountsRouteImport.update({
   id: '/accounts',
   path: '/accounts',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
@@ -156,6 +152,12 @@ const AppWorkspaceWorkspaceIdRoute = AppWorkspaceWorkspaceIdRouteImport.update({
   path: '/workspace/$workspaceId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppWorkspaceWorkspaceIdAnalyticsRoute =
+  AppWorkspaceWorkspaceIdAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
 const AppWorkspaceWorkspaceIdApiKeysRoute =
   AppWorkspaceWorkspaceIdApiKeysRouteImport.update({
     id: '/api-keys',
@@ -180,11 +182,16 @@ const AppWorkspaceWorkspaceIdSubscriptionRoute =
     path: '/subscription',
     getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
   } as any)
+const AppWorkspaceWorkspaceIdAnalyticsGrowthRoute =
+  AppWorkspaceWorkspaceIdAnalyticsGrowthRouteImport.update({
+    id: '/analytics_/growth',
+    path: '/analytics/growth',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accounts': typeof AppAccountsRoute
-  '/analytics': typeof AppAnalyticsRoute
   '/dashboard': typeof AppDashboardRoute
   '/sync': typeof AppSyncRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
@@ -204,15 +211,16 @@ export interface FileRoutesByFullPath {
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
   '/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/workspace/$workspaceId/analytics': typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   '/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
   '/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
   '/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
   '/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  '/workspace/$workspaceId/analytics/growth': typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accounts': typeof AppAccountsRoute
-  '/analytics': typeof AppAnalyticsRoute
   '/dashboard': typeof AppDashboardRoute
   '/sync': typeof AppSyncRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
@@ -232,10 +240,12 @@ export interface FileRoutesByTo {
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
   '/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/workspace/$workspaceId/analytics': typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   '/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
   '/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
   '/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
   '/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  '/workspace/$workspaceId/analytics/growth': typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -243,7 +253,6 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
   '/_app/accounts': typeof AppAccountsRoute
-  '/_app/analytics': typeof AppAnalyticsRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/sync': typeof AppSyncRoute
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -263,17 +272,18 @@ export interface FileRoutesById {
   '/_app/profile/security': typeof AppProfileSecurityRoute
   '/_app/profile/settings': typeof AppProfileSettingsRoute
   '/_app/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/_app/workspace/$workspaceId/analytics': typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   '/_app/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
   '/_app/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
   '/_app/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
   '/_app/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  '/_app/workspace/$workspaceId/analytics_/growth': typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/accounts'
-    | '/analytics'
     | '/dashboard'
     | '/sync'
     | '/forgot-password'
@@ -293,15 +303,16 @@ export interface FileRouteTypes {
     | '/profile/security'
     | '/profile/settings'
     | '/workspace/$workspaceId'
+    | '/workspace/$workspaceId/analytics'
     | '/workspace/$workspaceId/api-keys'
     | '/workspace/$workspaceId/members'
     | '/workspace/$workspaceId/overview'
     | '/workspace/$workspaceId/subscription'
+    | '/workspace/$workspaceId/analytics/growth'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/accounts'
-    | '/analytics'
     | '/dashboard'
     | '/sync'
     | '/forgot-password'
@@ -321,17 +332,18 @@ export interface FileRouteTypes {
     | '/profile/security'
     | '/profile/settings'
     | '/workspace/$workspaceId'
+    | '/workspace/$workspaceId/analytics'
     | '/workspace/$workspaceId/api-keys'
     | '/workspace/$workspaceId/members'
     | '/workspace/$workspaceId/overview'
     | '/workspace/$workspaceId/subscription'
+    | '/workspace/$workspaceId/analytics/growth'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_auth'
     | '/_app/accounts'
-    | '/_app/analytics'
     | '/_app/dashboard'
     | '/_app/sync'
     | '/_auth/forgot-password'
@@ -351,10 +363,12 @@ export interface FileRouteTypes {
     | '/_app/profile/security'
     | '/_app/profile/settings'
     | '/_app/workspace/$workspaceId'
+    | '/_app/workspace/$workspaceId/analytics'
     | '/_app/workspace/$workspaceId/api-keys'
     | '/_app/workspace/$workspaceId/members'
     | '/_app/workspace/$workspaceId/overview'
     | '/_app/workspace/$workspaceId/subscription'
+    | '/_app/workspace/$workspaceId/analytics_/growth'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -391,13 +405,6 @@ declare module '@tanstack/react-router' {
       path: '/accounts'
       fullPath: '/accounts'
       preLoaderRoute: typeof AppAccountsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/analytics': {
-      id: '/_app/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/dashboard': {
@@ -533,6 +540,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceWorkspaceIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/workspace/$workspaceId/analytics': {
+      id: '/_app/workspace/$workspaceId/analytics'
+      path: '/analytics'
+      fullPath: '/workspace/$workspaceId/analytics'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdAnalyticsRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
     '/_app/workspace/$workspaceId/api-keys': {
       id: '/_app/workspace/$workspaceId/api-keys'
       path: '/api-keys'
@@ -561,23 +575,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceWorkspaceIdSubscriptionRouteImport
       parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
+    '/_app/workspace/$workspaceId/analytics_/growth': {
+      id: '/_app/workspace/$workspaceId/analytics_/growth'
+      path: '/analytics/growth'
+      fullPath: '/workspace/$workspaceId/analytics/growth'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
   }
 }
 
 interface AppWorkspaceWorkspaceIdRouteChildren {
+  AppWorkspaceWorkspaceIdAnalyticsRoute: typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   AppWorkspaceWorkspaceIdApiKeysRoute: typeof AppWorkspaceWorkspaceIdApiKeysRoute
   AppWorkspaceWorkspaceIdMembersRoute: typeof AppWorkspaceWorkspaceIdMembersRoute
   AppWorkspaceWorkspaceIdOverviewRoute: typeof AppWorkspaceWorkspaceIdOverviewRoute
   AppWorkspaceWorkspaceIdSubscriptionRoute: typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  AppWorkspaceWorkspaceIdAnalyticsGrowthRoute: typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
 }
 
 const AppWorkspaceWorkspaceIdRouteChildren: AppWorkspaceWorkspaceIdRouteChildren =
   {
+    AppWorkspaceWorkspaceIdAnalyticsRoute:
+      AppWorkspaceWorkspaceIdAnalyticsRoute,
     AppWorkspaceWorkspaceIdApiKeysRoute: AppWorkspaceWorkspaceIdApiKeysRoute,
     AppWorkspaceWorkspaceIdMembersRoute: AppWorkspaceWorkspaceIdMembersRoute,
     AppWorkspaceWorkspaceIdOverviewRoute: AppWorkspaceWorkspaceIdOverviewRoute,
     AppWorkspaceWorkspaceIdSubscriptionRoute:
       AppWorkspaceWorkspaceIdSubscriptionRoute,
+    AppWorkspaceWorkspaceIdAnalyticsGrowthRoute:
+      AppWorkspaceWorkspaceIdAnalyticsGrowthRoute,
   }
 
 const AppWorkspaceWorkspaceIdRouteWithChildren =
@@ -587,7 +614,6 @@ const AppWorkspaceWorkspaceIdRouteWithChildren =
 
 interface AppRouteChildren {
   AppAccountsRoute: typeof AppAccountsRoute
-  AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppSyncRoute: typeof AppSyncRoute
   AppContentCalendarRoute: typeof AppContentCalendarRoute
@@ -605,7 +631,6 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppAccountsRoute: AppAccountsRoute,
-  AppAnalyticsRoute: AppAnalyticsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppSyncRoute: AppSyncRoute,
   AppContentCalendarRoute: AppContentCalendarRoute,
