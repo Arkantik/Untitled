@@ -43,6 +43,19 @@ No hardcoded pixel widths. Test at all three breakpoints.
 - Every interactive icon button: `group` on the container, wrap icon in a `<span>` with
   `transition-transform duration-fast hover:scale-110 hover:-rotate-6`.
 
+## Chart animation
+
+Every Recharts widget must follow the three-part pattern in `docs/ui/DESIGN.md#chart-animation`:
+
+1. `useAnimateOnce(key)`: pass `isAnimationActive={animate}` to every series element. Never
+   hardcode `true` (replays on re-renders) or `false` (never animates).
+2. `memo()`: wrap the chart component. Without it, parent re-renders flip `animate` to `false`
+   mid-draw and Recharts jumps to the final state.
+3. `useMemo()`: memoize data transforms in both parent and widget. Unstable references bypass
+   `memo` entirely.
+
+`useCountUp` must live in a child component, never in a component that also renders charts.
+
 ## Interactive components
 
 Use Radix UI primitives. Do not re-implement dialog, dropdown, select, switch, tooltip.

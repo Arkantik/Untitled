@@ -354,3 +354,62 @@ Run through this before every PR that adds or modifies an interactive element.
 
 - [ ] `prefers-reduced-motion` handled
 - [ ] No looping animation without user action
+
+---
+
+## Chart animation
+
+All Recharts components animate on first load only. Re-renders and tab revisits must not
+retrigger the animation.
+
+### Pattern (required for every chart widget)
+
+All three pieces are required. Skip any one and the animation replays on every render or never
+plays at all.
+
+**1. `useAnimateOnce(key)`**: returns `true` only on the first committed mount for a given key.
+Pass a stable, unique string (e.g. the chart's purpose + workspaceId). After one rAF frame it
+flips to `false` internally, but the chart already drew with `true` and will not re-render
+because of step 2.
+
+```ts
+import { useAnimateOnce } from '~/hooks/use-animate-once';
+const animate = useAnimateOnce(`my-chart-${workspaceId}`);
+```
+
+**2. `memo()`**: wrap the chart widget. Without it, any parent re-render (e.g. `useCountUp`
+updating stat tiles 60 times/second) reaches the chart, flips `animate` to `false`, and
+Recharts jumps to its final state mid-draw.
+
+```tsx
+export const MyChart = memo(function MyChart({ data, chartKey }: Props) { … });
+```
+
+**3. `useMemo()` for data transforms**: stable prop references are what make `memo` effective.
+If `rows.map(…)` runs inline in the parent on every render, a new array reference bypasses memo
+and re-renders the chart anyway.
+
+```tsx
+// in the parent
+const rows = useMemo(() => data.map(transform), [data]);
+
+// in the chart widget
+const chartData = useMemo(() => rows.map(toRecharts), [rows]);
+```
+
+Pass `isAnimationActive={animate}` (and matching `animationDuration` / `animationEasing`) to
+every `<Area>`, `<Bar>`, `<Line>`, or equivalent Recharts series element.
+
+### `useCountUp` placement
+
+`useCountUp` fires ~60 state updates over 700ms. Keep it in a **child component**, never in a
+component that also renders charts. When it lives in a sibling rather than an ancestor, its
+updates stay contained and never reach chart components at all.
+
+### Checklist
+
+- [ ] Chart widget wrapped in `memo()`
+- [ ] Data transform memoized with `useMemo` in both the parent and the widget
+- [ ] `isAnimationActive={animate}` on every series element — no hardcoded `true` or `false`
+- [ ] `useAnimateOnce` key is unique per chart instance (include workspaceId or equivalent)
+- [ ] `useCountUp` (if present) lives in a child component, not an ancestor of any chart
