@@ -46,10 +46,6 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/analytics': { label: 'Analytics', icon: BarChartIcon },
   '/sync': { label: 'Sync', icon: RepeatIcon },
   '/profile/settings': { label: 'Settings', icon: Settings01Icon, parent: 'Profile' },
-  '/profile/security': { label: 'Security', icon: Settings01Icon, parent: 'Profile' },
-  '/profile/notifications': { label: 'Notifications', icon: Settings01Icon, parent: 'Profile' },
-  '/profile/connections': { label: 'Connections', icon: Settings01Icon, parent: 'Profile' },
-  '/profile/appearance': { label: 'Appearance', icon: Settings01Icon, parent: 'Profile' },
 };
 
 const WORKSPACE_MGMT_LABELS: Record<string, string> = {

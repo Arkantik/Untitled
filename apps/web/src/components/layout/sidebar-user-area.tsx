@@ -10,7 +10,6 @@ import {
   ArrowDown01Icon,
 } from '@hugeicons/core-free-icons';
 import { useTranslation } from 'react-i18next';
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
 import {
   DropdownMenu,
@@ -23,7 +22,31 @@ import { cn } from '~/lib/utils';
 import { APP_GITHUB_URL } from '@pulsarr/shared';
 import { authClient } from '~/lib/auth-client';
 import { useCurrentUser } from '~/hooks/use-session';
+import { useUserProfile } from '~/hooks/use-profile';
 import { SponsorDialog } from './sidebar-sponsor-dialog';
+
+function UserAvatar({
+  image,
+  name,
+  initials,
+}: {
+  image: string | null | undefined;
+  name: string;
+  initials: string;
+}) {
+  return (
+    <span className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-xs font-medium text-muted-foreground">
+      {initials}
+      {image && (
+        <img
+          src={image}
+          alt={name}
+          className="absolute inset-0 h-full w-full rounded-full object-cover"
+        />
+      )}
+    </span>
+  );
+}
 
 export function UserArea({
   collapsed,
@@ -34,7 +57,8 @@ export function UserArea({
 }) {
   const { t } = useTranslation();
   const router = useRouter();
-  const user = useCurrentUser();
+  const session = useCurrentUser();
+  const profile = useUserProfile();
   const [sponsorOpen, setSponsorOpen] = useState(false);
   const isDesktop = useMediaQuery('(min-width: 64rem)');
 
@@ -43,7 +67,9 @@ export function UserArea({
     await router.navigate({ to: '/login' });
   }
 
-  const initials = user.name
+  const name = profile.name ?? session.name;
+  const avatarUrl = profile.avatarUrl ?? profile.image;
+  const initials = name
     .split(' ')
     .slice(0, 2)
     .map((p) => p[0])
@@ -58,15 +84,12 @@ export function UserArea({
         collapsed && 'justify-center px-0',
       )}
     >
-      <Avatar className="h-7 w-7 shrink-0">
-        <AvatarImage src={user.image ?? ''} alt={user.name} />
-        <AvatarFallback>{initials}</AvatarFallback>
-      </Avatar>
+      <UserAvatar image={avatarUrl} name={name} initials={initials} />
       {!collapsed && (
         <>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-xs font-medium">{user.name}</p>
-            <p className="truncate text-[10px] text-muted-foreground">{user.email}</p>
+            <p className="truncate text-xs font-medium">{name}</p>
+            <p className="truncate text-[10px] text-muted-foreground">{session.email}</p>
           </div>
           <HugeiconsIcon
             icon={ArrowDown01Icon}
@@ -87,7 +110,7 @@ export function UserArea({
       className="w-(--radix-dropdown-menu-trigger-width)"
     >
       <DropdownMenuItem asChild className="group gap-2.5">
-        <Link to="/profile/settings" preload="intent" onClick={onNavigate}>
+        <Link to="/profile/settings" search={{ tab: 'profile' }} preload="intent" onClick={onNavigate}>
           <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
             <HugeiconsIcon icon={Settings01Icon} className="size-3.5 shrink-0" aria-hidden />
           </span>

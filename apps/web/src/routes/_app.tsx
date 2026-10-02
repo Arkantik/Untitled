@@ -4,18 +4,22 @@ import { Sidebar } from '~/components/layout/sidebar';
 import { TopBar } from '~/components/layout/top-bar';
 import { cn } from '~/lib/utils';
 import { WorkspaceProvider } from '~/contexts/workspace-context';
+import type { WorkspaceRow } from '~/contexts/workspace-context';
 import { fetchSession } from '~/server/session';
+import { fetchWorkspaces } from '~/server/workspaces';
 
 export const Route = createFileRoute('/_app')({
   beforeLoad: async () => {
     const user = await fetchSession();
     if (!user) throw redirect({ to: '/login' });
-    return { user };
+    const workspaces = await fetchWorkspaces().catch((): WorkspaceRow[] => []);
+    return { user, workspaces };
   },
   component: AppLayout,
 });
 
 function AppLayout() {
+  const { workspaces } = Route.useRouteContext();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -35,7 +39,7 @@ function AppLayout() {
   }
 
   return (
-    <WorkspaceProvider>
+    <WorkspaceProvider initialData={workspaces}>
     <div className="flex min-h-screen bg-background">
       <div
         className={cn(

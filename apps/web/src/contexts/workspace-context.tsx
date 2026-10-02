@@ -34,10 +34,19 @@ const WorkspaceContext = createContext<WorkspaceContextValue>({
   isLoading: false,
 });
 
-export function WorkspaceProvider({ children }: { children: ReactNode }) {
+export function WorkspaceProvider({
+  children,
+  initialData,
+}: {
+  children: ReactNode;
+  initialData?: WorkspaceRow[];
+}) {
   const { data: workspaces = [], isLoading } = useApiQuery<WorkspaceRow[]>(
     ['workspaces'],
     '/api/v1/workspaces',
+    initialData
+      ? { initialData, initialDataUpdatedAt: Date.now() }
+      : undefined,
   );
 
   const value = useMemo(
