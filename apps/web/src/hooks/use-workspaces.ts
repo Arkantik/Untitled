@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useApiQuery } from './use-api-query';
 import { useApiMutation } from './use-api-mutation';
 import { toast } from '~/components/ui/toast';
@@ -31,6 +32,55 @@ export function useUpdateWorkspace(workspaceId: string) {
       qc.invalidateQueries({ queryKey: ['workspaces'] });
       toast.success('Workspace updated.');
     },
+  });
+}
+
+function fileToDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+export function useUploadWorkspaceAvatar(workspaceId: string) {
+  const qc = useQueryClient();
+  return useMutation<{ avatarUrl: string }, Error, File>({
+    mutationFn: async (file) => {
+      const data = await fileToDataUrl(file);
+      const res = await fetch(`/api/v1/workspaces/${workspaceId}/avatar`, {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data, mimetype: file.type }),
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
+        throw new Error(body?.error?.message ?? 'Failed to upload avatar.');
+      }
+      return res.json() as Promise<{ avatarUrl: string }>;
+    },
+    onError: (e) => toast.error(e.message),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['workspaces'] }),
+  });
+}
+
+export function useRemoveWorkspaceAvatar(workspaceId: string) {
+  const qc = useQueryClient();
+  return useMutation<void, Error, void>({
+    mutationFn: async () => {
+      const res = await fetch(`/api/v1/workspaces/${workspaceId}/avatar`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
+        throw new Error(body?.error?.message ?? 'Failed to remove avatar.');
+      }
+    },
+    onError: (e) => toast.error(e.message),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['workspaces'] }),
   });
 }
 

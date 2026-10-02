@@ -17,8 +17,8 @@ function WorkspaceOverviewPage() {
   const deleteWorkspace = useDeleteWorkspace();
   const isOwner = user.id === workspace.ownerId;
 
-  function handleSave(name: string, timezone: string, avatarUrl?: string | null) {
-    updateWorkspace.mutate({ name, timezone, ...(avatarUrl !== undefined && { avatarUrl }) });
+  function handleSave(name: string, timezone: string) {
+    updateWorkspace.mutate({ name, timezone });
   }
 
   function handleDelete() {
@@ -38,6 +38,7 @@ function WorkspaceOverviewPage() {
 
       <IdentityCard
         key={workspace.id}
+        workspaceId={workspace.id}
         initialName={workspace.name}
         initialTimezone={workspace.timezone ?? 'UTC'}
         initialAvatarUrl={workspace.avatarUrl ?? null}
