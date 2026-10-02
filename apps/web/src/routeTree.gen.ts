@@ -26,8 +26,6 @@ import { Route as AppContentPostsRouteImport } from './routes/_app/content/posts
 import { Route as AppContentQueueRouteImport } from './routes/_app/content/queue'
 import { Route as AppInboxEngagementRouteImport } from './routes/_app/inbox/engagement'
 import { Route as AppInboxMessagesRouteImport } from './routes/_app/inbox/messages'
-import { Route as AppProfileAppearanceRouteImport } from './routes/_app/profile/appearance'
-import { Route as AppProfileConnectionsRouteImport } from './routes/_app/profile/connections'
 import { Route as AppProfileNotificationsRouteImport } from './routes/_app/profile/notifications'
 import { Route as AppProfileSecurityRouteImport } from './routes/_app/profile/security'
 import { Route as AppProfileSettingsRouteImport } from './routes/_app/profile/settings'
@@ -122,16 +120,6 @@ const AppInboxMessagesRoute = AppInboxMessagesRouteImport.update({
   path: '/inbox/messages',
   getParentRoute: () => AppRoute,
 } as any)
-const AppProfileAppearanceRoute = AppProfileAppearanceRouteImport.update({
-  id: '/profile/appearance',
-  path: '/profile/appearance',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppProfileConnectionsRoute = AppProfileConnectionsRouteImport.update({
-  id: '/profile/connections',
-  path: '/profile/connections',
-  getParentRoute: () => AppRoute,
-} as any)
 const AppProfileNotificationsRoute = AppProfileNotificationsRouteImport.update({
   id: '/profile/notifications',
   path: '/profile/notifications',
@@ -205,8 +193,6 @@ export interface FileRoutesByFullPath {
   '/content/queue': typeof AppContentQueueRoute
   '/inbox/engagement': typeof AppInboxEngagementRoute
   '/inbox/messages': typeof AppInboxMessagesRoute
-  '/profile/appearance': typeof AppProfileAppearanceRoute
-  '/profile/connections': typeof AppProfileConnectionsRoute
   '/profile/notifications': typeof AppProfileNotificationsRoute
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
@@ -234,8 +220,6 @@ export interface FileRoutesByTo {
   '/content/queue': typeof AppContentQueueRoute
   '/inbox/engagement': typeof AppInboxEngagementRoute
   '/inbox/messages': typeof AppInboxMessagesRoute
-  '/profile/appearance': typeof AppProfileAppearanceRoute
-  '/profile/connections': typeof AppProfileConnectionsRoute
   '/profile/notifications': typeof AppProfileNotificationsRoute
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
@@ -266,8 +250,6 @@ export interface FileRoutesById {
   '/_app/content/queue': typeof AppContentQueueRoute
   '/_app/inbox/engagement': typeof AppInboxEngagementRoute
   '/_app/inbox/messages': typeof AppInboxMessagesRoute
-  '/_app/profile/appearance': typeof AppProfileAppearanceRoute
-  '/_app/profile/connections': typeof AppProfileConnectionsRoute
   '/_app/profile/notifications': typeof AppProfileNotificationsRoute
   '/_app/profile/security': typeof AppProfileSecurityRoute
   '/_app/profile/settings': typeof AppProfileSettingsRoute
@@ -297,8 +279,6 @@ export interface FileRouteTypes {
     | '/content/queue'
     | '/inbox/engagement'
     | '/inbox/messages'
-    | '/profile/appearance'
-    | '/profile/connections'
     | '/profile/notifications'
     | '/profile/security'
     | '/profile/settings'
@@ -326,8 +306,6 @@ export interface FileRouteTypes {
     | '/content/queue'
     | '/inbox/engagement'
     | '/inbox/messages'
-    | '/profile/appearance'
-    | '/profile/connections'
     | '/profile/notifications'
     | '/profile/security'
     | '/profile/settings'
@@ -357,8 +335,6 @@ export interface FileRouteTypes {
     | '/_app/content/queue'
     | '/_app/inbox/engagement'
     | '/_app/inbox/messages'
-    | '/_app/profile/appearance'
-    | '/_app/profile/connections'
     | '/_app/profile/notifications'
     | '/_app/profile/security'
     | '/_app/profile/settings'
@@ -498,20 +474,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInboxMessagesRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/profile/appearance': {
-      id: '/_app/profile/appearance'
-      path: '/profile/appearance'
-      fullPath: '/profile/appearance'
-      preLoaderRoute: typeof AppProfileAppearanceRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/profile/connections': {
-      id: '/_app/profile/connections'
-      path: '/profile/connections'
-      fullPath: '/profile/connections'
-      preLoaderRoute: typeof AppProfileConnectionsRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/profile/notifications': {
       id: '/_app/profile/notifications'
       path: '/profile/notifications'
@@ -621,8 +583,6 @@ interface AppRouteChildren {
   AppContentQueueRoute: typeof AppContentQueueRoute
   AppInboxEngagementRoute: typeof AppInboxEngagementRoute
   AppInboxMessagesRoute: typeof AppInboxMessagesRoute
-  AppProfileAppearanceRoute: typeof AppProfileAppearanceRoute
-  AppProfileConnectionsRoute: typeof AppProfileConnectionsRoute
   AppProfileNotificationsRoute: typeof AppProfileNotificationsRoute
   AppProfileSecurityRoute: typeof AppProfileSecurityRoute
   AppProfileSettingsRoute: typeof AppProfileSettingsRoute
@@ -638,8 +598,6 @@ const AppRouteChildren: AppRouteChildren = {
   AppContentQueueRoute: AppContentQueueRoute,
   AppInboxEngagementRoute: AppInboxEngagementRoute,
   AppInboxMessagesRoute: AppInboxMessagesRoute,
-  AppProfileAppearanceRoute: AppProfileAppearanceRoute,
-  AppProfileConnectionsRoute: AppProfileConnectionsRoute,
   AppProfileNotificationsRoute: AppProfileNotificationsRoute,
   AppProfileSecurityRoute: AppProfileSecurityRoute,
   AppProfileSettingsRoute: AppProfileSettingsRoute,

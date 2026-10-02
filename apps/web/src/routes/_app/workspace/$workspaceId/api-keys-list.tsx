@@ -105,7 +105,7 @@ export function ApiKeyList({
 export function ApiKeyInfoNote() {
   return (
     <p className="text-sm text-muted-foreground leading-relaxed">
-      <strong className="font-medium text-foreground">API keys grant full workspace access within their scopes</strong> — treat them like passwords.
+      <strong className="font-medium text-foreground">API keys grant full workspace access within their scopes.</strong> Treat them like passwords.
       Revoke any key that's no longer in use. Keys with read & write access can publish directly to your connected accounts.
     </p>
   );

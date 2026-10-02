@@ -29,7 +29,7 @@ export function NewKeyBanner({ value, onDismiss }: { value: string; onDismiss: (
     <div className="rounded-md border border-success/30 bg-success/8 p-4">
       <div className="mb-2.5 flex items-center gap-2 text-sm font-semibold text-success">
         <HugeiconsIcon icon={CheckmarkCircle01Icon} className="size-3.5" aria-hidden />
-        API key created — copy it now
+        API key created. Copy it now
       </div>
       <div className="flex items-center gap-2">
         <code className="flex-1 truncate rounded-sm border border-border bg-card px-2.5 py-1.5 font-mono text-xs">

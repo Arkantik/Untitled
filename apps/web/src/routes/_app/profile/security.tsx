@@ -1,15 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { EmptyState } from '~/components/ui/empty-state';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/profile/security')({
-  component: SecuritySettingsPage,
+  beforeLoad: () => {
+    throw redirect({ to: '/profile/settings', search: { tab: 'security' } });
+  },
+  component: () => null,
 });
-
-function SecuritySettingsPage() {
-  return (
-    <EmptyState
-      title="Security"
-      description="Manage your password, two-factor authentication, and passkeys."
-    />
-  );
-}

@@ -23,3 +23,12 @@ export function writePreference(name: string, value: string): void {
   try { writeCookie(name, value); } catch {}
   try { if (typeof window !== 'undefined') localStorage.setItem(name, value); } catch {}
 }
+
+export function removePreference(name: string): void {
+  try {
+    if (typeof document !== 'undefined') {
+      document.cookie = `${name}=;path=/;max-age=0;SameSite=Lax`;
+    }
+  } catch {}
+  try { if (typeof window !== 'undefined') localStorage.removeItem(name); } catch {}
+}

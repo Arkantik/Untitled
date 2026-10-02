@@ -74,7 +74,7 @@ export function GrowthStatTiles({ workspaceId, total, totalNew, best, accountCou
           Best account
         </p>
         <p className="mt-1 truncate text-xl font-bold tabular-nums">
-          {best ? best.handle : '—'}
+          {best ? best.handle : '-'}
         </p>
         <p className="mt-0.5 text-xs text-muted-foreground">
           {best

@@ -1,15 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { EmptyState } from '~/components/ui/empty-state';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/profile/notifications')({
-  component: NotificationsSettingsPage,
+  beforeLoad: () => {
+    throw redirect({ to: '/profile/settings', search: { tab: 'notifications' } });
+  },
+  component: () => null,
 });
-
-function NotificationsSettingsPage() {
-  return (
-    <EmptyState
-      title="Notifications"
-      description="Control when you receive in-app and email notifications."
-    />
-  );
-}
