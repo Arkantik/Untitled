@@ -12,6 +12,7 @@ export const users = sqliteTable('users', {
   emailVerified: integer('email_verified', { mode: 'boolean' })
     .default(false)
     .notNull(),
+  notificationPreferences: text('notification_preferences'),
   createdAt: integer('created_at', { mode: 'timestamp' })
     .notNull()
     .$defaultFn(() => new Date()),

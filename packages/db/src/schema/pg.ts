@@ -33,6 +33,7 @@ export const users = pgTable('users', {
   avatarUrl: text('avatar_url'),
   image: text('image'),
   emailVerified: boolean('email_verified').default(false).notNull(),
+  notificationPreferences: text('notification_preferences'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });

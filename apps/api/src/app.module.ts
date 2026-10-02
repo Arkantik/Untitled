@@ -10,6 +10,7 @@ import { PublishingModule } from './publishing/publishing.module.js';
 import { SchedulingModule } from './scheduling/scheduling.module.js';
 import { AnalyticsModule } from './analytics/analytics.module.js';
 import { BillingModule } from './billing/billing.module.js';
+import { UsersModule } from './users/users.module.js';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { BillingModule } from './billing/billing.module.js';
     AccountsModule,
     WorkspacesModule,
     BillingModule,
+    UsersModule,
     PublishingModule,
     SchedulingModule,
     AnalyticsModule,
