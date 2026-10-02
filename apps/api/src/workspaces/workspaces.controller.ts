@@ -26,6 +26,13 @@ import { WorkspaceMembersService } from './workspace-members.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';
 import { CurrentUser } from '../auth/session.decorator.js';
 import { ZodValidationPipe } from '../common/zod-validation.pipe.js';
+import { z } from 'zod';
+
+const avatarSchema = z.object({
+  data: z.string().min(1),
+  mimetype: z.enum(['image/jpeg', 'image/png', 'image/webp']),
+});
+type AvatarDto = z.infer<typeof avatarSchema>;
 
 @ApiTags('Workspaces')
 @ApiBearerAuth()
@@ -69,6 +76,21 @@ export class WorkspacesController {
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string, @CurrentUser() user: { id: string }) {
     return this.workspacesService.remove(id, user.id);
+  }
+
+  @Patch(':id/avatar')
+  uploadAvatar(
+    @Param('id') id: string,
+    @Body(new ZodValidationPipe(avatarSchema)) dto: AvatarDto,
+    @CurrentUser() user: { id: string },
+  ) {
+    return this.workspacesService.uploadAvatar(id, user.id, dto);
+  }
+
+  @Delete(':id/avatar')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async removeAvatar(@Param('id') id: string, @CurrentUser() user: { id: string }) {
+    await this.workspacesService.removeAvatar(id, user.id);
   }
 
   @Get(':id/members')
