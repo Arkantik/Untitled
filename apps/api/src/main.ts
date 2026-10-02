@@ -6,6 +6,9 @@ import {
 } from '@nestjs/platform-fastify';
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { Readable } from 'node:stream';
+import { mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import staticPlugin from '@fastify/static';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module.js';
 import { APP_NAME, APP_DESCRIPTION } from '@pulsarr/shared';
@@ -15,10 +18,20 @@ import { AppExceptionFilter } from './common/app-exception.filter.js';
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
+    new FastifyAdapter({ bodyLimit: 5 * 1024 * 1024 }),
   );
 
   app.useGlobalFilters(new AppExceptionFilter());
+
+  const uploadDir = resolve(process.cwd(), process.env.UPLOAD_DIR ?? './data/uploads');
+  mkdirSync(resolve(uploadDir, 'avatars'), { recursive: true });
+  mkdirSync(resolve(uploadDir, 'workspace-avatars'), { recursive: true });
+  await app.register(staticPlugin as Parameters<typeof app.register>[0], {
+    root: uploadDir,
+    prefix: '/static/',
+    decorateReply: false,
+  });
+
   app.setGlobalPrefix('api/v1');
   app.enableCors({
     origin: process.env.BETTER_AUTH_URL || 'http://localhost:3000',

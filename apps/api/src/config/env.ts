@@ -20,6 +20,7 @@ const envSchema = z.object({
   STRIPE_PRO_PRICE_ID: z.string().optional(),
   BILLING_ENABLED: z.coerce.boolean().default(false),
   APP_URL: z.string().url().default('http://localhost:3000'),
+  UPLOAD_DIR: z.string().default('./data/uploads'),
 });
 
 export type Env = z.infer<typeof envSchema>;
