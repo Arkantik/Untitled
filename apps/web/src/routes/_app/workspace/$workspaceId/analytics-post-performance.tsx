@@ -1,35 +1,9 @@
-import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';
 import { Skeleton } from '~/components/ui/skeleton';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
+import { PlatformIcons } from '~/components/ui/platform-icons';
 import { usePostPerformance } from '~/hooks/use-post-performance';
-import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';
-import type { AnalyticsRange, PostPerformance, SocialPlatform } from '@pulsarr/shared';
-
-function PlatformIcons({ platforms }: { platforms: SocialPlatform[] }) {
-  return (
-    <TooltipProvider>
-      <span className="flex items-center gap-0.5">
-        {platforms.map((p) => (
-          <Tooltip key={p}>
-            <TooltipTrigger asChild>
-              <span>
-                <HugeiconsIcon
-                  icon={PLATFORM_ICON[p]}
-                  size={12}
-                  style={{ color: PLATFORM_COLOR[p] }}
-                  aria-hidden
-                />
-              </span>
-            </TooltipTrigger>
-            <TooltipContent side="bottom">{PLATFORM_LABEL[p]}</TooltipContent>
-          </Tooltip>
-        ))}
-      </span>
-    </TooltipProvider>
-  );
-}
+import type { AnalyticsRange, PostPerformance } from '@pulsarr/shared';
 
 function PostRow({
   post,
