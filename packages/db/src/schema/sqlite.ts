@@ -75,6 +75,7 @@ export const connectedAccounts = sqliteTable('connected_accounts', {
   }).notNull(),
   platformAccountId: text('platform_account_id').notNull(),
   platformUsername: text('platform_username'),
+  avatarUrl: text('avatar_url'),
   accessToken: text('access_token').notNull(),
   refreshToken: text('refresh_token'),
   tokenExpiresAt: text('token_expires_at'),

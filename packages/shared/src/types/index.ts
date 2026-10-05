@@ -31,6 +31,8 @@ export type WorkspaceRole = (typeof WorkspaceRole)[keyof typeof WorkspaceRole];
 
 export type AnalyticsRange = '7d' | '14d' | '30d' | '90d';
 
+export type { DashboardPostStats, RecentPost, UpcomingPost, DashboardSummary } from './dashboard.js';
+
 export interface Metric {
   value: number;
   delta: number | null;
@@ -64,4 +66,21 @@ export interface PlatformEngagement {
   comments: number;
   reposts: number;
   impressions: number | null;
+}
+
+export type AccountStatus = 'active' | 'expired' | 'error';
+
+export interface PlatformSummaryItem {
+  platform: SocialPlatform;
+  postsThisWeek: number;
+  engagementThisWeek: number;
+}
+
+export interface ConnectedAccount {
+  id: string;
+  platform: SocialPlatform;
+  username: string | null;
+  avatarUrl: string | null;
+  status: AccountStatus;
+  connectedAt: string;
 }

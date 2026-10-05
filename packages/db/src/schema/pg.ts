@@ -74,6 +74,7 @@ export const connectedAccounts = pgTable('connected_accounts', {
   platform: socialPlatformEnum('platform').notNull(),
   platformAccountId: text('platform_account_id').notNull(),
   platformUsername: text('platform_username'),
+  avatarUrl: text('avatar_url'),
   accessToken: text('access_token').notNull(),
   refreshToken: text('refresh_token'),
   tokenExpiresAt: timestamp('token_expires_at'),
