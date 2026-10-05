@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, useRouterState } from '@tanstack/react-router';
+import { useParams, useRouterState, useNavigate } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { UnfoldMoreIcon, Add01Icon, CheckIcon } from '@hugeicons/core-free-icons';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +40,7 @@ export function WorkspaceSwitcher({ collapsed }: { collapsed: boolean }) {
   const { workspaces, isLoading } = useWorkspaceContext();
   const { location } = useRouterState();
   const params = useParams({ strict: false }) as { workspaceId?: string };
+  const navigate = useNavigate();
   const [createOpen, setCreateOpen] = useState(false);
 
   const activeWorkspace =

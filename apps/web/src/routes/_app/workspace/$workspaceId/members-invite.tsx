@@ -5,10 +5,19 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Field } from '~/components/ui/field';
 import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '~/components/ui/select';
 import {
-  Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  CardDescription,
 } from '~/components/ui/card';
 import { useInviteMember } from '~/hooks/use-workspaces';
 
@@ -35,14 +44,21 @@ export function InviteSection({ workspaceId, isOwnerOrAdmin, isLoading }: Props)
   }
 
   function handleSubmit() {
-    invite.mutate({ email, role }, {
-      onSuccess: () => { setShowForm(false); setEmail(''); setRole('editor'); },
-    });
+    invite.mutate(
+      { email, role },
+      {
+        onSuccess: () => {
+          setShowForm(false);
+          setEmail('');
+          setRole('editor');
+        },
+      },
+    );
   }
 
   return (
     <>
-      <div className="flex flex-col gap-3 rounded-md border border-primary/30 bg-primary/8 p-4 compact:flex-row compact:items-center">
+      <Card className="flex flex-col gap-3 rounded-md border border-primary/30 bg-primary/8 p-4 compact:flex-row compact:items-center">
         <div className="flex flex-1 items-center gap-3">
           <div className="shrink-0 text-primary">
             <HugeiconsIcon icon={UserAdd01Icon} className="size-5" aria-hidden />
@@ -54,19 +70,22 @@ export function InviteSection({ workspaceId, isOwnerOrAdmin, isLoading }: Props)
             </p>
           </div>
         </div>
-        <Button size="sm" type="button" className="w-full compact:w-auto" onClick={() => setShowForm((v) => !v)}>
+        <Button
+          size="sm"
+          type="button"
+          className="w-full compact:w-auto"
+          onClick={() => setShowForm((v) => !v)}
+        >
           <HugeiconsIcon icon={Add01Icon} className="size-3.5" aria-hidden />
           Invite member
         </Button>
-      </div>
+      </Card>
 
       {showForm && (
         <Card className="border-primary">
           <CardHeader className="border-b border-primary/20 bg-primary/8">
             <CardTitle className="text-primary text-sm">Invite a member</CardTitle>
-            <CardDescription>
-              They'll receive an email with a link to join.
-            </CardDescription>
+            <CardDescription>They'll receive an email with a link to join.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 pt-5">
             <Field label="Email address">
@@ -83,7 +102,9 @@ export function InviteSection({ workspaceId, isOwnerOrAdmin, isLoading }: Props)
             <Field label="Role">
               {({ id }) => (
                 <Select value={role} onValueChange={(v) => setRole(v as InviteRole)}>
-                  <SelectTrigger id={id}><SelectValue /></SelectTrigger>
+                  <SelectTrigger id={id}>
+                    <SelectValue />
+                  </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="admin">Admin (manage members and accounts)</SelectItem>
                     <SelectItem value="editor">Editor (create and publish posts)</SelectItem>
@@ -101,7 +122,9 @@ export function InviteSection({ workspaceId, isOwnerOrAdmin, isLoading }: Props)
             >
               Send invite
             </Button>
-            <Button variant="ghost" type="button" onClick={handleCancel}>Cancel</Button>
+            <Button variant="ghost" type="button" onClick={handleCancel}>
+              Cancel
+            </Button>
           </CardFooter>
         </Card>
       )}

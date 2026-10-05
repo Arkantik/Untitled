@@ -1,4 +1,4 @@
-import type { Resolver, FieldErrors } from 'react-hook-form';
+import type { Resolver, FieldValues, FieldErrors } from 'react-hook-form';
 import type { ZodType } from 'zod';
 
 type FlatErrors = Record<string, { message: string; type: string }>;
@@ -17,11 +17,13 @@ function toNestedErrors(flat: FlatErrors): FieldErrors {
   return result as FieldErrors;
 }
 
-export function zodResolver<T extends ZodType>(schema: T): Resolver {
-  return async (values) => {
+export function zodResolver<TFieldValues extends FieldValues>(
+  schema: ZodType<TFieldValues>,
+): Resolver<TFieldValues> {
+  return (async (values: TFieldValues) => {
     const result = await schema.safeParseAsync(values);
     if (result.success) {
-      return { values: result.data as Record<string, unknown>, errors: {} };
+      return { values: result.data, errors: {} };
     }
     const flat: FlatErrors = {};
     for (const issue of result.error.issues) {
@@ -31,5 +33,5 @@ export function zodResolver<T extends ZodType>(schema: T): Resolver {
       }
     }
     return { values: {}, errors: toNestedErrors(flat) };
-  };
+  }) as Resolver<TFieldValues>;
 }

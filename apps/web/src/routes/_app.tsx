@@ -67,8 +67,19 @@ function AppLayout() {
       >
         <TopBar onMobileOpen={() => setMobileOpen(true)} />
 
-        <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-page px-4 py-6 regular:px-6 regular:py-8">
+        <main className="relative flex-1 overflow-y-auto">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 z-0 h-96 overflow-hidden"
+            style={{
+              maskImage: 'radial-gradient(100% 80% at 50% 0, black 45%, transparent)',
+              WebkitMaskImage: 'radial-gradient(100% 80% at 50% 0, black 45%, transparent)',
+            }}
+          >
+            <div className="absolute -top-20 left-1/2 h-80 w-80 -translate-x-1/2 animate-aura-float-a rounded-full bg-primary opacity-[0.25] blur-[80px]" />
+            <div className="absolute top-4 right-1/3 h-56 w-56 animate-aura-float-b rounded-full bg-primary opacity-[0.12] blur-[70px]" />
+          </div>
+          <div className="relative z-10 mx-auto max-w-page px-4 py-6 regular:px-6 regular:py-8">
             <Outlet />
           </div>
         </main>
