@@ -11,6 +11,7 @@ import { SchedulingModule } from './scheduling/scheduling.module.js';
 import { AnalyticsModule } from './analytics/analytics.module.js';
 import { BillingModule } from './billing/billing.module.js';
 import { UsersModule } from './users/users.module.js';
+import { DashboardModule } from './dashboard/dashboard.module.js';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UsersModule } from './users/users.module.js';
     PublishingModule,
     SchedulingModule,
     AnalyticsModule,
+    DashboardModule,
   ],
   controllers: [AppController],
 })
