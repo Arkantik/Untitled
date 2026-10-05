@@ -230,6 +230,33 @@ not color, and is exempt.
 
 ---
 
+## Decorative gradients
+
+Background aura blobs are decorative and must:
+
+1. Use only colors from `TOKENS.md` — `bg-primary` only. No arbitrary Tailwind palette colors (`bg-teal-400`, `bg-purple-500`, etc.).
+2. Stay behind all page content. The aura container gets `z-0`; the content wrapper immediately following it gets `relative z-10`.
+3. Live inside a `pointer-events-none absolute overflow-hidden` wrapper with a fixed height so blobs cannot clip outside their zone or intercept clicks.
+4. Carry `aria-hidden` on the wrapper.
+
+Keyframes (`aura-float-a`, `aura-float-b`, `aura-spin`) and their `--animate-*` tokens live in `globals.css`. The `prefers-reduced-motion` global rule there cuts all animation durations to `0.01ms`, so reduced-motion is handled automatically.
+
+```tsx
+<div
+  aria-hidden
+  className="pointer-events-none absolute inset-x-0 top-0 z-0 h-96 overflow-hidden"
+  style={{ maskImage: 'radial-gradient(100% 80% at 50% 0, black 45%, transparent)', WebkitMaskImage: '...' }}
+>
+  <div className="absolute -top-20 left-1/2 h-80 w-80 -translate-x-1/2 animate-aura-float-a rounded-full bg-primary opacity-[0.25] blur-[80px]" />
+  <div className="absolute top-4 right-1/3 h-56 w-56 animate-aura-float-b rounded-full bg-primary opacity-[0.12] blur-[70px]" />
+</div>
+<div className="relative z-10 ...">
+  {/* page content */}
+</div>
+```
+
+---
+
 ## Typography
 
 Inter variable, loaded from Google Fonts. All sizes, weights, and line heights come from the

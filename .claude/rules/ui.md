@@ -20,6 +20,12 @@ Components define no colors, spacing, radius, or font sizes of their own. Every 
 from TOKENS.md. No arbitrary Tailwind values (`p-[13px]`). No hardcoded hex colors. No inline
 `style` props for token-covered values. Class composition uses `cva` + `cn` from `~/lib/utils`.
 
+## Borders and dividers
+
+Always use `border-border` explicitly on every `border` or `divide` utility, never rely on
+Tailwind's default border color. Write `border border-border`, `border-b border-border`,
+`divide-y divide-border`, etc. This ensures the token maps correctly in both themes.
+
 ## Accessibility (non-negotiable)
 
 - `type` on every `<button>` (`type="button"` unless it submits a form)
