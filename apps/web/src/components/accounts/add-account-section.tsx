@@ -22,7 +22,7 @@ export function AddAccountSection() {
 
   return (
     <Card className="p-4">
-      <p className="mb-3 text-sm font-semibold">Add an account</p>
+      <p className="mb-3 text-sm font-semibold">Connect an account</p>
       <div className="flex flex-wrap gap-2">
         {PLATFORMS.map((p) => {
           const color = p === 'x' ? '#0f0f0f' : PLATFORM_COLOR[p];

@@ -4,7 +4,11 @@ import { Globe02Icon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { EmptyState } from '~/components/ui/empty-state';
 
-export function DashboardNoAccounts() {
+interface Props {
+  workspaceId: string;
+}
+
+export function DashboardNoAccounts({ workspaceId }: Props) {
   return (
     <Card>
       <EmptyState
@@ -14,7 +18,8 @@ export function DashboardNoAccounts() {
         description="Connect a social account to start composing and scheduling posts from this workspace."
         action={
           <Link
-            to="/accounts"
+            to="/workspace/$workspaceId/accounts"
+            params={{ workspaceId }}
             className="text-sm text-primary underline-offset-4 hover:underline"
           >
             Connect an account

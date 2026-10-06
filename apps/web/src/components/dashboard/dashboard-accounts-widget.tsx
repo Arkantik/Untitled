@@ -24,9 +24,10 @@ function platformBg(p: ConnectedAccount['platform']): string {
 
 interface Props {
   accounts: ConnectedAccount[];
+  workspaceId: string;
 }
 
-export function DashboardAccountsWidget({ accounts }: Props) {
+export function DashboardAccountsWidget({ accounts, workspaceId }: Props) {
   if (accounts.length === 0) return null;
 
   const hasIssues = accounts.some((a) => a.status !== 'active');
@@ -45,7 +46,11 @@ export function DashboardAccountsWidget({ accounts }: Props) {
             {accounts.length} account{accounts.length !== 1 ? 's' : ''} connected
           </span>
         </div>
-        <Link to="/accounts" className="text-xs text-primary underline-offset-4 hover:underline">
+        <Link
+          to="/workspace/$workspaceId/accounts"
+          params={{ workspaceId }}
+          className="text-xs text-primary underline-offset-4 hover:underline"
+        >
           Manage
         </Link>
       </Card>
@@ -59,7 +64,11 @@ export function DashboardAccountsWidget({ accounts }: Props) {
           <HugeiconsIcon icon={Alert01Icon} size={14} className="text-warning" aria-hidden />
           <h2 className="text-sm font-semibold">Account issues</h2>
         </div>
-        <Link to="/accounts" className="text-xs text-primary underline-offset-4 hover:underline">
+        <Link
+          to="/workspace/$workspaceId/accounts"
+          params={{ workspaceId }}
+          className="text-xs text-primary underline-offset-4 hover:underline"
+        >
           Reconnect
         </Link>
       </div>

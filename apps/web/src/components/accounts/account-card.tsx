@@ -1,19 +1,11 @@
 import { HugeiconsIcon } from '@hugeicons/react';
-import { LinkBackwardIcon } from '@hugeicons/core-free-icons';
+import { LinkBackwardIcon, ReloadIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
-import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
-import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';
+import { cn } from '~/lib/utils';
+import { PLATFORM_ICON, PLATFORM_BG, PLATFORM_LABEL } from '~/lib/platforms';
+import { toast } from '~/components/ui/toast';
 import type { ConnectedAccount } from '@pulsarr/shared';
-
-const STATUS_BADGE: Record<
-  ConnectedAccount['status'],
-  { label: string; tone: 'success' | 'warning' | 'destructive' }
-> = {
-  active: { label: 'Active', tone: 'success' },
-  expired: { label: 'Token expired', tone: 'warning' },
-  error: { label: 'Error', tone: 'destructive' },
-};
 
 interface Props {
   account: ConnectedAccount;
@@ -21,44 +13,75 @@ interface Props {
 }
 
 export function AccountCard({ account, onDisconnect }: Props) {
-  const icon = PLATFORM_ICON[account.platform];
-  const color = account.platform === 'x' ? '#0f0f0f' : PLATFORM_COLOR[account.platform];
-  const label = PLATFORM_LABEL[account.platform];
-  const badge = STATUS_BADGE[account.status];
+  const initial = account.username?.[0]?.toUpperCase() ?? '?';
+  const needsAttention = account.status !== 'active';
+
+  function handleReconnect() {
+    toast.info(`Reconnect for ${PLATFORM_LABEL[account.platform]} is coming in a future update.`);
+  }
 
   return (
-    <Card className="flex items-center gap-4 p-4">
-      <div
-        className="flex size-10 shrink-0 items-center justify-center rounded-full"
-        style={{ background: color }}
-        aria-hidden
-      >
-        <HugeiconsIcon icon={icon} size={20} className="text-white" />
+    <Card
+      className={cn(
+        'flex items-center gap-3 p-4',
+        needsAttention && 'border-destructive/50',
+      )}
+    >
+      <div className="relative size-10 shrink-0">
+        <div className="flex size-10 items-center justify-center overflow-hidden rounded-full bg-border">
+          {account.avatarUrl ? (
+            <img src={account.avatarUrl} alt="" className="size-full object-cover" />
+          ) : (
+            <span className="text-sm font-semibold text-muted-foreground">{initial}</span>
+          )}
+        </div>
+        <div
+          className="absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-card"
+          style={{ background: PLATFORM_BG[account.platform] }}
+          aria-hidden
+        >
+          <HugeiconsIcon icon={PLATFORM_ICON[account.platform]} size={11} className="text-white" />
+        </div>
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">{label}</span>
-          <Badge tone={badge.tone} className="text-xs">
-            {badge.label}
-          </Badge>
+        <div className="flex items-center gap-1.5">
+          <span
+            className={cn(
+              'size-2 shrink-0 rounded-full',
+              needsAttention ? 'bg-destructive' : 'bg-success',
+            )}
+            aria-hidden
+          />
+          <span className="truncate text-sm font-medium">
+            {account.username ? `@${account.username}` : PLATFORM_LABEL[account.platform]}
+          </span>
         </div>
         <p className="mt-0.5 text-xs text-muted-foreground">
-          {account.username ? `@${account.username}` : 'No username on record'}
+          {PLATFORM_LABEL[account.platform]}
+          {needsAttention && ' · Needs reconnection'}
         </p>
       </div>
 
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        className="shrink-0 text-muted-foreground hover:text-destructive"
-        aria-label={`Disconnect ${label}${account.username ? ` @${account.username}` : ''}`}
-        onClick={() => onDisconnect(account)}
-      >
-        <HugeiconsIcon icon={LinkBackwardIcon} size={16} aria-hidden />
-        Disconnect
-      </Button>
+      <div className="flex shrink-0 items-center gap-1">
+        {needsAttention && (
+          <Button type="button" variant="outline" size="sm" onClick={handleReconnect}>
+            <HugeiconsIcon icon={ReloadIcon} size={13} aria-hidden />
+            Reconnect
+          </Button>
+        )}
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="text-muted-foreground hover:text-destructive"
+          aria-label={`Disconnect ${PLATFORM_LABEL[account.platform]}${account.username ? ` @${account.username}` : ''}`}
+          onClick={() => onDisconnect(account)}
+        >
+          <HugeiconsIcon icon={LinkBackwardIcon} size={16} aria-hidden />
+          Disconnect
+        </Button>
+      </div>
     </Card>
   );
 }
