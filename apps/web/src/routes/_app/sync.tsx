@@ -1,20 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { RepeatIcon } from '@hugeicons/core-free-icons';
-import { EmptyState } from '~/components/ui/empty-state';
-import { Button } from '~/components/ui/button';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/sync')({
-  component: SyncPage,
+  beforeLoad: ({ context: { workspaces } }) => {
+    const workspaceId = workspaces?.[0]?.id;
+    if (workspaceId) {
+      throw redirect({ to: '/workspace/$workspaceId/sync', params: { workspaceId } });
+    }
+  },
+  component: () => null,
 });
-
-function SyncPage() {
-  return (
-    <EmptyState
-      icon={<HugeiconsIcon icon={RepeatIcon} />}
-      title="Sync pipelines"
-      description="Cross-posting automation pipelines between your accounts will appear here."
-      action={<Button>Create pipeline</Button>}
-    />
-  );
-}

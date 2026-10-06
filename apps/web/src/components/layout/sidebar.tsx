@@ -54,18 +54,20 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
   const effectiveCollapsed = isDesktop && collapsed;
 
   const mainNav: NavEntry[] = [
-    { kind: 'item', to: '/dashboard', label: t('nav.dashboard'), icon: Home01Icon },
+    ...(workspaceId
+      ? [{ kind: 'item' as const, to: `/workspace/${workspaceId}/dashboard`, label: t('nav.dashboard'), icon: Home01Icon }]
+      : [{ kind: 'item' as const, to: '/dashboard', label: t('nav.dashboard'), icon: Home01Icon }]),
     {
       kind: 'group',
       id: 'content',
       label: t('nav.content'),
       icon: FileEditIcon,
-      basePath: '/content',
+      basePath: workspaceId ? `/workspace/${workspaceId}/content` : '/content',
       defaultOpen: true,
       children: [
-        { kind: 'item', to: '/content/posts', label: t('nav.posts'), icon: FileEditIcon },
-        { kind: 'item', to: '/content/calendar', label: t('nav.calendar'), icon: Calendar01Icon },
-        { kind: 'item', to: '/content/queue', label: t('nav.queue'), icon: Clock01Icon },
+        { kind: 'item', to: workspaceId ? `/workspace/${workspaceId}/content/posts` : '/content/posts', label: t('nav.posts'), icon: FileEditIcon },
+        { kind: 'item', to: workspaceId ? `/workspace/${workspaceId}/content/calendar` : '/content/calendar', label: t('nav.calendar'), icon: Calendar01Icon },
+        { kind: 'item', to: workspaceId ? `/workspace/${workspaceId}/content/queue` : '/content/queue', label: t('nav.queue'), icon: Clock01Icon },
       ],
     },
     {
@@ -73,16 +75,16 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
       id: 'inbox',
       label: t('nav.inbox'),
       icon: InboxIcon,
-      basePath: '/inbox',
+      basePath: workspaceId ? `/workspace/${workspaceId}/inbox` : '/inbox',
       defaultOpen: false,
       children: [
         {
           kind: 'item',
-          to: '/inbox/engagement',
+          to: workspaceId ? `/workspace/${workspaceId}/inbox/engagement` : '/inbox/engagement',
           label: t('nav.engagement'),
           icon: MessageMultiple01Icon,
         },
-        { kind: 'item', to: '/inbox/messages', label: t('nav.messages'), icon: BubbleChatIcon },
+        { kind: 'item', to: workspaceId ? `/workspace/${workspaceId}/inbox/messages` : '/inbox/messages', label: t('nav.messages'), icon: BubbleChatIcon },
       ],
     },
     ...(workspaceId
@@ -111,8 +113,10 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
           },
         ] as NavGroup[])
       : []),
-    { kind: 'item', to: '/accounts', label: t('nav.accounts'), icon: UserMultiple02Icon },
-    { kind: 'item', to: '/sync', label: t('nav.pipelines'), icon: GasPipeIcon },
+    ...(workspaceId
+      ? [{ kind: 'item' as const, to: `/workspace/${workspaceId}/accounts`, label: t('nav.accounts'), icon: UserMultiple02Icon }]
+      : [{ kind: 'item' as const, to: '/accounts', label: t('nav.accounts'), icon: UserMultiple02Icon }]),
+    { kind: 'item', to: workspaceId ? `/workspace/${workspaceId}/sync` : '/sync', label: t('nav.pipelines'), icon: GasPipeIcon },
   ];
 
   const [openGroupId, setOpenGroupId] = useState<string | null>(() => {
@@ -213,19 +217,32 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="default" size="icon" className="w-full" asChild>
-                    <Link to="/dashboard" preload="intent" onClick={onMobileClose}>
-                      <HugeiconsIcon icon={PencilEdit02Icon} className="size-4" aria-hidden />
-                    </Link>
+                    {workspaceId ? (
+                      <Link to="/workspace/$workspaceId/dashboard" params={{ workspaceId }} preload="intent" onClick={onMobileClose}>
+                        <HugeiconsIcon icon={PencilEdit02Icon} className="size-4" aria-hidden />
+                      </Link>
+                    ) : (
+                      <Link to="/dashboard" preload="intent" onClick={onMobileClose}>
+                        <HugeiconsIcon icon={PencilEdit02Icon} className="size-4" aria-hidden />
+                      </Link>
+                    )}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">{t('nav.compose')}</TooltipContent>
               </Tooltip>
             ) : (
               <Button variant="default" className="w-full" asChild>
-                <Link to="/dashboard" preload="intent" onClick={onMobileClose}>
-                  <HugeiconsIcon icon={PencilEdit02Icon} className="size-4" aria-hidden />
-                  {t('nav.compose')}
-                </Link>
+                {workspaceId ? (
+                  <Link to="/workspace/$workspaceId/dashboard" params={{ workspaceId }} preload="intent" onClick={onMobileClose}>
+                    <HugeiconsIcon icon={PencilEdit02Icon} className="size-4" aria-hidden />
+                    {t('nav.compose')}
+                  </Link>
+                ) : (
+                  <Link to="/dashboard" preload="intent" onClick={onMobileClose}>
+                    <HugeiconsIcon icon={PencilEdit02Icon} className="size-4" aria-hidden />
+                    {t('nav.compose')}
+                  </Link>
+                )}
               </Button>
             )}
           </div>

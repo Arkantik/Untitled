@@ -64,6 +64,12 @@ const WORKSPACE_FEATURE_META: Record<
   accounts: { label: 'Accounts', icon: UserMultiple02Icon },
   analytics: { label: 'Analytics', icon: BarChartIcon },
   'analytics/growth': { label: 'Follower growth', icon: ChartUpIcon, parent: 'Analytics' },
+  'content/posts': { label: 'Posts', icon: FileEditIcon, parent: 'Content' },
+  'content/calendar': { label: 'Calendar', icon: Calendar01Icon, parent: 'Content' },
+  'content/queue': { label: 'Queue', icon: Clock01Icon, parent: 'Content' },
+  'inbox/engagement': { label: 'Engagement', icon: MessageMultiple01Icon, parent: 'Inbox' },
+  'inbox/messages': { label: 'Messages', icon: BubbleChatIcon, parent: 'Inbox' },
+  sync: { label: 'Sync', icon: RepeatIcon },
 };
 
 export function TopBar({ onMobileOpen, scrolled }: TopBarProps) {

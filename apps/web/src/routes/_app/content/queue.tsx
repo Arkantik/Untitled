@@ -1,18 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { Clock01Icon } from '@hugeicons/core-free-icons';
-import { EmptyState } from '~/components/ui/empty-state';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/content/queue')({
-  component: QueuePage,
+  beforeLoad: ({ context: { workspaces } }) => {
+    const workspaceId = workspaces?.[0]?.id;
+    if (workspaceId) {
+      throw redirect({ to: '/workspace/$workspaceId/content/queue', params: { workspaceId } });
+    }
+  },
+  component: () => null,
 });
-
-function QueuePage() {
-  return (
-    <EmptyState
-      icon={<HugeiconsIcon icon={Clock01Icon} />}
-      title="Queue"
-      description="Your weekly posting schedule slots will appear here."
-    />
-  );
-}

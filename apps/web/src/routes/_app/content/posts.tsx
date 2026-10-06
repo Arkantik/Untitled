@@ -1,18 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { FileEditIcon } from '@hugeicons/core-free-icons';
-import { EmptyState } from '~/components/ui/empty-state';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/content/posts')({
-  component: PostsPage,
+  beforeLoad: ({ context: { workspaces } }) => {
+    const workspaceId = workspaces?.[0]?.id;
+    if (workspaceId) {
+      throw redirect({ to: '/workspace/$workspaceId/content/posts', params: { workspaceId } });
+    }
+  },
+  component: () => null,
 });
-
-function PostsPage() {
-  return (
-    <EmptyState
-      icon={<HugeiconsIcon icon={FileEditIcon} />}
-      title="Posts"
-      description="All your scheduled, published, and draft posts will appear here."
-    />
-  );
-}

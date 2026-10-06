@@ -1,9 +1,8 @@
-import type { LinkProps } from '@tanstack/react-router';
 import type { IconSvgElement } from '@hugeicons/react';
 
 export type NavLeaf = {
   kind: 'item';
-  to: LinkProps['to'];
+  to: string;
   label: string;
   icon: IconSvgElement;
   badge?: number;
@@ -28,8 +27,7 @@ export interface SidebarProps {
   onMobileClose: () => void;
 }
 
-export function isActive(pathname: string, to: LinkProps['to']): boolean {
-  const path = typeof to === 'string' ? to : '';
-  if (path === '/dashboard') return pathname === '/dashboard';
-  return pathname === path || pathname.startsWith(path + '/');
+export function isActive(pathname: string, to: string): boolean {
+  if (to === '/dashboard') return pathname === '/dashboard';
+  return pathname === to || pathname.startsWith(to + '/');
 }

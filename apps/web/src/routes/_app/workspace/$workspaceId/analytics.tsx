@@ -50,7 +50,7 @@ function AnalyticsPage() {
         description="Connect a social account to start tracking follower growth and engagement."
         action={
           <Button asChild>
-            <Link to="/accounts">Connect an account</Link>
+            <Link to="/workspace/$workspaceId/accounts" params={{ workspaceId: workspace.id }}>Connect an account</Link>
           </Button>
         }
       />

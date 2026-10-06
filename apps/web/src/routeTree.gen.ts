@@ -30,12 +30,20 @@ import { Route as AppProfileNotificationsRouteImport } from './routes/_app/profi
 import { Route as AppProfileSecurityRouteImport } from './routes/_app/profile/security'
 import { Route as AppProfileSettingsRouteImport } from './routes/_app/profile/settings'
 import { Route as AppWorkspaceWorkspaceIdRouteImport } from './routes/_app/workspace/$workspaceId'
+import { Route as AppWorkspaceWorkspaceIdAccountsRouteImport } from './routes/_app/workspace/$workspaceId/accounts'
 import { Route as AppWorkspaceWorkspaceIdAnalyticsRouteImport } from './routes/_app/workspace/$workspaceId/analytics'
 import { Route as AppWorkspaceWorkspaceIdApiKeysRouteImport } from './routes/_app/workspace/$workspaceId/api-keys'
+import { Route as AppWorkspaceWorkspaceIdDashboardRouteImport } from './routes/_app/workspace/$workspaceId/dashboard'
 import { Route as AppWorkspaceWorkspaceIdMembersRouteImport } from './routes/_app/workspace/$workspaceId/members'
 import { Route as AppWorkspaceWorkspaceIdOverviewRouteImport } from './routes/_app/workspace/$workspaceId/overview'
 import { Route as AppWorkspaceWorkspaceIdSubscriptionRouteImport } from './routes/_app/workspace/$workspaceId/subscription'
+import { Route as AppWorkspaceWorkspaceIdSyncRouteImport } from './routes/_app/workspace/$workspaceId/sync'
 import { Route as AppWorkspaceWorkspaceIdAnalyticsGrowthRouteImport } from './routes/_app/workspace/$workspaceId/analytics_/growth'
+import { Route as AppWorkspaceWorkspaceIdContentCalendarRouteImport } from './routes/_app/workspace/$workspaceId/content/calendar'
+import { Route as AppWorkspaceWorkspaceIdContentPostsRouteImport } from './routes/_app/workspace/$workspaceId/content/posts'
+import { Route as AppWorkspaceWorkspaceIdContentQueueRouteImport } from './routes/_app/workspace/$workspaceId/content/queue'
+import { Route as AppWorkspaceWorkspaceIdInboxEngagementRouteImport } from './routes/_app/workspace/$workspaceId/inbox/engagement'
+import { Route as AppWorkspaceWorkspaceIdInboxMessagesRouteImport } from './routes/_app/workspace/$workspaceId/inbox/messages'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -140,6 +148,12 @@ const AppWorkspaceWorkspaceIdRoute = AppWorkspaceWorkspaceIdRouteImport.update({
   path: '/workspace/$workspaceId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppWorkspaceWorkspaceIdAccountsRoute =
+  AppWorkspaceWorkspaceIdAccountsRouteImport.update({
+    id: '/accounts',
+    path: '/accounts',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
 const AppWorkspaceWorkspaceIdAnalyticsRoute =
   AppWorkspaceWorkspaceIdAnalyticsRouteImport.update({
     id: '/analytics',
@@ -150,6 +164,12 @@ const AppWorkspaceWorkspaceIdApiKeysRoute =
   AppWorkspaceWorkspaceIdApiKeysRouteImport.update({
     id: '/api-keys',
     path: '/api-keys',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdDashboardRoute =
+  AppWorkspaceWorkspaceIdDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
     getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
   } as any)
 const AppWorkspaceWorkspaceIdMembersRoute =
@@ -170,10 +190,46 @@ const AppWorkspaceWorkspaceIdSubscriptionRoute =
     path: '/subscription',
     getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
   } as any)
+const AppWorkspaceWorkspaceIdSyncRoute =
+  AppWorkspaceWorkspaceIdSyncRouteImport.update({
+    id: '/sync',
+    path: '/sync',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
 const AppWorkspaceWorkspaceIdAnalyticsGrowthRoute =
   AppWorkspaceWorkspaceIdAnalyticsGrowthRouteImport.update({
     id: '/analytics_/growth',
     path: '/analytics/growth',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdContentCalendarRoute =
+  AppWorkspaceWorkspaceIdContentCalendarRouteImport.update({
+    id: '/content/calendar',
+    path: '/content/calendar',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdContentPostsRoute =
+  AppWorkspaceWorkspaceIdContentPostsRouteImport.update({
+    id: '/content/posts',
+    path: '/content/posts',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdContentQueueRoute =
+  AppWorkspaceWorkspaceIdContentQueueRouteImport.update({
+    id: '/content/queue',
+    path: '/content/queue',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdInboxEngagementRoute =
+  AppWorkspaceWorkspaceIdInboxEngagementRouteImport.update({
+    id: '/inbox/engagement',
+    path: '/inbox/engagement',
+    getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
+  } as any)
+const AppWorkspaceWorkspaceIdInboxMessagesRoute =
+  AppWorkspaceWorkspaceIdInboxMessagesRouteImport.update({
+    id: '/inbox/messages',
+    path: '/inbox/messages',
     getParentRoute: () => AppWorkspaceWorkspaceIdRoute,
   } as any)
 
@@ -197,12 +253,20 @@ export interface FileRoutesByFullPath {
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
   '/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/workspace/$workspaceId/accounts': typeof AppWorkspaceWorkspaceIdAccountsRoute
   '/workspace/$workspaceId/analytics': typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   '/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  '/workspace/$workspaceId/dashboard': typeof AppWorkspaceWorkspaceIdDashboardRoute
   '/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
   '/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
   '/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  '/workspace/$workspaceId/sync': typeof AppWorkspaceWorkspaceIdSyncRoute
   '/workspace/$workspaceId/analytics/growth': typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
+  '/workspace/$workspaceId/content/calendar': typeof AppWorkspaceWorkspaceIdContentCalendarRoute
+  '/workspace/$workspaceId/content/posts': typeof AppWorkspaceWorkspaceIdContentPostsRoute
+  '/workspace/$workspaceId/content/queue': typeof AppWorkspaceWorkspaceIdContentQueueRoute
+  '/workspace/$workspaceId/inbox/engagement': typeof AppWorkspaceWorkspaceIdInboxEngagementRoute
+  '/workspace/$workspaceId/inbox/messages': typeof AppWorkspaceWorkspaceIdInboxMessagesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -224,12 +288,20 @@ export interface FileRoutesByTo {
   '/profile/security': typeof AppProfileSecurityRoute
   '/profile/settings': typeof AppProfileSettingsRoute
   '/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/workspace/$workspaceId/accounts': typeof AppWorkspaceWorkspaceIdAccountsRoute
   '/workspace/$workspaceId/analytics': typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   '/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  '/workspace/$workspaceId/dashboard': typeof AppWorkspaceWorkspaceIdDashboardRoute
   '/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
   '/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
   '/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  '/workspace/$workspaceId/sync': typeof AppWorkspaceWorkspaceIdSyncRoute
   '/workspace/$workspaceId/analytics/growth': typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
+  '/workspace/$workspaceId/content/calendar': typeof AppWorkspaceWorkspaceIdContentCalendarRoute
+  '/workspace/$workspaceId/content/posts': typeof AppWorkspaceWorkspaceIdContentPostsRoute
+  '/workspace/$workspaceId/content/queue': typeof AppWorkspaceWorkspaceIdContentQueueRoute
+  '/workspace/$workspaceId/inbox/engagement': typeof AppWorkspaceWorkspaceIdInboxEngagementRoute
+  '/workspace/$workspaceId/inbox/messages': typeof AppWorkspaceWorkspaceIdInboxMessagesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -254,12 +326,20 @@ export interface FileRoutesById {
   '/_app/profile/security': typeof AppProfileSecurityRoute
   '/_app/profile/settings': typeof AppProfileSettingsRoute
   '/_app/workspace/$workspaceId': typeof AppWorkspaceWorkspaceIdRouteWithChildren
+  '/_app/workspace/$workspaceId/accounts': typeof AppWorkspaceWorkspaceIdAccountsRoute
   '/_app/workspace/$workspaceId/analytics': typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   '/_app/workspace/$workspaceId/api-keys': typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  '/_app/workspace/$workspaceId/dashboard': typeof AppWorkspaceWorkspaceIdDashboardRoute
   '/_app/workspace/$workspaceId/members': typeof AppWorkspaceWorkspaceIdMembersRoute
   '/_app/workspace/$workspaceId/overview': typeof AppWorkspaceWorkspaceIdOverviewRoute
   '/_app/workspace/$workspaceId/subscription': typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  '/_app/workspace/$workspaceId/sync': typeof AppWorkspaceWorkspaceIdSyncRoute
   '/_app/workspace/$workspaceId/analytics_/growth': typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
+  '/_app/workspace/$workspaceId/content/calendar': typeof AppWorkspaceWorkspaceIdContentCalendarRoute
+  '/_app/workspace/$workspaceId/content/posts': typeof AppWorkspaceWorkspaceIdContentPostsRoute
+  '/_app/workspace/$workspaceId/content/queue': typeof AppWorkspaceWorkspaceIdContentQueueRoute
+  '/_app/workspace/$workspaceId/inbox/engagement': typeof AppWorkspaceWorkspaceIdInboxEngagementRoute
+  '/_app/workspace/$workspaceId/inbox/messages': typeof AppWorkspaceWorkspaceIdInboxMessagesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -283,12 +363,20 @@ export interface FileRouteTypes {
     | '/profile/security'
     | '/profile/settings'
     | '/workspace/$workspaceId'
+    | '/workspace/$workspaceId/accounts'
     | '/workspace/$workspaceId/analytics'
     | '/workspace/$workspaceId/api-keys'
+    | '/workspace/$workspaceId/dashboard'
     | '/workspace/$workspaceId/members'
     | '/workspace/$workspaceId/overview'
     | '/workspace/$workspaceId/subscription'
+    | '/workspace/$workspaceId/sync'
     | '/workspace/$workspaceId/analytics/growth'
+    | '/workspace/$workspaceId/content/calendar'
+    | '/workspace/$workspaceId/content/posts'
+    | '/workspace/$workspaceId/content/queue'
+    | '/workspace/$workspaceId/inbox/engagement'
+    | '/workspace/$workspaceId/inbox/messages'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -310,12 +398,20 @@ export interface FileRouteTypes {
     | '/profile/security'
     | '/profile/settings'
     | '/workspace/$workspaceId'
+    | '/workspace/$workspaceId/accounts'
     | '/workspace/$workspaceId/analytics'
     | '/workspace/$workspaceId/api-keys'
+    | '/workspace/$workspaceId/dashboard'
     | '/workspace/$workspaceId/members'
     | '/workspace/$workspaceId/overview'
     | '/workspace/$workspaceId/subscription'
+    | '/workspace/$workspaceId/sync'
     | '/workspace/$workspaceId/analytics/growth'
+    | '/workspace/$workspaceId/content/calendar'
+    | '/workspace/$workspaceId/content/posts'
+    | '/workspace/$workspaceId/content/queue'
+    | '/workspace/$workspaceId/inbox/engagement'
+    | '/workspace/$workspaceId/inbox/messages'
   id:
     | '__root__'
     | '/'
@@ -339,12 +435,20 @@ export interface FileRouteTypes {
     | '/_app/profile/security'
     | '/_app/profile/settings'
     | '/_app/workspace/$workspaceId'
+    | '/_app/workspace/$workspaceId/accounts'
     | '/_app/workspace/$workspaceId/analytics'
     | '/_app/workspace/$workspaceId/api-keys'
+    | '/_app/workspace/$workspaceId/dashboard'
     | '/_app/workspace/$workspaceId/members'
     | '/_app/workspace/$workspaceId/overview'
     | '/_app/workspace/$workspaceId/subscription'
+    | '/_app/workspace/$workspaceId/sync'
     | '/_app/workspace/$workspaceId/analytics_/growth'
+    | '/_app/workspace/$workspaceId/content/calendar'
+    | '/_app/workspace/$workspaceId/content/posts'
+    | '/_app/workspace/$workspaceId/content/queue'
+    | '/_app/workspace/$workspaceId/inbox/engagement'
+    | '/_app/workspace/$workspaceId/inbox/messages'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -502,6 +606,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceWorkspaceIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/workspace/$workspaceId/accounts': {
+      id: '/_app/workspace/$workspaceId/accounts'
+      path: '/accounts'
+      fullPath: '/workspace/$workspaceId/accounts'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdAccountsRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
     '/_app/workspace/$workspaceId/analytics': {
       id: '/_app/workspace/$workspaceId/analytics'
       path: '/analytics'
@@ -514,6 +625,13 @@ declare module '@tanstack/react-router' {
       path: '/api-keys'
       fullPath: '/workspace/$workspaceId/api-keys'
       preLoaderRoute: typeof AppWorkspaceWorkspaceIdApiKeysRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
+    '/_app/workspace/$workspaceId/dashboard': {
+      id: '/_app/workspace/$workspaceId/dashboard'
+      path: '/dashboard'
+      fullPath: '/workspace/$workspaceId/dashboard'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdDashboardRouteImport
       parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
     '/_app/workspace/$workspaceId/members': {
@@ -537,6 +655,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceWorkspaceIdSubscriptionRouteImport
       parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
+    '/_app/workspace/$workspaceId/sync': {
+      id: '/_app/workspace/$workspaceId/sync'
+      path: '/sync'
+      fullPath: '/workspace/$workspaceId/sync'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdSyncRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
     '/_app/workspace/$workspaceId/analytics_/growth': {
       id: '/_app/workspace/$workspaceId/analytics_/growth'
       path: '/analytics/growth'
@@ -544,29 +669,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRouteImport
       parentRoute: typeof AppWorkspaceWorkspaceIdRoute
     }
+    '/_app/workspace/$workspaceId/content/calendar': {
+      id: '/_app/workspace/$workspaceId/content/calendar'
+      path: '/content/calendar'
+      fullPath: '/workspace/$workspaceId/content/calendar'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdContentCalendarRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
+    '/_app/workspace/$workspaceId/content/posts': {
+      id: '/_app/workspace/$workspaceId/content/posts'
+      path: '/content/posts'
+      fullPath: '/workspace/$workspaceId/content/posts'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdContentPostsRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
+    '/_app/workspace/$workspaceId/content/queue': {
+      id: '/_app/workspace/$workspaceId/content/queue'
+      path: '/content/queue'
+      fullPath: '/workspace/$workspaceId/content/queue'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdContentQueueRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
+    '/_app/workspace/$workspaceId/inbox/engagement': {
+      id: '/_app/workspace/$workspaceId/inbox/engagement'
+      path: '/inbox/engagement'
+      fullPath: '/workspace/$workspaceId/inbox/engagement'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdInboxEngagementRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
+    '/_app/workspace/$workspaceId/inbox/messages': {
+      id: '/_app/workspace/$workspaceId/inbox/messages'
+      path: '/inbox/messages'
+      fullPath: '/workspace/$workspaceId/inbox/messages'
+      preLoaderRoute: typeof AppWorkspaceWorkspaceIdInboxMessagesRouteImport
+      parentRoute: typeof AppWorkspaceWorkspaceIdRoute
+    }
   }
 }
 
 interface AppWorkspaceWorkspaceIdRouteChildren {
+  AppWorkspaceWorkspaceIdAccountsRoute: typeof AppWorkspaceWorkspaceIdAccountsRoute
   AppWorkspaceWorkspaceIdAnalyticsRoute: typeof AppWorkspaceWorkspaceIdAnalyticsRoute
   AppWorkspaceWorkspaceIdApiKeysRoute: typeof AppWorkspaceWorkspaceIdApiKeysRoute
+  AppWorkspaceWorkspaceIdDashboardRoute: typeof AppWorkspaceWorkspaceIdDashboardRoute
   AppWorkspaceWorkspaceIdMembersRoute: typeof AppWorkspaceWorkspaceIdMembersRoute
   AppWorkspaceWorkspaceIdOverviewRoute: typeof AppWorkspaceWorkspaceIdOverviewRoute
   AppWorkspaceWorkspaceIdSubscriptionRoute: typeof AppWorkspaceWorkspaceIdSubscriptionRoute
+  AppWorkspaceWorkspaceIdSyncRoute: typeof AppWorkspaceWorkspaceIdSyncRoute
   AppWorkspaceWorkspaceIdAnalyticsGrowthRoute: typeof AppWorkspaceWorkspaceIdAnalyticsGrowthRoute
+  AppWorkspaceWorkspaceIdContentCalendarRoute: typeof AppWorkspaceWorkspaceIdContentCalendarRoute
+  AppWorkspaceWorkspaceIdContentPostsRoute: typeof AppWorkspaceWorkspaceIdContentPostsRoute
+  AppWorkspaceWorkspaceIdContentQueueRoute: typeof AppWorkspaceWorkspaceIdContentQueueRoute
+  AppWorkspaceWorkspaceIdInboxEngagementRoute: typeof AppWorkspaceWorkspaceIdInboxEngagementRoute
+  AppWorkspaceWorkspaceIdInboxMessagesRoute: typeof AppWorkspaceWorkspaceIdInboxMessagesRoute
 }
 
 const AppWorkspaceWorkspaceIdRouteChildren: AppWorkspaceWorkspaceIdRouteChildren =
   {
+    AppWorkspaceWorkspaceIdAccountsRoute: AppWorkspaceWorkspaceIdAccountsRoute,
     AppWorkspaceWorkspaceIdAnalyticsRoute:
       AppWorkspaceWorkspaceIdAnalyticsRoute,
     AppWorkspaceWorkspaceIdApiKeysRoute: AppWorkspaceWorkspaceIdApiKeysRoute,
+    AppWorkspaceWorkspaceIdDashboardRoute:
+      AppWorkspaceWorkspaceIdDashboardRoute,
     AppWorkspaceWorkspaceIdMembersRoute: AppWorkspaceWorkspaceIdMembersRoute,
     AppWorkspaceWorkspaceIdOverviewRoute: AppWorkspaceWorkspaceIdOverviewRoute,
     AppWorkspaceWorkspaceIdSubscriptionRoute:
       AppWorkspaceWorkspaceIdSubscriptionRoute,
+    AppWorkspaceWorkspaceIdSyncRoute: AppWorkspaceWorkspaceIdSyncRoute,
     AppWorkspaceWorkspaceIdAnalyticsGrowthRoute:
       AppWorkspaceWorkspaceIdAnalyticsGrowthRoute,
+    AppWorkspaceWorkspaceIdContentCalendarRoute:
+      AppWorkspaceWorkspaceIdContentCalendarRoute,
+    AppWorkspaceWorkspaceIdContentPostsRoute:
+      AppWorkspaceWorkspaceIdContentPostsRoute,
+    AppWorkspaceWorkspaceIdContentQueueRoute:
+      AppWorkspaceWorkspaceIdContentQueueRoute,
+    AppWorkspaceWorkspaceIdInboxEngagementRoute:
+      AppWorkspaceWorkspaceIdInboxEngagementRoute,
+    AppWorkspaceWorkspaceIdInboxMessagesRoute:
+      AppWorkspaceWorkspaceIdInboxMessagesRoute,
   }
 
 const AppWorkspaceWorkspaceIdRouteWithChildren =

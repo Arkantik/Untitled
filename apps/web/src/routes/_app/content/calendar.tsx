@@ -1,18 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { Calendar01Icon } from '@hugeicons/core-free-icons';
-import { EmptyState } from '~/components/ui/empty-state';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/content/calendar')({
-  component: CalendarPage,
+  beforeLoad: ({ context: { workspaces } }) => {
+    const workspaceId = workspaces?.[0]?.id;
+    if (workspaceId) {
+      throw redirect({ to: '/workspace/$workspaceId/content/calendar', params: { workspaceId } });
+    }
+  },
+  component: () => null,
 });
-
-function CalendarPage() {
-  return (
-    <EmptyState
-      icon={<HugeiconsIcon icon={Calendar01Icon} />}
-      title="Calendar"
-      description="Month, week, and agenda views of your scheduled posts will appear here."
-    />
-  );
-}

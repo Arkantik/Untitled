@@ -1,18 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { BubbleChatIcon } from '@hugeicons/core-free-icons';
-import { EmptyState } from '~/components/ui/empty-state';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_app/inbox/messages')({
-  component: MessagesPage,
+  beforeLoad: ({ context: { workspaces } }) => {
+    const workspaceId = workspaces?.[0]?.id;
+    if (workspaceId) {
+      throw redirect({ to: '/workspace/$workspaceId/inbox/messages', params: { workspaceId } });
+    }
+  },
+  component: () => null,
 });
-
-function MessagesPage() {
-  return (
-    <EmptyState
-      icon={<HugeiconsIcon icon={BubbleChatIcon} />}
-      title="Messages"
-      description="Direct messages from your connected accounts will appear here."
-    />
-  );
-}

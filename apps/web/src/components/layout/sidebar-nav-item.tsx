@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, type LinkProps } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
 import { cn } from '~/lib/utils';
@@ -20,7 +20,7 @@ export function NavItem({
 
   const link = (
     <Link
-      to={item.to}
+      to={item.to as LinkProps['to']}
       preload="intent"
       onClick={onNavigate}
       className={cn(
