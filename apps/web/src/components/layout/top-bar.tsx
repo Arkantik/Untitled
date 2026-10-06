@@ -60,6 +60,8 @@ const WORKSPACE_FEATURE_META: Record<
   string,
   { label: string; icon: IconSvgElement; parent?: string }
 > = {
+  dashboard: { label: 'Dashboard', icon: Home01Icon },
+  accounts: { label: 'Accounts', icon: UserMultiple02Icon },
   analytics: { label: 'Analytics', icon: BarChartIcon },
   'analytics/growth': { label: 'Follower growth', icon: ChartUpIcon, parent: 'Analytics' },
 };
@@ -149,7 +151,7 @@ export function TopBar({ onMobileOpen, scrolled }: TopBarProps) {
             <TooltipContent>Search</TooltipContent>
           </Tooltip>
 
-          <label className="group/search mr-1 hidden h-8 w-44 cursor-text items-center gap-2 overflow-clip rounded-md border-[0.8px] border-border bg-card py-2 pl-2.5 pr-2 shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-150 hover:border-muted-foreground/30 focus-within:border-muted-foreground/40 focus-within:shadow-[0_0_0_3px_rgba(156,163,175,0.12)] compact:flex regular:w-56">
+          <label className="group/search hidden h-8 w-44 cursor-text items-center gap-2 overflow-clip rounded-md border-[0.8px] border-border bg-card py-2 pl-2.5 pr-2 shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-150 hover:border-muted-foreground/30 focus-within:border-muted-foreground/40 focus-within:shadow-[0_0_0_3px_rgba(156,163,175,0.12)] compact:flex regular:w-56">
             <HugeiconsIcon
               icon={Search01Icon}
               className="size-4 shrink-0 text-muted-foreground"
