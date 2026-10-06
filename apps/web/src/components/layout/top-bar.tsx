@@ -27,6 +27,7 @@ import { cn } from '~/lib/utils';
 
 interface TopBarProps {
   onMobileOpen: () => void;
+  scrolled?: boolean;
 }
 
 type RouteMeta = {
@@ -63,7 +64,7 @@ const WORKSPACE_FEATURE_META: Record<
   'analytics/growth': { label: 'Follower growth', icon: ChartUpIcon, parent: 'Analytics' },
 };
 
-export function TopBar({ onMobileOpen }: TopBarProps) {
+export function TopBar({ onMobileOpen, scrolled }: TopBarProps) {
   const { location } = useRouterState();
   const pathname = location.pathname;
   const { theme, toggle } = useTheme();
@@ -84,7 +85,13 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
   const isDark = theme === 'dark';
 
   return (
-    <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center border-b border-border bg-background px-4 regular:px-6">
+    <header
+      className={cn(
+        'sticky top-0 z-20 flex h-14 shrink-0 items-center border-b border-border bg-background px-4',
+        'regular:border-b-0 regular:backdrop-blur-md regular:px-6 regular:transition-colors regular:duration-300',
+        scrolled ? 'regular:bg-background/60' : 'regular:bg-transparent',
+      )}
+    >
       <button
         type="button"
         onClick={onMobileOpen}
@@ -169,7 +176,7 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="group h-8 w-8 text-muted-foreground hover:text-foreground"
+                className="group h-8 w-8 text-muted-foreground hover:text-foreground regular:border-[0.8px] regular:border-border regular:bg-card regular:shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] regular:hover:border-muted-foreground/30"
                 aria-label="Notifications"
               >
                 <span className="flex origin-top group-hover:animate-bell-ring">
@@ -186,7 +193,7 @@ export function TopBar({ onMobileOpen }: TopBarProps) {
                 size="icon"
                 onClick={toggle}
                 aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-                className="group h-8 w-8 text-muted-foreground hover:text-foreground"
+                className="group h-8 w-8 text-muted-foreground hover:text-foreground regular:border-[0.8px] regular:border-border regular:bg-card regular:shadow-[0px_4px_14px_0px_rgba(0,0,0,0.04)] regular:hover:border-muted-foreground/30"
               >
                 <span className="flex transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6">
                   <HugeiconsIcon
