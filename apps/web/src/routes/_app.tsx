@@ -24,13 +24,6 @@ function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('veypost-sidebar-collapsed');
-      if (stored !== null) setCollapsed(stored === 'true');
-    } catch {}
-  }, []);
-
   function handleToggle() {
     const next = !collapsed;
     setCollapsed(next);
