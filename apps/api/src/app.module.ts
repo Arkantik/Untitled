@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
+import { BullModule } from '@nestjs/bullmq';
+import { Redis } from 'ioredis';
+import { getEnv } from './config/env.js';
 import { AppController } from './app.controller.js';
 import { DatabaseModule } from './database/database.module.js';
 import { AuthModule } from './auth/auth.module.js';
@@ -18,6 +21,9 @@ import { DashboardModule } from './dashboard/dashboard.module.js';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     ScheduleModule.forRoot(),
+    BullModule.forRoot({
+      connection: new Redis(getEnv().VALKEY_URL, { maxRetriesPerRequest: null }),
+    }),
     DatabaseModule,
     AuthModule,
     PostsModule,

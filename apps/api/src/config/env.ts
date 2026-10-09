@@ -10,7 +10,7 @@ const envSchema = z.object({
   SQLITE_DB_PATH: z.string().default('./data/veypost.db'),
   DATABASE_URL: z.string().optional(),
 
-  VALKEY_URL: z.string().optional(),
+  VALKEY_URL: z.string().default('redis://localhost:6379'),
 
   BETTER_AUTH_SECRET: z.string().min(1),
   BETTER_AUTH_URL: z.string().url().default('http://localhost:3000'),
