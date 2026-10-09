@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { cn } from '~/lib/utils';
 import { useCurrentUser } from '~/hooks/use-session';
+import { useWorkspace } from '~/contexts/workspace-route-context';
 import { useDashboardSummary } from '~/hooks/use-dashboard-summary';
 import { useConnectedAccounts } from '~/hooks/use-connected-accounts';
 import { usePlatformSummary } from '~/hooks/use-platform-summary';
@@ -38,10 +39,12 @@ export const Route = createFileRoute('/_app/workspace/$workspaceId/dashboard')({
 function DashboardPage() {
   const { workspaceId } = Route.useParams();
   const user = useCurrentUser();
+  const workspace = useWorkspace();
   const { data: apiData, isLoading: apiLoading } = useDashboardSummary(workspaceId);
   const { data: accounts, isLoading: accountsLoading } = useConnectedAccounts(workspaceId);
   const { data: platformData, isLoading: platformLoading } = usePlatformSummary(workspaceId);
 
+  const composerRef = useRef<HTMLTextAreaElement>(null);
   const [devState, setDevState] = useState<DevState>('api');
   const data = devState === 'api' ? apiData : MOCK_DASHBOARD_DATA[devState];
   const isLoading = devState === 'api' ? apiLoading : false;
@@ -59,10 +62,10 @@ function DashboardPage() {
   const showUpcoming = isLoading || (data?.upcomingPosts.length ?? 0) > 0;
 
   const onboardingSteps = [
-    { id: 'accounts', label: 'Connect a social account', done: hasAccounts },
-    { id: 'timezone', label: 'Set your timezone', done: false },
-    { id: 'post', label: 'Schedule your first post', done: hasActivity },
-    { id: 'team', label: 'Invite a teammate', done: false },
+    { id: 'accounts', label: 'Connect a social account', done: hasAccounts, href: `/workspace/${workspaceId}/accounts` },
+    { id: 'timezone', label: 'Set your timezone', done: workspace.timezone !== 'UTC', href: `/workspace/${workspaceId}/overview` },
+    { id: 'post', label: 'Schedule your first post', done: hasActivity, onAction: () => { composerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); composerRef.current?.focus(); } },
+    { id: 'team', label: 'Invite a teammate', done: false, href: `/workspace/${workspaceId}/members` },
   ];
 
   return (
@@ -79,7 +82,7 @@ function DashboardPage() {
           )
         )}
         {showOnboarding && <DashboardOnboarding steps={onboardingSteps} />}
-        {showComposer && <DashboardComposer />}
+        {showComposer && <DashboardComposer ref={composerRef} />}
         <div className={cn('grid gap-6', showUpcoming && 'regular:grid-cols-[1fr_360px]')}>
           <DashboardRecentFeed posts={data?.recentPosts ?? []} isLoading={isLoading} />
           {showUpcoming && (

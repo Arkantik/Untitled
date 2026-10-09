@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Globe02Icon,
@@ -22,6 +23,8 @@ export interface OnboardingStep {
   id: string;
   label: string;
   done: boolean;
+  href?: string;
+  onAction?: () => void;
 }
 
 interface Props {
@@ -85,11 +88,15 @@ export function DashboardOnboarding({ steps }: Props) {
           {steps.map((step, idx) => {
             const isNext = idx === nextIdx;
             const StepIcon = STEP_ICONS[step.id];
-            return (
-              <div
-                key={step.id}
-                className="flex cursor-default items-center gap-3 px-4 py-2.5 transition-colors hover:bg-muted/30"
-              >
+            const isClickable = !step.done && (!!step.href || !!step.onAction);
+            const rowClass = cn(
+              'flex items-center gap-3 px-4 py-2.5 transition-colors',
+              isClickable
+                ? 'cursor-pointer hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+                : 'cursor-default hover:bg-muted/30',
+            );
+            const inner = (
+              <>
                 {step.done ? (
                   <div
                     className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground"
@@ -122,14 +129,30 @@ export function DashboardOnboarding({ steps }: Props) {
                 >
                   {step.label}
                 </span>
-                {isNext && (
+                {!step.done && (
                   <HugeiconsIcon
                     icon={ArrowRight01Icon}
                     size={14}
-                    className="shrink-0 text-primary"
+                    className={cn('shrink-0', isClickable ? 'text-primary' : 'text-muted-foreground/40')}
                     aria-hidden
                   />
                 )}
+              </>
+            );
+            if (step.onAction) {
+              return (
+                <button key={step.id} type="button" onClick={step.onAction} className={cn(rowClass, 'w-full text-left')}>
+                  {inner}
+                </button>
+              );
+            }
+            return isClickable ? (
+              <Link key={step.id} to={step.href} className={rowClass}>
+                {inner}
+              </Link>
+            ) : (
+              <div key={step.id} className={rowClass}>
+                {inner}
               </div>
             );
           })}

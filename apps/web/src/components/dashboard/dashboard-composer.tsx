@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Calendar03Icon } from '@hugeicons/core-free-icons';
+import { Calendar03Icon, SendHorizontalIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { Button } from '~/components/ui/button';
 import { PLATFORM_LABEL, PLATFORM_COLOR, PLATFORM_ICON } from '~/lib/platforms';
@@ -8,7 +8,8 @@ import { toast } from '~/components/ui/toast';
 import { cn } from '~/lib/utils';
 import type { SocialPlatform } from '@pulsarr/shared';
 
-const SHOWN_PLATFORMS: SocialPlatform[] = ['x', 'bluesky', 'linkedin', 'facebook', 'instagram', 'threads', 'discord'];
+const SHOWN_PLATFORMS: SocialPlatform[] = ['x', 'linkedin', 'facebook', 'instagram', 'threads', 'discord', 'bluesky'];
+const COMING_SOON = new Set<SocialPlatform>(['bluesky']);
 
 const PLATFORM_LIMIT: Record<SocialPlatform, number> = {
   x: 280,
@@ -20,10 +21,10 @@ const PLATFORM_LIMIT: Record<SocialPlatform, number> = {
   discord: 2000,
 };
 
-export function DashboardComposer() {
+export const DashboardComposer = forwardRef<HTMLTextAreaElement>(function DashboardComposer(_, ref) {
   const [content, setContent] = useState('');
   const [platforms, setPlatforms] = useState<Set<SocialPlatform>>(
-    new Set(['x', 'bluesky', 'linkedin'] as SocialPlatform[]),
+    new Set(['x', 'linkedin'] as SocialPlatform[]),
   );
 
   function togglePlatform(p: SocialPlatform) {
@@ -45,9 +46,10 @@ export function DashboardComposer() {
   const canSubmit = content.trim().length > 0 && remaining >= 0;
 
   return (
-    <Card>
+    <Card className="transition-shadow duration-200 focus-within:ring-2 focus-within:ring-primary">
       <div className="p-4 pb-3">
         <textarea
+          ref={ref}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="What's on your mind? It autosaves as you go."
@@ -57,29 +59,38 @@ export function DashboardComposer() {
       </div>
       <div className="flex flex-wrap gap-x-2 gap-y-2 border-t border-border px-4 py-3" data-testid="composer-footer">
         <div className="flex w-full flex-wrap gap-1.5 compact:w-auto compact:flex-1">
-          {SHOWN_PLATFORMS.map((p) => (
-            <button
-              key={p}
-              type="button"
-              onClick={() => togglePlatform(p)}
-              aria-pressed={platforms.has(p)}
-              aria-label={`Toggle ${PLATFORM_LABEL[p]}`}
-              className={cn(
-                'flex items-center gap-1.5 rounded border border-border px-2.5 py-0.5 text-xs font-medium transition-colors',
-                platforms.has(p)
-                  ? 'bg-secondary text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              <HugeiconsIcon
-                icon={PLATFORM_ICON[p]}
-                size={14}
-                aria-hidden
-                style={{ color: PLATFORM_COLOR[p], opacity: platforms.has(p) ? 1 : 0.45 }}
-              />
-              {PLATFORM_LABEL[p]}
-            </button>
-          ))}
+          {SHOWN_PLATFORMS.map((p) => {
+            const soon = COMING_SOON.has(p);
+            return (
+              <button
+                key={p}
+                type="button"
+                onClick={() => togglePlatform(p)}
+                aria-pressed={platforms.has(p)}
+                aria-label={`Toggle ${PLATFORM_LABEL[p]}`}
+                disabled={soon}
+                className={cn(
+                  'relative flex items-center gap-1.5 rounded border border-border px-2.5 py-0.5 text-xs font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
+                  platforms.has(p)
+                    ? 'bg-secondary text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                )}
+              >
+                <HugeiconsIcon
+                  icon={PLATFORM_ICON[p]}
+                  size={14}
+                  aria-hidden
+                  style={{ color: PLATFORM_COLOR[p], opacity: platforms.has(p) ? 1 : 0.45 }}
+                />
+                {PLATFORM_LABEL[p]}
+                {soon && (
+                  <span className="absolute -right-1 -top-1 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium leading-none text-muted-foreground">
+                    Soon
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
         <div className="flex w-full items-center justify-end gap-2 compact:w-auto">
           <span
@@ -92,7 +103,7 @@ export function DashboardComposer() {
           </span>
           <Button
             type="button"
-            variant="ghost"
+            variant="ghost-outline"
             size="sm"
             disabled={!content.trim()}
             onClick={() => toast.info('Draft saving coming in a future update.')}
@@ -101,6 +112,16 @@ export function DashboardComposer() {
           </Button>
           <Button
             type="button"
+            size="sm"
+            disabled={!canSubmit}
+            onClick={() => toast.info('Post publishing coming in a future update.')}
+          >
+            <HugeiconsIcon icon={SendHorizontalIcon} size={14} aria-hidden />
+            Publish
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
             size="sm"
             disabled={!canSubmit}
             onClick={() => toast.info('Post scheduling coming in a future update.')}
@@ -112,4 +133,4 @@ export function DashboardComposer() {
       </div>
     </Card>
   );
-}
+});

@@ -103,7 +103,7 @@ export function CollapsibleGroup({
           'group/nav flex h-8 w-full items-center justify-between rounded-md border-[0.8px] border-transparent px-2.5 text-left text-[13px] leading-none transition-[background-color,color] duration-150',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset',
           groupActive
-            ? 'text-foreground'
+            ? 'text-foreground hover:bg-muted'
             : 'text-muted-foreground hover:bg-muted hover:text-foreground',
         )}
       >
