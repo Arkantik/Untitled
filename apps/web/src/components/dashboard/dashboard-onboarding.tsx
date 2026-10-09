@@ -7,6 +7,8 @@ import {
   Clock01Icon,
   UserAdd01Icon,
   ArrowRight01Icon,
+  Tick01Icon,
+  ArrowDown01Icon,
 } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { cn } from '~/lib/utils';
@@ -56,23 +58,11 @@ export function DashboardOnboarding({ steps }: Props) {
           <span className="text-xs text-muted-foreground">
             {done} / {total}
           </span>
-          <svg
-            viewBox="0 0 16 16"
-            className={cn(
-              'size-4 text-muted-foreground transition-transform',
-              open && 'rotate-180',
-            )}
-            fill="none"
+          <HugeiconsIcon
+            icon={ArrowDown01Icon}
+            className={cn('size-4 text-muted-foreground transition-transform', open && 'rotate-180')}
             aria-hidden
-          >
-            <path
-              d="M4 6l4 4 4-4"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          />
         </div>
       </button>
 
@@ -102,22 +92,14 @@ export function DashboardOnboarding({ steps }: Props) {
                     className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground"
                     aria-hidden
                   >
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path
-                        d="M1.5 5l2.5 2.5 5-5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <HugeiconsIcon icon={Tick01Icon} size={12} aria-hidden />
                   </div>
                 ) : (
                   <div
                     className="flex size-5 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground"
                     aria-hidden
                   >
-                    {StepIcon && <HugeiconsIcon icon={StepIcon} size={10} aria-hidden />}
+                    {StepIcon && <HugeiconsIcon icon={StepIcon} size={12} aria-hidden />}
                   </div>
                 )}
                 <span
@@ -133,7 +115,10 @@ export function DashboardOnboarding({ steps }: Props) {
                   <HugeiconsIcon
                     icon={ArrowRight01Icon}
                     size={14}
-                    className={cn('shrink-0', isClickable ? 'text-primary' : 'text-muted-foreground/40')}
+                    className={cn(
+                      'shrink-0',
+                      isClickable ? 'text-primary' : 'text-muted-foreground/40',
+                    )}
                     aria-hidden
                   />
                 )}
@@ -141,7 +126,12 @@ export function DashboardOnboarding({ steps }: Props) {
             );
             if (step.onAction) {
               return (
-                <button key={step.id} type="button" onClick={step.onAction} className={cn(rowClass, 'w-full text-left')}>
+                <button
+                  key={step.id}
+                  type="button"
+                  onClick={step.onAction}
+                  className={cn(rowClass, 'w-full text-left')}
+                >
                   {inner}
                 </button>
               );

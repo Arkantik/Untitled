@@ -64,7 +64,7 @@ function DashboardPage() {
   const onboardingSteps = [
     { id: 'accounts', label: 'Connect a social account', done: hasAccounts, href: `/workspace/${workspaceId}/accounts` },
     { id: 'timezone', label: 'Set your timezone', done: workspace.timezone !== 'UTC', href: `/workspace/${workspaceId}/overview` },
-    { id: 'post', label: 'Schedule your first post', done: hasActivity, onAction: () => { composerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); composerRef.current?.focus(); } },
+    { id: 'post', label: 'Schedule or publish your first post', done: hasActivity, onAction: () => { composerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); composerRef.current?.focus(); } },
     { id: 'team', label: 'Invite a teammate', done: false, href: `/workspace/${workspaceId}/members` },
   ];
 

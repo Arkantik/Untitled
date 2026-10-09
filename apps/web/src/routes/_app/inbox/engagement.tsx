@@ -1,4 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
+import { WorkspaceEmptyState } from '~/components/workspace/workspace-empty-state';
 
 export const Route = createFileRoute('/_app/inbox/engagement')({
   beforeLoad: ({ context: { workspaces } }) => {
@@ -7,5 +8,5 @@ export const Route = createFileRoute('/_app/inbox/engagement')({
       throw redirect({ to: '/workspace/$workspaceId/inbox/engagement', params: { workspaceId } });
     }
   },
-  component: () => null,
+  component: WorkspaceEmptyState,
 });
