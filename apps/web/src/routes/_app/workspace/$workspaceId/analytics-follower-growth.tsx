@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+﻿import { lazy, Suspense } from 'react';
 import { Link } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
@@ -6,7 +6,7 @@ import { Badge } from '~/components/ui/badge';
 import { Skeleton } from '~/components/ui/skeleton';
 import { useFollowerGrowth } from '~/hooks/use-follower-growth';
 import { PLATFORM_ICON, PLATFORM_COLOR } from '~/lib/platforms';
-import type { AnalyticsRange, FollowerSeries } from '@pulsarr/shared';
+import type { AnalyticsRange, FollowerSeries } from '@veypost/shared';
 
 const LazyAreaChart = lazy(() =>
   import('./analytics-area-chart').then((m) => ({ default: m.AreaChartWidget })),
@@ -18,7 +18,7 @@ function dateRangeLabel(range: AnalyticsRange): string {
   const start = new Date(end);
   start.setDate(start.getDate() - days);
   const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  return `${fmt(start)} – ${fmt(end)}`;
+  return `${fmt(start)} â€“ ${fmt(end)}`;
 }
 
 function GrowthCard({ acc }: { acc: FollowerSeries }) {

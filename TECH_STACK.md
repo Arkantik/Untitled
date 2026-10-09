@@ -1,4 +1,4 @@
-# Pulsarr Technology Stack
+﻿# Veypost Technology Stack
 
 ## Frontend
 

@@ -1,10 +1,10 @@
-import { Injectable, Inject } from '@nestjs/common';
+﻿import { Injectable, Inject } from '@nestjs/common';
 import { eq, count } from 'drizzle-orm';
 import { writeFile, unlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { FastifyRequest } from 'fastify';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
 import { getEnv } from '../config/env.js';
 import { auth } from '../lib/auth.js';
 import { notFound, badRequest, forbidden } from '../common/app.exception.js';

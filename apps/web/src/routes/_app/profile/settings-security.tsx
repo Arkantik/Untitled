@@ -1,10 +1,10 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Field } from '~/components/ui/field';
 import { PasswordInput } from '~/components/ui/password-input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '~/components/ui/card';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogClose } from '~/components/ui/dialog';
-import { passwordSchema } from '@pulsarr/shared';
+import { passwordSchema } from '@veypost/shared';
 import { useChangePassword } from '~/hooks/use-profile';
 import { isApiError } from '~/lib/api-client';
 
@@ -78,7 +78,7 @@ export function SecurityPanel() {
         </CardContent>
         <CardFooter className="border-t border-border px-6 py-4">
           <Button type="button" disabled={!canSubmit || changePassword.isPending} onClick={() => void handleSubmit()}>
-            {changePassword.isPending ? 'Updating…' : 'Update password'}
+            {changePassword.isPending ? 'Updatingâ€¦' : 'Update password'}
           </Button>
         </CardFooter>
       </Card>

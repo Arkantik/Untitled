@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+﻿import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { BarChartIcon } from '@hugeicons/core-free-icons';
 import { useWorkspace } from '~/contexts/workspace-route-context';
@@ -10,7 +10,7 @@ import { AnalyticsStatTiles } from './analytics-stat-tiles';
 import { AnalyticsFollowerGrowth } from './analytics-follower-growth';
 import { AnalyticsPostPerformance } from './analytics-post-performance';
 import { AnalyticsPlatformBreakdown } from './analytics-platform-breakdown';
-import type { AnalyticsRange } from '@pulsarr/shared';
+import type { AnalyticsRange } from '@veypost/shared';
 
 const VALID_RANGES = ['7d', '14d', '30d', '90d'] as const;
 

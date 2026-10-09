@@ -1,5 +1,5 @@
-{
-  "name": "@pulsarr/shared",
+﻿{
+  "name": "@veypost/shared",
   "version": "0.1.0",
   "private": true,
   "type": "module",

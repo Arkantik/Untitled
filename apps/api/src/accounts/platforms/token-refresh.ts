@@ -1,5 +1,5 @@
-import { getEnv } from '../../config/env.js';
-import type { SocialPlatform } from '@pulsarr/shared';
+﻿import { getEnv } from '../../config/env.js';
+import type { SocialPlatform } from '@veypost/shared';
 import { badRequest } from '../../common/app.exception.js';
 
 export interface RefreshResult {

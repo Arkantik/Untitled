@@ -1,4 +1,4 @@
-# Contributing to Pulsarr
+﻿# Contributing to Veypost
 
 Thanks for your interest in contributing. This guide covers what you need to get started.
 
@@ -60,7 +60,7 @@ pnpm dev
 
 - All source code is TypeScript. No `.js` files outside config.
 - Database schemas must exist for both SQLite and PostgreSQL.
-- Shared types and constants go in `@pulsarr/shared`, not duplicated across packages.
+- Shared types and constants go in `@veypost/shared`, not duplicated across packages.
 - Secrets are only read in `apps/api/src/config/env.ts`.
 - Keep pull requests focused. One concern per PR.
 

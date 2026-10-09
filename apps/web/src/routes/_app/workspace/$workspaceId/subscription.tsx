@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+﻿import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { NewTwitterIcon } from '@hugeicons/core-free-icons';
@@ -40,7 +40,7 @@ function WorkspaceSubscriptionPage() {
                 <div className="flex size-7 shrink-0 items-center justify-center rounded-sm bg-primary text-xs font-bold text-primary-foreground">
                   P
                 </div>
-                <span className="text-[15px] font-bold">Pulsarr Cloud</span>
+                <span className="text-[15px] font-bold">Veypost Cloud</span>
               </div>
               <p className="max-w-sm text-sm text-muted-foreground">
                 Unlimited seats with monthly X publishing included. Publish to every other platform
@@ -48,7 +48,7 @@ function WorkspaceSubscriptionPage() {
               </p>
             </div>
             <div className="shrink-0 text-right">
-              <div className="text-[26px] font-bold tabular-nums leading-none">9.99€</div>
+              <div className="text-[26px] font-bold tabular-nums leading-none">9.99â‚¬</div>
               <div className="mt-1 text-xs text-muted-foreground">/ month</div>
             </div>
           </div>

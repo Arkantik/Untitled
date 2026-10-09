@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+﻿import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { NewKeyBanner, CreateKeyForm } from './api-keys-form';
 import { ApiKeyList, ApiKeyInfoNote } from './api-keys-list';
@@ -44,7 +44,7 @@ function ApiKeysPage() {
     <div className="space-y-4">
       <div>
         <h1 className="text-xl font-bold">API keys</h1>
-        <p className="text-sm text-muted-foreground">Manage keys for accessing the Pulsarr REST API.</p>
+        <p className="text-sm text-muted-foreground">Manage keys for accessing the Veypost REST API.</p>
       </div>
 
       {newKeyValue && (

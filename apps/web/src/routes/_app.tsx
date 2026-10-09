@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+﻿import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { useState, useEffect } from 'react';
 import { Sidebar } from '~/components/layout/sidebar';
 import { TopBar } from '~/components/layout/top-bar';
@@ -26,7 +26,7 @@ function AppLayout() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('pulsarr-sidebar-collapsed');
+      const stored = localStorage.getItem('veypost-sidebar-collapsed');
       if (stored !== null) setCollapsed(stored === 'true');
     } catch {}
   }, []);
@@ -35,7 +35,7 @@ function AppLayout() {
     const next = !collapsed;
     setCollapsed(next);
     try {
-      localStorage.setItem('pulsarr-sidebar-collapsed', String(next));
+      localStorage.setItem('veypost-sidebar-collapsed', String(next));
     } catch {}
   }
 

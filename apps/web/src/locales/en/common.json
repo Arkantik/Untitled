@@ -1,5 +1,5 @@
-{
-  "appName": "Pulsarr",
+﻿{
+  "appName": "Veypost",
   "appDescription": "Self-hosted social media scheduling and publishing platform",
   "close": "Close",
   "actions": {
@@ -55,8 +55,8 @@
     "new": "New workspace"
   },
   "sponsor": {
-    "title": "Support Pulsarr",
-    "description": "Pulsarr is free and open source. Your support keeps it going.",
+    "title": "Support Veypost",
+    "description": "Veypost is free and open source. Your support keeps it going.",
     "github": "GitHub Sponsors",
     "githubDesc": "Sponsor us monthly on GitHub",
     "githubCta": "Sponsor on GitHub",

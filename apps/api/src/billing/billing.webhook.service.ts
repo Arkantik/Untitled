@@ -1,12 +1,12 @@
-import {
+﻿import {
   Injectable,
   Inject,
   ServiceUnavailableException,
   BadRequestException,
 } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
 import { getEnv } from '../config/env.js';
 import { STRIPE_GATEWAY, type IStripeGateway } from './stripe/stripe-gateway.interface.js';
 

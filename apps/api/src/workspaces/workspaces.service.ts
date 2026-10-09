@@ -1,10 +1,10 @@
-import { Injectable, Inject } from '@nestjs/common';
+﻿import { Injectable, Inject } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { writeFile, unlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { CreateWorkspaceInput, UpdateWorkspaceInput } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { CreateWorkspaceInput, UpdateWorkspaceInput } from '@veypost/shared';
 import type { WorkspaceRow } from './workspaces.types.js';
 import { assertMember, assertRole } from './workspaces.helpers.js';
 import { notFound, conflict, badRequest } from '../common/app.exception.js';

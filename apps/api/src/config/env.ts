@@ -1,4 +1,4 @@
-import { z } from 'zod';
+﻿import { z } from 'zod';
 
 const envSchema = z.object({
   NODE_ENV: z
@@ -7,7 +7,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(3001),
 
   DB_DIALECT: z.enum(['sqlite', 'postgresql']).default('sqlite'),
-  SQLITE_DB_PATH: z.string().default('./data/pulsarr.db'),
+  SQLITE_DB_PATH: z.string().default('./data/veypost.db'),
   DATABASE_URL: z.string().optional(),
 
   VALKEY_URL: z.string().optional(),

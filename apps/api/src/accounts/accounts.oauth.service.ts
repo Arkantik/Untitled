@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@nestjs/common';
+﻿import { Injectable, Inject } from '@nestjs/common';
 import { eq, and } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { SocialPlatform, PageOption } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { SocialPlatform, PageOption } from '@veypost/shared';
 import { assertMember, assertAccountLimit } from '../workspaces/workspaces.helpers.js';
 import { notFound, badRequest } from '../common/app.exception.js';
 import { getEnv } from '../config/env.js';

@@ -1,5 +1,5 @@
-{
-  "appName": "Pulsarr",
+﻿{
+  "appName": "Veypost",
   "appDescription": "Piattaforma self-hosted per la pianificazione e la pubblicazione sui social media",
   "close": "Chiudi",
   "actions": {
@@ -43,8 +43,8 @@
     "viewProfile": "Visualizza profilo",
     "starOnGithub": "Metti stella su GitHub",
     "sponsor": "Sponsorizza",
-    "switchToLight": "Passa alla modalità chiara",
-    "switchToDark": "Passa alla modalità scura"
+    "switchToLight": "Passa alla modalitÃ  chiara",
+    "switchToDark": "Passa alla modalitÃ  scura"
   },
   "workspace": {
     "overview": "Panoramica",
@@ -55,8 +55,8 @@
     "new": "Nuova area di lavoro"
   },
   "sponsor": {
-    "title": "Supporta Pulsarr",
-    "description": "Pulsarr è gratuito e open source. Il tuo supporto lo mantiene attivo.",
+    "title": "Supporta Veypost",
+    "description": "Veypost Ã¨ gratuito e open source. Il tuo supporto lo mantiene attivo.",
     "github": "GitHub Sponsors",
     "githubDesc": "Sponsorizzaci mensilmente su GitHub",
     "githubCta": "Sponsorizza su GitHub",
@@ -79,16 +79,16 @@
     "password": "Password"
   },
   "errors": {
-    "generic": "Qualcosa è andato storto",
+    "generic": "Qualcosa Ã¨ andato storto",
     "notFound": "Pagina non trovata",
     "unauthorized": "Devi accedere",
     "forbidden": "Non hai accesso a questo",
     "404Eyebrow": "404: Non trovato",
     "404Title": "Pagina non trovata",
-    "404Description": "La pagina che cerchi non esiste o è stata spostata.",
+    "404Description": "La pagina che cerchi non esiste o Ã¨ stata spostata.",
     "500Eyebrow": "500: Errore del server",
-    "500Title": "Qualcosa è andato storto",
-    "500Description": "Si è verificato un errore imprevisto. Prova a ricaricare la pagina.",
+    "500Title": "Qualcosa Ã¨ andato storto",
+    "500Description": "Si Ã¨ verificato un errore imprevisto. Prova a ricaricare la pagina.",
     "backToDashboard": "Torna alla dashboard",
     "goBack": "Indietro",
     "technicalDetails": "Dettagli tecnici"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Edit01Icon, Tick01Icon, Cancel01Icon } from '@hugeicons/core-free-icons';
@@ -7,7 +7,7 @@ import { Skeleton } from '~/components/ui/skeleton';
 import { EmptyState } from '~/components/ui/empty-state';
 import { PlatformIcons } from '~/components/ui/platform-icons';
 import { cn } from '~/lib/utils';
-import type { RecentPost } from '@pulsarr/shared';
+import type { RecentPost } from '@veypost/shared';
 
 type Filter = 'all' | 'published' | 'failed';
 

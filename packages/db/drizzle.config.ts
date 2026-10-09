@@ -1,4 +1,4 @@
-import { defineConfig } from 'drizzle-kit';
+﻿import { defineConfig } from 'drizzle-kit';
 
 const dialect = process.env.DB_DIALECT || 'sqlite';
 
@@ -24,6 +24,6 @@ export default dialect === 'postgresql'
       ],
       out: './drizzle/sqlite',
       dbCredentials: {
-        url: process.env.SQLITE_DB_PATH || './data/pulsarr.db',
+        url: process.env.SQLITE_DB_PATH || './data/veypost.db',
       },
     });

@@ -1,4 +1,4 @@
-import { drizzle as drizzlePg } from 'drizzle-orm/node-postgres';
+﻿import { drizzle as drizzlePg } from 'drizzle-orm/node-postgres';
 import { drizzle as drizzleSqlite } from 'drizzle-orm/better-sqlite3';
 import Database from 'better-sqlite3';
 import { Pool } from 'pg';
@@ -32,7 +32,7 @@ export function createDb() {
     return drizzlePg({ client: pool, schema: pgSchema });
   }
 
-  const defaultPath = join(dirname(fileURLToPath(import.meta.url)), '../data/pulsarr.db');
+  const defaultPath = join(dirname(fileURLToPath(import.meta.url)), '../data/veypost.db');
   const dbPath = process.env.SQLITE_DB_PATH || defaultPath;
   const sqlite = new Database(dbPath);
   sqlite.pragma('journal_mode = WAL');

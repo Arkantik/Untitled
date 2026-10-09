@@ -1,4 +1,4 @@
-import {
+﻿import {
   NewTwitterIcon,
   BlueskyIcon,
   Linkedin01Icon,
@@ -8,7 +8,7 @@ import {
   DiscordIcon,
 } from '@hugeicons/core-free-icons';
 import type { IconSvgElement } from '@hugeicons/react';
-import type { SocialPlatform } from '@pulsarr/shared';
+import type { SocialPlatform } from '@veypost/shared';
 
 export const PLATFORM_LABEL: Record<SocialPlatform, string> = {
   x: 'X',

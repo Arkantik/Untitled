@@ -1,15 +1,15 @@
-{
-  "appName": "Pulsarr",
-  "appDescription": "Selbst gehostete Plattform für Social-Media-Planung und -Veröffentlichung",
-  "close": "Schließen",
+﻿{
+  "appName": "Veypost",
+  "appDescription": "Selbst gehostete Plattform fÃ¼r Social-Media-Planung und -VerÃ¶ffentlichung",
+  "close": "SchlieÃŸen",
   "actions": {
     "save": "Speichern",
     "cancel": "Abbrechen",
-    "delete": "Löschen",
+    "delete": "LÃ¶schen",
     "edit": "Bearbeiten",
     "create": "Erstellen",
-    "confirm": "Bestätigen",
-    "back": "Zurück",
+    "confirm": "BestÃ¤tigen",
+    "back": "ZurÃ¼ck",
     "next": "Weiter",
     "loading": "Laden...",
     "retry": "Erneut versuchen",
@@ -22,14 +22,14 @@
   "nav": {
     "home": "Startseite",
     "dashboard": "Dashboard",
-    "posts": "Beiträge",
+    "posts": "BeitrÃ¤ge",
     "calendar": "Kalender",
     "queue": "Warteschlange",
     "accounts": "Konten",
     "engagement": "Engagement",
     "messages": "Nachrichten",
     "analytics": "Analysen",
-    "analyticsOverview": "Übersicht",
+    "analyticsOverview": "Ãœbersicht",
     "followerGrowth": "Follower-Wachstum",
     "sync": "Synchronisierung",
     "content": "Inhalte",
@@ -47,18 +47,18 @@
     "switchToDark": "Zum dunklen Modus wechseln"
   },
   "workspace": {
-    "overview": "Übersicht",
+    "overview": "Ãœbersicht",
     "members": "Mitglieder",
-    "apiKeys": "API-Schlüssel",
+    "apiKeys": "API-SchlÃ¼ssel",
     "subscription": "Abonnement",
     "switch": "Arbeitsbereich wechseln",
     "new": "Neuer Arbeitsbereich"
   },
   "sponsor": {
-    "title": "Pulsarr unterstützen",
-    "description": "Pulsarr ist kostenlos und open source. Ihre Unterstützung hält es am Laufen.",
+    "title": "Veypost unterstÃ¼tzen",
+    "description": "Veypost ist kostenlos und open source. Ihre UnterstÃ¼tzung hÃ¤lt es am Laufen.",
     "github": "GitHub Sponsors",
-    "githubDesc": "Unterstützen Sie uns monatlich auf GitHub",
+    "githubDesc": "UnterstÃ¼tzen Sie uns monatlich auf GitHub",
     "githubCta": "Auf GitHub sponsern",
     "stripe": "Einmalige Spende",
     "stripeDesc": "Leisten Sie einen einmaligen Beitrag",
@@ -81,7 +81,7 @@
   "errors": {
     "generic": "Etwas ist schiefgelaufen",
     "notFound": "Seite nicht gefunden",
-    "unauthorized": "Sie müssen sich anmelden",
+    "unauthorized": "Sie mÃ¼ssen sich anmelden",
     "forbidden": "Sie haben keinen Zugriff darauf",
     "404Eyebrow": "404: Nicht gefunden",
     "404Title": "Seite nicht gefunden",
@@ -89,8 +89,8 @@
     "500Eyebrow": "500: Serverfehler",
     "500Title": "Etwas ist schiefgelaufen",
     "500Description": "Ein unerwarteter Fehler ist aufgetreten. Versuchen Sie, die Seite neu zu laden.",
-    "backToDashboard": "Zurück zum Dashboard",
-    "goBack": "Zurück",
+    "backToDashboard": "ZurÃ¼ck zum Dashboard",
+    "goBack": "ZurÃ¼ck",
     "technicalDetails": "Technische Details"
   }
 }

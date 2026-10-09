@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Field } from '~/components/ui/field';
@@ -82,7 +82,7 @@ export function IdentityCard({ workspaceId, initialName, initialTimezone, initia
     <Card>
       <CardHeader>
         <CardTitle>Identity</CardTitle>
-        <CardDescription>How this workspace appears across Pulsarr and in shared links.</CardDescription>
+        <CardDescription>How this workspace appears across Veypost and in shared links.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="flex items-center gap-4 border-b border-border pb-5">
@@ -106,7 +106,7 @@ export function IdentityCard({ workspaceId, initialName, initialTimezone, initia
                 </Button>
               )}
             </div>
-            <span className="text-xs text-muted-foreground">PNG, JPG or WebP · {MAX_SIZE_MB} MB max</span>
+            <span className="text-xs text-muted-foreground">PNG, JPG or WebP Â· {MAX_SIZE_MB} MB max</span>
           </div>
         </div>
         <Field label="Workspace name" hint="Visible to all members.">
@@ -127,7 +127,7 @@ export function IdentityCard({ workspaceId, initialName, initialTimezone, initia
       </CardContent>
       <CardFooter className="gap-2 border-t border-border px-6 py-4">
         <Button type="button" disabled={!isDirty || isBusy} onClick={() => void handleSave()}>
-          {isBusy ? 'Saving…' : 'Save changes'}
+          {isBusy ? 'Savingâ€¦' : 'Save changes'}
         </Button>
         <Button variant="ghost" type="button" onClick={handleReset}>Reset</Button>
       </CardFooter>

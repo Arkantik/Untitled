@@ -1,4 +1,4 @@
----
+﻿---
 description: Code conventions enforced on every change: file size, comments, vocabulary, shared code
 ---
 
@@ -14,7 +14,7 @@ Default: no comments. The only valid comment explains a non-obvious WHY.
 
 Never write:
 
-- Decorative separators: `// ── Section ──`, `// =========`
+- Decorative separators: `// â”€â”€ Section â”€â”€`, `// =========`
 - JSX labels restating the element: `{/* Header */}` above `<header>`
 - Section headers above their own function or export
 - Narration: `// fetch the user`, `// set state`
@@ -28,5 +28,5 @@ Do not invent synonyms.
 
 ## Shared code
 
-Types and constants shared between apps live in `@pulsarr/shared`. Never duplicate them.
+Types and constants shared between apps live in `@veypost/shared`. Never duplicate them.
 Database schemas exist for both SQLite and PostgreSQL. Changes must cover both.

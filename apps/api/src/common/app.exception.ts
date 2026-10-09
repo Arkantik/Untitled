@@ -1,6 +1,6 @@
-import { HttpException } from '@nestjs/common';
+﻿import { HttpException } from '@nestjs/common';
 import type { z } from 'zod';
-import type { ErrorCode } from '@pulsarr/shared';
+import type { ErrorCode } from '@veypost/shared';
 
 const STATUS: Record<ErrorCode, number> = {
   UNAUTHENTICATED: 401,

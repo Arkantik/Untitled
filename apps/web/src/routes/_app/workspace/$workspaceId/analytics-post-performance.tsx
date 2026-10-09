@@ -1,9 +1,9 @@
-import { Card } from '~/components/ui/card';
+﻿import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';
 import { Skeleton } from '~/components/ui/skeleton';
 import { PlatformIcons } from '~/components/ui/platform-icons';
 import { usePostPerformance } from '~/hooks/use-post-performance';
-import type { AnalyticsRange, PostPerformance } from '@pulsarr/shared';
+import type { AnalyticsRange, PostPerformance } from '@veypost/shared';
 
 function PostRow({
   post,

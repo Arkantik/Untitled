@@ -1,4 +1,4 @@
-# Pulsarr
+﻿# Veypost
 
 Self-hosted social media scheduling and publishing platform. Compose once, publish everywhere.
 

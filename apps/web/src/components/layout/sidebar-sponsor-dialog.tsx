@@ -1,7 +1,7 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { HeartIcon, GithubIcon } from '@hugeicons/core-free-icons';
 import { useTranslation } from 'react-i18next';
-import { APP_GITHUB_SPONSORS_URL } from '@pulsarr/shared';
+import { APP_GITHUB_SPONSORS_URL } from '@veypost/shared';
 import {
   Dialog,
   DialogContent,
@@ -39,7 +39,7 @@ export function SponsorDialog({
               <p className="mt-1 text-xs text-muted-foreground">{t('sponsor.githubDesc')}</p>
             </div>
             <span className="mt-auto text-xs font-medium text-primary">
-              {t('sponsor.githubCta')} →
+              {t('sponsor.githubCta')} â†’
             </span>
           </a>
           <a
@@ -54,7 +54,7 @@ export function SponsorDialog({
               <p className="mt-1 text-xs text-muted-foreground">{t('sponsor.stripeDesc')}</p>
             </div>
             <span className="mt-auto text-xs font-medium text-primary">
-              {t('sponsor.stripeCta')} →
+              {t('sponsor.stripeCta')} â†’
             </span>
           </a>
         </div>

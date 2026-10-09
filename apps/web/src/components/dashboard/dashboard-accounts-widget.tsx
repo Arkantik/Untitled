@@ -1,10 +1,10 @@
-import { Link } from '@tanstack/react-router';
+﻿import { Link } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { CheckmarkCircle01Icon, Alert01Icon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';
 import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';
-import type { ConnectedAccount } from '@pulsarr/shared';
+import type { ConnectedAccount } from '@veypost/shared';
 
 const STATUS_TONE: Record<ConnectedAccount['status'], 'success' | 'warning' | 'destructive'> = {
   active: 'success',

@@ -1,9 +1,9 @@
-import { useMemo, memo } from 'react';
+﻿import { useMemo, memo } from 'react';
 import { useAnimateOnce } from '~/hooks/use-animate-once';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { PLATFORM_ICON, PLATFORM_COLOR } from '~/lib/platforms';
-import type { FollowerSeries, AnalyticsRange, SocialPlatform } from '@pulsarr/shared';
+import type { FollowerSeries, AnalyticsRange, SocialPlatform } from '@veypost/shared';
 
 function buildDateLabels(len: number): string[] {
   const now = new Date(2026, 9, 1);

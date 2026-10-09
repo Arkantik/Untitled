@@ -1,9 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
+﻿import { Injectable, Inject } from '@nestjs/common';
 import { eq, and, inArray } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { PostWithTargets, PostTarget } from '@pulsarr/shared';
-import type { CreatePostInput, UpdatePostInput } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { PostWithTargets, PostTarget } from '@veypost/shared';
+import type { CreatePostInput, UpdatePostInput } from '@veypost/shared';
 import { assertMember } from '../workspaces/workspaces.helpers.js';
 import { notFound, badRequest } from '../common/app.exception.js';
 

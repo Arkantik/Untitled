@@ -1,4 +1,4 @@
-import {
+﻿import {
   Injectable,
   Inject,
   NotImplementedException,
@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common';
 import { badRequest } from '../common/app.exception.js';
 import { eq } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { CheckoutInput, PortalInput } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { CheckoutInput, PortalInput } from '@veypost/shared';
 import { getEnv } from '../config/env.js';
 import { STRIPE_GATEWAY, type IStripeGateway } from './stripe/stripe-gateway.interface.js';
 import { assertRole } from '../workspaces/workspaces.helpers.js';

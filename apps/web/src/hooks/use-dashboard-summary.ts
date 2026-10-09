@@ -1,5 +1,5 @@
-import { useApiQuery } from './use-api-query';
-import type { DashboardSummary } from '@pulsarr/shared';
+﻿import { useApiQuery } from './use-api-query';
+import type { DashboardSummary } from '@veypost/shared';
 
 export function useDashboardSummary(workspaceId: string | undefined) {
   return useApiQuery<DashboardSummary>(

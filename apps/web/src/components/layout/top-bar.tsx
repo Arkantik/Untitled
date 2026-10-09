@@ -1,4 +1,4 @@
-import {
+﻿import {
   BarChartIcon,
   BubbleChatIcon,
   Building03Icon,
@@ -136,7 +136,7 @@ export function TopBar({ onMobileOpen, scrolled }: TopBarProps) {
             <span className="whitespace-nowrap font-medium text-foreground">{meta.label}</span>
           </>
         ) : (
-          <span className="font-medium text-foreground">Pulsarr</span>
+          <span className="font-medium text-foreground">Veypost</span>
         )}
       </nav>
       <TooltipProvider delayDuration={200}>
@@ -174,7 +174,7 @@ export function TopBar({ onMobileOpen, scrolled }: TopBarProps) {
               aria-hidden
             >
               <span className="flex h-4 w-4 items-center justify-center rounded p-0.5 text-[10px] font-medium leading-none text-muted-foreground">
-                ⌘K
+                âŒ˜K
               </span>
             </span>
           </label>

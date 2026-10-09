@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { Link, useRouterState, useParams } from '@tanstack/react-router';
 import { useWorkspaceContext } from '~/contexts/workspace-context';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -22,7 +22,7 @@ import {
   SidebarRight01Icon,
   Cancel01Icon,
 } from '@hugeicons/core-free-icons';
-import { APP_NAME } from '@pulsarr/shared';
+import { APP_NAME } from '@veypost/shared';
 import { useTranslation } from 'react-i18next';
 import { cn } from '~/lib/utils';
 import { useMediaQuery } from '~/hooks/use-media-query';

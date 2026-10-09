@@ -1,5 +1,5 @@
-{
-  "name": "pulsarr",
+﻿{
+  "name": "veypost",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "db:generate": "turbo db:generate",
     "db:migrate": "turbo db:migrate",
     "clean": "turbo clean",
-    "i18n:audit": "pnpm --filter @pulsarr/web i18n:audit"
+    "i18n:audit": "pnpm --filter @veypost/web i18n:audit"
   },
   "devDependencies": {
     "turbo": "^2.11.4",

@@ -1,4 +1,4 @@
-import type { AnalyticsRange, PlatformEngagement } from '@pulsarr/shared';
+﻿import type { AnalyticsRange, PlatformEngagement } from '@veypost/shared';
 
 const MOCK: Record<AnalyticsRange, PlatformEngagement[]> = {
   '7d': [

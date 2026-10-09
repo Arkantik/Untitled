@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+﻿import { lazy, Suspense } from 'react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useWorkspace } from '~/contexts/workspace-route-context';
 import { Segmented } from '~/components/ui/segmented';
@@ -7,7 +7,7 @@ import { Skeleton } from '~/components/ui/skeleton';
 import { useFollowerGrowth } from '~/hooks/use-follower-growth';
 import { AccountCard } from './growth-account-card';
 import { GrowthStatTiles } from './growth-stat-tiles';
-import type { AnalyticsRange } from '@pulsarr/shared';
+import type { AnalyticsRange } from '@veypost/shared';
 
 const VALID_RANGES = ['7d', '14d', '30d', '90d'] as const;
 
@@ -37,7 +37,7 @@ function dateLabel(range: AnalyticsRange): string {
   const start = new Date(end);
   start.setDate(start.getDate() - days);
   const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  return `${fmt(start)} – ${fmt(end)}`;
+  return `${fmt(start)} â€“ ${fmt(end)}`;
 }
 
 function FollowerGrowthPage() {

@@ -1,8 +1,8 @@
-import { cn } from '~/lib/utils';
+﻿import { cn } from '~/lib/utils';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { useCountUp } from '~/hooks/use-count-up';
-import type { DashboardPostStats } from '@pulsarr/shared';
+import type { DashboardPostStats } from '@veypost/shared';
 
 interface TileProps {
   label: string;
@@ -54,7 +54,7 @@ export function DashboardStatTiles({ data, isLoading }: Props) {
   return (
     <div className="grid grid-cols-1 gap-3 compact:grid-cols-3">
       <StatTile label="Scheduled" value={data.scheduled} subtitle="posts in queue" id="scheduled" />
-      <StatTile label="Published this week" value={data.publishedThisWeek} subtitle="Mon–Sun" id="published" valueClass="text-success" />
+      <StatTile label="Published this week" value={data.publishedThisWeek} subtitle="Monâ€“Sun" id="published" valueClass="text-success" />
       <StatTile label="Failed" value={data.failed} subtitle={data.failed === 0 ? 'all clear' : 'need attention'} id="failed" valueClass={data.failed > 0 ? 'text-destructive' : undefined} />
     </div>
   );

@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@nestjs/common';
+﻿import { Injectable, Inject } from '@nestjs/common';
 import { eq, and } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { InviteMemberInput, UpdateMemberRoleInput } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { InviteMemberInput, UpdateMemberRoleInput } from '@veypost/shared';
 import type { MemberRow, MemberWithUser } from './workspaces.types.js';
 import { assertMember, assertRole, assertMemberLimit } from './workspaces.helpers.js';
 import { notFound, conflict, badRequest } from '../common/app.exception.js';

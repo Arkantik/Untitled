@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@nestjs/common';
+﻿import { Injectable, Inject } from '@nestjs/common';
 import { eq, and, count, gte, inArray, desc, asc } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { DashboardSummary, RecentPost, UpcomingPost, SocialPlatform } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { DashboardSummary, RecentPost, UpcomingPost, SocialPlatform } from '@veypost/shared';
 import { assertMember } from '../workspaces/workspaces.helpers.js';
 
 const { posts, postTargets, connectedAccounts } = sqliteSchema;

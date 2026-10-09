@@ -1,4 +1,4 @@
-import {
+﻿import {
   ExceptionFilter,
   Catch,
   ArgumentsHost,
@@ -6,8 +6,8 @@ import {
   Logger,
 } from '@nestjs/common';
 import type { FastifyReply } from 'fastify';
-import type { ApiErrorBody, ErrorCode } from '@pulsarr/shared';
-import { isKnownErrorCode } from '@pulsarr/shared';
+import type { ApiErrorBody, ErrorCode } from '@veypost/shared';
+import { isKnownErrorCode } from '@veypost/shared';
 import { AppException } from './app.exception.js';
 import { getEnv } from '../config/env.js';
 

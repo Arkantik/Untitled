@@ -1,8 +1,8 @@
-import { Injectable, Inject, NotFoundException } from '@nestjs/common';
+﻿import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { eq, and } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { DbClient } from '@pulsarr/db';
-import type { ConnectedAccount } from '@pulsarr/shared';
+import { sqliteSchema } from '@veypost/db';
+import type { DbClient } from '@veypost/db';
+import type { ConnectedAccount } from '@veypost/shared';
 import { assertMember, assertAccountLimit } from '../workspaces/workspaces.helpers.js';
 import { connectDiscord } from './platforms/discord.connector.js';
 import { connectBluesky } from './platforms/bluesky.connector.js';

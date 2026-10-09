@@ -1,8 +1,8 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+﻿import { createFileRoute, Link } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '~/lib/zod-resolver';
 import { z } from 'zod';
-import { passwordSchema } from '@pulsarr/shared';
+import { passwordSchema } from '@veypost/shared';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Field } from '~/components/ui/field';

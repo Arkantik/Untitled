@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import type { AnalyticsRange, FollowerSeries } from '@pulsarr/shared';
+﻿import { useMemo } from 'react';
+import type { AnalyticsRange, FollowerSeries } from '@veypost/shared';
 
 function series(start: number, end: number, days: number, seed: number): number[] {
   let s = seed >>> 0;
@@ -33,10 +33,10 @@ const RANGE_SEED: Record<AnalyticsRange, number> = {
 };
 
 const BASE: Omit<FollowerSeries, 'series'>[] = [
-  { accountId: 'acc-x', platform: 'x', handle: '@pulsarr', current: 23451 },
-  { accountId: 'acc-bsky', platform: 'bluesky', handle: '@pulsarr.bsky.social', current: 4812 },
-  { accountId: 'acc-li', platform: 'linkedin', handle: 'pulsarr-official', current: 2145 },
-  { accountId: 'acc-ig', platform: 'instagram', handle: '@pulsarr.ig', current: 8921 },
+  { accountId: 'acc-x', platform: 'x', handle: '@veypost', current: 23451 },
+  { accountId: 'acc-bsky', platform: 'bluesky', handle: '@veypost.bsky.social', current: 4812 },
+  { accountId: 'acc-li', platform: 'linkedin', handle: 'veypost-official', current: 2145 },
+  { accountId: 'acc-ig', platform: 'instagram', handle: '@veypost.ig', current: 8921 },
 ];
 
 export function useFollowerGrowth(_workspaceId: string, range: AnalyticsRange) {

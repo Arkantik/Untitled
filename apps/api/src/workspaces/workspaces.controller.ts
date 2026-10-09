@@ -1,4 +1,4 @@
-import {
+﻿import {
   Controller,
   Get,
   Post,
@@ -20,7 +20,7 @@ import {
   type UpdateWorkspaceInput,
   type InviteMemberInput,
   type UpdateMemberRoleInput,
-} from '@pulsarr/shared';
+} from '@veypost/shared';
 import { WorkspacesService } from './workspaces.service.js';
 import { WorkspaceMembersService } from './workspace-members.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';

@@ -1,4 +1,4 @@
-import 'dotenv/config';
+﻿import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -11,7 +11,7 @@ import { resolve } from 'node:path';
 import staticPlugin from '@fastify/static';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module.js';
-import { APP_NAME, APP_DESCRIPTION } from '@pulsarr/shared';
+import { APP_NAME, APP_DESCRIPTION } from '@veypost/shared';
 import { auth } from './lib/auth.js';
 import { AppExceptionFilter } from './common/app-exception.filter.js';
 

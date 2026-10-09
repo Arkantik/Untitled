@@ -1,11 +1,11 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { TrendingUpIcon, TrendingDownIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';
 import { Skeleton } from '~/components/ui/skeleton';
 import { useAnalyticsSummary } from '~/hooks/use-analytics-summary';
 import { useCountUp } from '~/hooks/use-count-up';
-import type { AnalyticsRange, Metric } from '@pulsarr/shared';
+import type { AnalyticsRange, Metric } from '@veypost/shared';
 
 function DeltaChip({ delta }: { delta: number | null }) {
   if (delta === null) return null;
@@ -77,7 +77,7 @@ export function AnalyticsStatTiles({ workspaceId, range }: Props) {
   return (
     <div className="grid grid-cols-1 gap-3 regular:grid-cols-3">
       <StatTile label="Total followers" metric={data.followers} period={period} />
-      <StatTile label="Engagement" metric={data.engagement} period="likes · comments · reposts" />
+      <StatTile label="Engagement" metric={data.engagement} period="likes Â· comments Â· reposts" />
       <StatTile label="Posts published" metric={data.posts} period={period} />
     </div>
   );

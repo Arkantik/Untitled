@@ -1,6 +1,6 @@
-import { eq, and, count } from 'drizzle-orm';
-import { sqliteSchema, type DbClient } from '@pulsarr/db';
-import { PLAN_TIERS, type PlanTier } from '@pulsarr/shared';
+﻿import { eq, and, count } from 'drizzle-orm';
+import { sqliteSchema, type DbClient } from '@veypost/db';
+import { PLAN_TIERS, type PlanTier } from '@veypost/shared';
 import { getEnv } from '../config/env.js';
 import type { MemberRow } from './workspaces.types.js';
 import { notFound, forbidden, limitExceeded } from '../common/app.exception.js';

@@ -1,5 +1,5 @@
-import { useApiQuery } from './use-api-query';
-import type { PlatformSummaryItem } from '@pulsarr/shared';
+﻿import { useApiQuery } from './use-api-query';
+import type { PlatformSummaryItem } from '@veypost/shared';
 
 export function usePlatformSummary(workspaceId: string | undefined) {
   return useApiQuery<PlatformSummaryItem[]>(

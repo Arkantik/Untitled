@@ -1,9 +1,9 @@
-import type { AnalyticsRange, PostPerformance, SocialPlatform } from '@pulsarr/shared';
+﻿import type { AnalyticsRange, PostPerformance, SocialPlatform } from '@veypost/shared';
 
 const MOCK: PostPerformance[] = [
   {
     id: 'p1',
-    title: 'Introducing Pulsarr: schedule once, publish everywhere',
+    title: 'Introducing Veypost: schedule once, publish everywhere',
     platforms: ['x', 'bluesky', 'linkedin'] as SocialPlatform[],
     publishedAt: '2026-09-28',
     engagement: 4821,

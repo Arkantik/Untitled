@@ -1,6 +1,6 @@
-import { eq, and } from 'drizzle-orm';
-import { sqliteSchema } from '@pulsarr/db';
-import type { ConnectedAccount, SocialPlatform } from '@pulsarr/shared';
+﻿import { eq, and } from 'drizzle-orm';
+import { sqliteSchema } from '@veypost/db';
+import type { ConnectedAccount, SocialPlatform } from '@veypost/shared';
 
 export interface UpsertData {
   platformAccountId: string;

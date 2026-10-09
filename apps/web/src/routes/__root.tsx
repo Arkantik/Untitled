@@ -1,7 +1,7 @@
-import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
+﻿import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
 import { QueryClientProvider, type QueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { APP_NAME } from '@pulsarr/shared';
+import { APP_NAME } from '@veypost/shared';
 import { Toaster } from '~/components/ui/toast';
 import { themeScript } from '~/hooks/use-theme';
 import { localeScript } from '~/i18n/config';

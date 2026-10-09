@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, useRouter } from '@tanstack/react-router';
 import { useMediaQuery } from '~/hooks/use-media-query';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu';
 import { cn } from '~/lib/utils';
-import { APP_GITHUB_URL } from '@pulsarr/shared';
+import { APP_GITHUB_URL } from '@veypost/shared';
 import { authClient } from '~/lib/auth-client';
 import { useCurrentUser } from '~/hooks/use-session';
 import { useUserProfile } from '~/hooks/use-profile';

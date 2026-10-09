@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react';
+﻿import { useState, forwardRef } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar03Icon, SendHorizontalIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
@@ -6,7 +6,7 @@ import { Button } from '~/components/ui/button';
 import { PLATFORM_LABEL, PLATFORM_COLOR, PLATFORM_ICON } from '~/lib/platforms';
 import { toast } from '~/components/ui/toast';
 import { cn } from '~/lib/utils';
-import type { SocialPlatform } from '@pulsarr/shared';
+import type { SocialPlatform } from '@veypost/shared';
 
 const SHOWN_PLATFORMS: SocialPlatform[] = ['x', 'linkedin', 'facebook', 'instagram', 'threads', 'discord', 'bluesky'];
 const COMING_SOON = new Set<SocialPlatform>(['bluesky']);

@@ -1,7 +1,7 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
 import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL, PLATFORM_BG } from '~/lib/platforms';
-import type { SocialPlatform } from '@pulsarr/shared';
+import type { SocialPlatform } from '@veypost/shared';
 
 interface Props {
   platforms: SocialPlatform[];

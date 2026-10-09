@@ -1,8 +1,8 @@
-import { betterAuth } from 'better-auth';
+﻿import { betterAuth } from 'better-auth';
 import { createAuthMiddleware, APIError } from 'better-auth/api';
 import { bearer } from 'better-auth/plugins';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { getDialect, getSchema } from '@pulsarr/db';
+import { getDialect, getSchema } from '@veypost/db';
 import { getEnv } from '../config/env.js';
 import { db } from './db.js';
 

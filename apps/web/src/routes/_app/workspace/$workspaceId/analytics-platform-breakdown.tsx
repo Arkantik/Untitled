@@ -1,9 +1,9 @@
-import { lazy, Suspense, useMemo } from 'react';
+﻿import { lazy, Suspense, useMemo } from 'react';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { usePlatformEngagement } from '~/hooks/use-platform-engagement';
 import { PLATFORM_LABEL, PLATFORM_COLOR } from '~/lib/platforms';
-import type { AnalyticsRange, PlatformEngagement } from '@pulsarr/shared';
+import type { AnalyticsRange, PlatformEngagement } from '@veypost/shared';
 
 const LazyBarChart = lazy(() =>
   import('./analytics-bar-chart').then((m) => ({ default: m.BarChartWidget })),

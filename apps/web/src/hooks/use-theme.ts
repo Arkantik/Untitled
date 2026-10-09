@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { readPreference, writePreference, removePreference } from '~/lib/preferences';
 
 type Theme = 'light' | 'dark';
 export type ThemePref = 'light' | 'dark' | 'system';
 
-const KEY = 'pulsarr-theme';
-const SYNC_EVENT = 'pulsarr-theme-change';
+const KEY = 'veypost-theme';
+const SYNC_EVENT = 'veypost-theme-change';
 
 function getSystemTheme(): Theme {
   return typeof window !== 'undefined' &&
@@ -65,4 +65,4 @@ export function useTheme() {
   return { theme, pref, toggle, setTheme, clearTheme };
 }
 
-export const themeScript = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)pulsarr-theme=([^;]*)/);var t=m?decodeURIComponent(m[1]):null;if(!t)try{t=localStorage.getItem('pulsarr-theme')}catch(e){}if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`;
+export const themeScript = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)veypost-theme=([^;]*)/);var t=m?decodeURIComponent(m[1]):null;if(!t)try{t=localStorage.getItem('veypost-theme')}catch(e){}if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { z } from 'zod';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -16,7 +16,7 @@ import { AccountDisconnectDialog } from '~/components/accounts/account-disconnec
 import { AddAccountSection } from '~/components/accounts/add-account-section';
 import { DiscordConnectDialog } from '~/components/accounts/discord-connect-dialog';
 import { PagePickerDialog } from '~/components/accounts/page-picker-dialog';
-import type { ConnectedAccount, SocialPlatform } from '@pulsarr/shared';
+import type { ConnectedAccount, SocialPlatform } from '@veypost/shared';
 
 const searchSchema = z.object({
   connected: z.string().optional(),

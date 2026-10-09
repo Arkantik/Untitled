@@ -1,9 +1,9 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { useCountUp } from '~/hooks/use-count-up';
 import { PLATFORM_ICON, PLATFORM_COLOR } from '~/lib/platforms';
-import type { FollowerSeries } from '@pulsarr/shared';
+import type { FollowerSeries } from '@veypost/shared';
 
 interface Props {
   workspaceId: string;

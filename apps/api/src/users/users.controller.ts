@@ -1,11 +1,11 @@
-import {
+﻿import {
   Controller, Get, Patch, Delete,
   Body, Req, HttpCode, HttpStatus, UseGuards,
 } from '@nestjs/common';
 import type { FastifyRequest } from 'fastify';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { z } from 'zod';
-import { passwordSchema } from '@pulsarr/shared';
+import { passwordSchema } from '@veypost/shared';
 import { UsersService } from './users.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';
 import { CurrentUser } from '../auth/session.decorator.js';

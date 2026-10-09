@@ -1,4 +1,4 @@
-import {
+﻿import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -7,7 +7,7 @@ import {
 } from '~/components/ui/dialog';
 import { Button } from '~/components/ui/button';
 import { PLATFORM_LABEL } from '~/lib/platforms';
-import type { ConnectedAccount } from '@pulsarr/shared';
+import type { ConnectedAccount } from '@veypost/shared';
 
 interface Props {
   account: ConnectedAccount | null;
@@ -39,7 +39,7 @@ export function AccountDisconnectDialog({ account, isPending, onConfirm, onClose
             disabled={isPending}
             onClick={() => account && onConfirm(account.id)}
           >
-            {isPending ? 'Disconnecting…' : 'Disconnect'}
+            {isPending ? 'Disconnectingâ€¦' : 'Disconnect'}
           </Button>
         </div>
       </DialogContent>

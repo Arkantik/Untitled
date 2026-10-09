@@ -1,14 +1,14 @@
-# AGENTS.md
+﻿# AGENTS.md
 
 Guidance for agentic coding tools (Claude Code, Copilot, Cursor, Windsurf, etc.) working with the
-Pulsarr codebase.
+Veypost codebase.
 
 Read `CLAUDE.md` for project configuration, skills, and working agreements specific to Claude Code
 sessions.
 
 ## Project context
 
-Pulsarr is an open-source, self-hosted social media scheduling and publishing platform. Compose
+Veypost is an open-source, self-hosted social media scheduling and publishing platform. Compose
 once, publish to X, Bluesky, LinkedIn, Facebook, Instagram, Threads, and Discord. Includes
 scheduling, analytics, team workspaces, and a public REST API. Licensed under Apache 2.0.
 
@@ -68,7 +68,7 @@ apps/
   web/          TanStack Start frontend (React 19)
 packages/
   db/           Drizzle schemas (pg + sqlite), migrations, connection factory
-  shared/       Constants, TypeScript types, Zod validation schemas (@pulsarr/shared)
+  shared/       Constants, TypeScript types, Zod validation schemas (@veypost/shared)
 docker/         Dockerfile, compose files, supervisord config
 docs/           ADRs, conventions, domain vocabulary, UI tokens, tickets, runbook
 ```
@@ -122,14 +122,14 @@ Both schemas define the same tables and must stay in sync:
 - `workspaces`, team containers. Each has an owner.
 - `workspace_members`, join table with role enum: `owner`, `admin`, `editor`, `viewer`
 - `connected_accounts`, OAuth tokens for each social platform per workspace
-- `posts`, content with status lifecycle: `draft` → `scheduled` → `publishing` → `published` | `failed`
+- `posts`, content with status lifecycle: `draft` â†’ `scheduled` â†’ `publishing` â†’ `published` | `failed`
 - `post_targets`, per-platform publish record for a post, each tracking its own status
 
 When modifying schemas, update both dialects, then run `pnpm db:generate` and `pnpm db:migrate`.
 
 ### Shared package (`packages/shared`)
 
-`@pulsarr/shared` exports constants, TypeScript types, and Zod schemas. Both `apps/api` and
+`@veypost/shared` exports constants, TypeScript types, and Zod schemas. Both `apps/api` and
 `apps/web` import from it. The project name is defined once in
 `packages/shared/src/constants/app.ts`. Never duplicate shared types in app code.
 
@@ -137,7 +137,7 @@ When modifying schemas, update both dialects, then run `pnpm db:generate` and `p
 
 `docker/docker-compose.yml` runs two services:
 
-- PostgreSQL 17 (Alpine), port 5432, user/password/db all `pulsarr`
+- PostgreSQL 17 (Alpine), port 5432, user/password/db all `veypost`
 - Valkey 8 (Alpine), port 6379, append-only, `noeviction` memory policy
 
 Both have health checks. Data volumes: `pgdata`, `valkeydata`.
@@ -148,7 +148,7 @@ Both have health checks. Data volumes: `pgdata`, `valkeydata`.
 
 1. All source is TypeScript. No `.js` files outside config.
 2. No secret is ever read outside `apps/api/src/config/env.ts`.
-3. Shared types and constants live in `@pulsarr/shared`, not duplicated.
+3. Shared types and constants live in `@veypost/shared`, not duplicated.
 4. Database schemas exist for both SQLite and PostgreSQL and stay in sync.
 5. The project name is defined once in `packages/shared/src/constants/app.ts`.
 
@@ -179,7 +179,7 @@ Both have health checks. Data volumes: `pgdata`, `valkeydata`.
   `timestamp` in PostgreSQL). When adding a column, update both schema files.
 - Valkey runs with `noeviction`. BullMQ jobs are never silently dropped, but Valkey will error
   if it runs out of memory. Monitor usage in production.
-- Pulsarr uses the Fastify adapter, not Express. Do not use Express-specific middleware or
+- Veypost uses the Fastify adapter, not Express. Do not use Express-specific middleware or
   decorators.
 - CORS origin comes from `BETTER_AUTH_URL`. The frontend must run on the URL that matches this
   value (default: `http://localhost:3000`).

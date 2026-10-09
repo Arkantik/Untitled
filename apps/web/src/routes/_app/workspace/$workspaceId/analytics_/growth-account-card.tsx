@@ -1,10 +1,10 @@
-import { lazy, Suspense } from 'react';
+﻿import { lazy, Suspense } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';
 import { Skeleton } from '~/components/ui/skeleton';
 import { PLATFORM_ICON, PLATFORM_COLOR } from '~/lib/platforms';
-import type { FollowerSeries } from '@pulsarr/shared';
+import type { FollowerSeries } from '@veypost/shared';
 
 const LazyAreaChart = lazy(() =>
   import('../analytics-area-chart').then((m) => ({ default: m.AreaChartWidget })),

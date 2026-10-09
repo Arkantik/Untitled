@@ -1,4 +1,4 @@
-services:
+﻿services:
   app:
     build:
       context: ..
@@ -20,13 +20,13 @@ services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-pulsarr}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pulsarr}
-      POSTGRES_DB: ${POSTGRES_DB:-pulsarr}
+      POSTGRES_USER: ${POSTGRES_USER:-veypost}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-veypost}
+      POSTGRES_DB: ${POSTGRES_DB:-veypost}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-pulsarr}']
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-veypost}']
       interval: 10s
       timeout: 5s
       retries: 5

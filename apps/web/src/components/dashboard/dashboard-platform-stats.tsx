@@ -1,9 +1,9 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';
 import { cn } from '~/lib/utils';
-import type { PlatformSummaryItem } from '@pulsarr/shared';
+import type { PlatformSummaryItem } from '@veypost/shared';
 
 function platformBg(p: PlatformSummaryItem['platform']): string {
   return p === 'x' ? '#0f0f0f' : PLATFORM_COLOR[p];

@@ -1,4 +1,4 @@
-# Pulsarr
+﻿# Veypost
 
 Self-hosted social media scheduling and publishing platform. Compose once, publish to X, Bluesky,
 LinkedIn, Facebook, Instagram, Threads, and Discord. Includes scheduling, analytics, team
@@ -41,7 +41,7 @@ Every command below must run as written from the repo root. If one is wrong, fix
 
 1. All source is TypeScript. No `.js` files outside config. (evidence: `tsconfig.base.json`)
 2. No secret is ever read outside `apps/api/src/config/env.ts`. (evidence: `apps/api/src/config/env.ts`)
-3. Shared types and constants live in `@pulsarr/shared`, not duplicated. (evidence: `packages/shared/src/`)
+3. Shared types and constants live in `@veypost/shared`, not duplicated. (evidence: `packages/shared/src/`)
 4. Database schemas exist for both SQLite and PostgreSQL. (evidence: `packages/db/src/schema/`)
 5. The project name is defined once in `packages/shared/src/constants/app.ts`. (evidence: `packages/shared/src/constants/app.ts`)
 
@@ -66,8 +66,6 @@ Every command below must run as written from the repo root. If one is wrong, fix
 
 ## Skills
 
-Setup: `/start-project`, run once, on day one.
-
 Workflow: `/new-feature` `/fix-bug` `/refactor` `/perf` `/review` `/commit` `/research` `/end-session`
 
 Tickets: `/to-tickets` `/triage` `/pick-next`
@@ -76,7 +74,7 @@ Frontend: `/design-system` `/new-component` `/loading-states` `/ui-details`
 
 Contracts and data: `/api-contract` `/db-migration`
 
-Infrastructure: `/ship` `/docker-service` `/queues-and-rate-limits` `/provisioning-safety`
+Infrastructure: `/ship` `/docker-service` `/queues-and-rate-limits`
 
 Always applies: `sensitive-code` on auth, permissions, payments, and deletion. `unslop` on every
 prose surface, including your replies.
@@ -90,7 +88,7 @@ constraint, a workaround for a specific bug, an invariant that would surprise a 
 
 Never write:
 
-- Decorative separators: `// ── Section ──`, `// =========`
+- Decorative separators: `// â”€â”€ Section â”€â”€`, `// =========`
 - JSX labels restating the element below: `{/* Header */}` above `<header>`
 - Section headers above their own function or export
 - Narration of what the code does: `// fetch the user`, `// set state`

@@ -1,3 +1,3 @@
-import { createDb, type DbClient } from '@pulsarr/db';
+﻿import { createDb, type DbClient } from '@veypost/db';
 
 export const db: DbClient = createDb();

@@ -1,4 +1,4 @@
-import type { ApiErrorResponse, ErrorCode } from '@pulsarr/shared';
+﻿import type { ApiErrorResponse, ErrorCode } from '@veypost/shared';
 
 export class ApiError extends Error {
   readonly code: ErrorCode;

@@ -1,23 +1,23 @@
-{
-  "appName": "Pulsarr",
-  "appDescription": "Plateforme auto-hébergée de planification et de publication sur les réseaux sociaux",
+﻿{
+  "appName": "Veypost",
+  "appDescription": "Plateforme auto-hÃ©bergÃ©e de planification et de publication sur les rÃ©seaux sociaux",
   "close": "Fermer",
   "actions": {
     "save": "Enregistrer",
     "cancel": "Annuler",
     "delete": "Supprimer",
     "edit": "Modifier",
-    "create": "Créer",
+    "create": "CrÃ©er",
     "confirm": "Confirmer",
     "back": "Retour",
     "next": "Suivant",
     "loading": "Chargement...",
-    "retry": "Réessayer",
+    "retry": "RÃ©essayer",
     "copy": "Copier",
-    "copied": "Copié !",
+    "copied": "CopiÃ© !",
     "remove": "Retirer",
     "enable": "Activer",
-    "disable": "Désactiver"
+    "disable": "DÃ©sactiver"
   },
   "nav": {
     "home": "Accueil",
@@ -29,19 +29,19 @@
     "engagement": "Engagement",
     "messages": "Messages",
     "analytics": "Analytiques",
-    "analyticsOverview": "Aperçu",
-    "followerGrowth": "Croissance des abonnés",
+    "analyticsOverview": "AperÃ§u",
+    "followerGrowth": "Croissance des abonnÃ©s",
     "sync": "Synchronisation",
     "content": "Contenu",
-    "inbox": "Boîte de réception",
+    "inbox": "BoÃ®te de rÃ©ception",
     "pipelines": "Pipelines",
     "mainNav": "Navigation",
-    "settings": "Paramètres",
+    "settings": "ParamÃ¨tres",
     "workspace": "Espace de travail",
     "compose": "Composer une publication",
-    "signOut": "Se déconnecter",
+    "signOut": "Se dÃ©connecter",
     "viewProfile": "Voir le profil",
-    "starOnGithub": "Étoile sur GitHub",
+    "starOnGithub": "Ã‰toile sur GitHub",
     "sponsor": "Sponsoriser",
     "switchToLight": "Passer en mode clair",
     "switchToDark": "Passer en mode sombre"
@@ -49,14 +49,14 @@
   "workspace": {
     "overview": "Vue d'ensemble",
     "members": "Membres",
-    "apiKeys": "Clés API",
+    "apiKeys": "ClÃ©s API",
     "subscription": "Abonnement",
     "switch": "Changer d'espace",
     "new": "Nouvel espace"
   },
   "sponsor": {
-    "title": "Soutenir Pulsarr",
-    "description": "Pulsarr est gratuit et open source. Votre soutien nous aide à continuer.",
+    "title": "Soutenir Veypost",
+    "description": "Veypost est gratuit et open source. Votre soutien nous aide Ã  continuer.",
     "github": "GitHub Sponsors",
     "githubDesc": "Sponsorisez-nous chaque mois sur GitHub",
     "githubCta": "Sponsoriser sur GitHub",
@@ -66,14 +66,14 @@
   },
   "settings": {
     "profile": "Profil",
-    "security": "Sécurité",
+    "security": "SÃ©curitÃ©",
     "notifications": "Notifications",
     "connections": "Connexions",
     "appearance": "Apparence"
   },
   "auth": {
     "signIn": "Se connecter",
-    "signOut": "Se déconnecter",
+    "signOut": "Se dÃ©connecter",
     "signUp": "S'inscrire",
     "email": "E-mail",
     "password": "Mot de passe"
@@ -82,15 +82,15 @@
     "generic": "Une erreur s'est produite",
     "notFound": "Page introuvable",
     "unauthorized": "Vous devez vous connecter",
-    "forbidden": "Vous n'avez pas accès à ceci",
+    "forbidden": "Vous n'avez pas accÃ¨s Ã  ceci",
     "404Eyebrow": "404: Introuvable",
     "404Title": "Page introuvable",
-    "404Description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "404Description": "La page que vous cherchez n'existe pas ou a Ã©tÃ© dÃ©placÃ©e.",
     "500Eyebrow": "500: Erreur serveur",
     "500Title": "Une erreur s'est produite",
     "500Description": "Une erreur inattendue s'est produite. Essayez de recharger la page.",
     "backToDashboard": "Retour au tableau de bord",
     "goBack": "Retour",
-    "technicalDetails": "Détails techniques"
+    "technicalDetails": "DÃ©tails techniques"
   }
 }

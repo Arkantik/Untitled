@@ -1,5 +1,5 @@
-{
-  "name": "@pulsarr/api",
+﻿{
+  "name": "@veypost/api",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -23,8 +23,8 @@
     "@nestjs/platform-fastify": "^12.1.0",
     "@nestjs/schedule": "^12.0.2",
     "@nestjs/swagger": "^12.0.2",
-    "@pulsarr/db": "workspace:*",
-    "@pulsarr/shared": "workspace:*",
+    "@veypost/db": "workspace:*",
+    "@veypost/shared": "workspace:*",
     "better-auth": "^1.7.6",
     "bullmq": "^6.3.9",
     "dotenv": "^18.0.4",

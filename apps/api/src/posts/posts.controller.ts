@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Put, Delete, Param, Query, Body, UseGuards, HttpCode } from '@nestjs/common';
+﻿import { Controller, Get, Post, Put, Delete, Param, Query, Body, UseGuards, HttpCode } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { z } from 'zod';
-import { createPostSchema, updatePostSchema, listPostsQuerySchema } from '@pulsarr/shared';
+import { createPostSchema, updatePostSchema, listPostsQuerySchema } from '@veypost/shared';
 import { PostsService } from './posts.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';
 import { CurrentUser } from '../auth/session.decorator.js';

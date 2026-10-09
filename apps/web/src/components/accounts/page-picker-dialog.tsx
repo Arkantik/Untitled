@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '~/components/ui/dialog';
 import { Button } from '~/components/ui/button';
@@ -6,7 +6,7 @@ import { Skeleton } from '~/components/ui/skeleton';
 import { PLATFORM_ICON, PLATFORM_BG, PLATFORM_LABEL } from '~/lib/platforms';
 import { useListPendingPages, useConfirmPendingPages } from '~/hooks/use-connected-accounts';
 import { toast } from '~/components/ui/toast';
-import type { PageOption, SocialPlatform } from '@pulsarr/shared';
+import type { PageOption, SocialPlatform } from '@veypost/shared';
 
 interface Props {
   workspaceId: string;

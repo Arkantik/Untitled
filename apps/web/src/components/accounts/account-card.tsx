@@ -1,4 +1,4 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { LinkBackwardIcon, ReloadIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { Button } from '~/components/ui/button';
@@ -6,7 +6,7 @@ import { cn } from '~/lib/utils';
 import { PLATFORM_ICON, PLATFORM_BG, PLATFORM_LABEL } from '~/lib/platforms';
 import { toast } from '~/components/ui/toast';
 import { useRefreshAccount } from '~/hooks/use-connected-accounts';
-import type { ConnectedAccount } from '@pulsarr/shared';
+import type { ConnectedAccount } from '@veypost/shared';
 
 interface Props {
   account: ConnectedAccount;
@@ -66,7 +66,7 @@ export function AccountCard({ account, workspaceId, onDisconnect, onReconnect }:
         </div>
         <p className="mt-0.5 text-xs text-muted-foreground">
           {PLATFORM_LABEL[account.platform]}
-          {needsAttention && ' · Needs reconnection'}
+          {needsAttention && ' Â· Needs reconnection'}
         </p>
       </div>
 

@@ -1,6 +1,6 @@
-{
-  "appName": "Pulsarr",
-  "appDescription": "Plataforma autoalojada de programación y publicación en redes sociales",
+﻿{
+  "appName": "Veypost",
+  "appDescription": "Plataforma autoalojada de programaciÃ³n y publicaciÃ³n en redes sociales",
   "close": "Cerrar",
   "actions": {
     "save": "Guardar",
@@ -14,7 +14,7 @@
     "loading": "Cargando...",
     "retry": "Reintentar",
     "copy": "Copiar",
-    "copied": "¡Copiado!",
+    "copied": "Â¡Copiado!",
     "remove": "Eliminar",
     "enable": "Activar",
     "disable": "Desactivar"
@@ -26,20 +26,20 @@
     "calendar": "Calendario",
     "queue": "Cola",
     "accounts": "Cuentas",
-    "engagement": "Interacción",
+    "engagement": "InteracciÃ³n",
     "messages": "Mensajes",
-    "analytics": "Analíticas",
+    "analytics": "AnalÃ­ticas",
     "analyticsOverview": "Resumen",
     "followerGrowth": "Crecimiento de seguidores",
-    "sync": "Sincronización",
+    "sync": "SincronizaciÃ³n",
     "content": "Contenido",
     "inbox": "Bandeja de entrada",
     "pipelines": "Pipelines",
-    "mainNav": "Navegación",
+    "mainNav": "NavegaciÃ³n",
     "settings": "Ajustes",
     "workspace": "Espacio de trabajo",
-    "compose": "Redactar publicación",
-    "signOut": "Cerrar sesión",
+    "compose": "Redactar publicaciÃ³n",
+    "signOut": "Cerrar sesiÃ³n",
     "viewProfile": "Ver perfil",
     "starOnGithub": "Dar estrella en GitHub",
     "sponsor": "Patrocinar",
@@ -47,21 +47,21 @@
     "switchToDark": "Cambiar a modo oscuro"
   },
   "workspace": {
-    "overview": "Descripción general",
+    "overview": "DescripciÃ³n general",
     "members": "Miembros",
     "apiKeys": "Claves API",
-    "subscription": "Suscripción",
+    "subscription": "SuscripciÃ³n",
     "switch": "Cambiar espacio",
     "new": "Nuevo espacio"
   },
   "sponsor": {
-    "title": "Apoyar a Pulsarr",
-    "description": "Pulsarr es gratuito y de código abierto. Tu apoyo lo mantiene en marcha.",
+    "title": "Apoyar a Veypost",
+    "description": "Veypost es gratuito y de cÃ³digo abierto. Tu apoyo lo mantiene en marcha.",
     "github": "GitHub Sponsors",
-    "githubDesc": "Patrocínanos mensualmente en GitHub",
+    "githubDesc": "PatrocÃ­nanos mensualmente en GitHub",
     "githubCta": "Patrocinar en GitHub",
-    "stripe": "Donación única",
-    "stripeDesc": "Haz una contribución única",
+    "stripe": "DonaciÃ³n Ãºnica",
+    "stripeDesc": "Haz una contribuciÃ³n Ãºnica",
     "stripeCta": "Donar"
   },
   "settings": {
@@ -72,25 +72,25 @@
     "appearance": "Apariencia"
   },
   "auth": {
-    "signIn": "Iniciar sesión",
-    "signOut": "Cerrar sesión",
+    "signIn": "Iniciar sesiÃ³n",
+    "signOut": "Cerrar sesiÃ³n",
     "signUp": "Registrarse",
-    "email": "Correo electrónico",
-    "password": "Contraseña"
+    "email": "Correo electrÃ³nico",
+    "password": "ContraseÃ±a"
   },
   "errors": {
-    "generic": "Algo salió mal",
-    "notFound": "Página no encontrada",
-    "unauthorized": "Necesitas iniciar sesión",
+    "generic": "Algo saliÃ³ mal",
+    "notFound": "PÃ¡gina no encontrada",
+    "unauthorized": "Necesitas iniciar sesiÃ³n",
     "forbidden": "No tienes acceso a esto",
     "404Eyebrow": "404: No encontrado",
-    "404Title": "Página no encontrada",
-    "404Description": "La página que buscas no existe o ha sido movida.",
+    "404Title": "PÃ¡gina no encontrada",
+    "404Description": "La pÃ¡gina que buscas no existe o ha sido movida.",
     "500Eyebrow": "500: Error del servidor",
-    "500Title": "Algo salió mal",
-    "500Description": "Ocurrió un error inesperado. Intenta recargar la página.",
+    "500Title": "Algo saliÃ³ mal",
+    "500Description": "OcurriÃ³ un error inesperado. Intenta recargar la pÃ¡gina.",
     "backToDashboard": "Volver al panel",
     "goBack": "Volver",
-    "technicalDetails": "Detalles técnicos"
+    "technicalDetails": "Detalles tÃ©cnicos"
   }
 }

@@ -1,4 +1,4 @@
-import {
+﻿import {
   Controller,
   Post,
   Body,
@@ -15,7 +15,7 @@ import {
   portalSchema,
   type CheckoutInput,
   type PortalInput,
-} from '@pulsarr/shared';
+} from '@veypost/shared';
 import { BillingService } from './billing.service.js';
 import { BillingWebhookService } from './billing.webhook.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';

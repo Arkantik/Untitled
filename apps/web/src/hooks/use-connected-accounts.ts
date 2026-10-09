@@ -1,7 +1,7 @@
-import { useQueryClient } from '@tanstack/react-query';
+﻿import { useQueryClient } from '@tanstack/react-query';
 import { useApiQuery } from './use-api-query';
 import { useApiMutation } from './use-api-mutation';
-import type { ConnectedAccount } from '@pulsarr/shared';
+import type { ConnectedAccount } from '@veypost/shared';
 
 export function useConnectedAccounts(workspaceId: string | undefined) {
   return useApiQuery<ConnectedAccount[]>(
@@ -67,7 +67,7 @@ export function useRefreshAccount(workspaceId: string) {
 }
 
 export function useListPendingPages(workspaceId: string, token: string | null) {
-  return useApiQuery<{ platform: string; pages: import('@pulsarr/shared').PageOption[] }>(
+  return useApiQuery<{ platform: string; pages: import('@veypost/shared').PageOption[] }>(
     ['pending-pages', token],
     `/api/v1/accounts/pending/${token}?workspaceId=${workspaceId}`,
     { enabled: !!token },

@@ -1,8 +1,8 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+﻿import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Button } from '~/components/ui/button';
 import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';
-import type { SocialPlatform } from '@pulsarr/shared';
+import type { SocialPlatform } from '@veypost/shared';
 
 const PLATFORMS: SocialPlatform[] = [
   'x',
