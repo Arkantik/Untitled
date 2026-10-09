@@ -24,3 +24,65 @@ export function useDisconnectAccount(workspaceId: string) {
     },
   );
 }
+
+export function useConnectDiscord(workspaceId: string) {
+  const qc = useQueryClient();
+  return useApiMutation<void, { webhookUrl: string }>(
+    'POST',
+    '/api/v1/accounts/connect/discord',
+    {
+      extractBody: (vars) => ({ ...vars, workspaceId }),
+      onSuccess: () => {
+        void qc.invalidateQueries({ queryKey: ['accounts', workspaceId] });
+      },
+    },
+  );
+}
+
+export function useConnectBluesky(workspaceId: string) {
+  const qc = useQueryClient();
+  return useApiMutation<void, { handle: string; appPassword: string }>(
+    'POST',
+    '/api/v1/accounts/connect/bluesky',
+    {
+      extractBody: (vars) => ({ ...vars, workspaceId }),
+      onSuccess: () => {
+        void qc.invalidateQueries({ queryKey: ['accounts', workspaceId] });
+      },
+    },
+  );
+}
+
+export function useRefreshAccount(workspaceId: string) {
+  const qc = useQueryClient();
+  return useApiMutation<void, string>(
+    'POST',
+    (id) => `/api/v1/accounts/${id}/refresh?workspaceId=${workspaceId}`,
+    {
+      onSuccess: () => {
+        void qc.invalidateQueries({ queryKey: ['accounts', workspaceId] });
+      },
+    },
+  );
+}
+
+export function useListPendingPages(workspaceId: string, token: string | null) {
+  return useApiQuery<{ platform: string; pages: import('@pulsarr/shared').PageOption[] }>(
+    ['pending-pages', token],
+    `/api/v1/accounts/pending/${token}?workspaceId=${workspaceId}`,
+    { enabled: !!token },
+  );
+}
+
+export function useConfirmPendingPages(workspaceId: string, token: string) {
+  const qc = useQueryClient();
+  return useApiMutation<void, { selectedIds: string[] }>(
+    'POST',
+    `/api/v1/accounts/pending/${token}?workspaceId=${workspaceId}`,
+    {
+      onSuccess: () => {
+        void qc.invalidateQueries({ queryKey: ['accounts', workspaceId] });
+      },
+    },
+  );
+}

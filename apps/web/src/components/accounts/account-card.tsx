@@ -5,19 +5,26 @@ import { Button } from '~/components/ui/button';
 import { cn } from '~/lib/utils';
 import { PLATFORM_ICON, PLATFORM_BG, PLATFORM_LABEL } from '~/lib/platforms';
 import { toast } from '~/components/ui/toast';
+import { useRefreshAccount } from '~/hooks/use-connected-accounts';
 import type { ConnectedAccount } from '@pulsarr/shared';
 
 interface Props {
   account: ConnectedAccount;
+  workspaceId: string;
   onDisconnect: (account: ConnectedAccount) => void;
+  onReconnect: (account: ConnectedAccount) => void;
 }
 
-export function AccountCard({ account, onDisconnect }: Props) {
+export function AccountCard({ account, workspaceId, onDisconnect, onReconnect }: Props) {
   const initial = account.username?.[0]?.toUpperCase() ?? '?';
   const needsAttention = account.status !== 'active';
+  const { mutate: refresh, isPending: isRefreshing } = useRefreshAccount(workspaceId);
 
   function handleReconnect() {
-    toast.info(`Reconnect for ${PLATFORM_LABEL[account.platform]} is coming in a future update.`);
+    refresh(account.id, {
+      onSuccess: () => toast.success(`${PLATFORM_LABEL[account.platform]} reconnected.`),
+      onError: () => onReconnect(account),
+    });
   }
 
   return (
@@ -65,7 +72,13 @@ export function AccountCard({ account, onDisconnect }: Props) {
 
       <div className="flex shrink-0 items-center gap-1">
         {needsAttention && (
-          <Button type="button" variant="outline" size="sm" onClick={handleReconnect}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={isRefreshing}
+            onClick={handleReconnect}
+          >
             <HugeiconsIcon icon={ReloadIcon} size={13} aria-hidden />
             Reconnect
           </Button>

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
+import { z } from 'zod';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Globe02Icon, Cancel01Icon } from '@hugeicons/core-free-icons';
 import { EmptyState } from '~/components/ui/empty-state';
@@ -8,13 +9,24 @@ import { Alert } from '~/components/ui/alert';
 import { Button } from '~/components/ui/button';
 import { toast } from '~/components/ui/toast';
 import { apiFetch } from '~/lib/api-client';
+import { PLATFORM_LABEL } from '~/lib/platforms';
 import { useConnectedAccounts, useDisconnectAccount } from '~/hooks/use-connected-accounts';
 import { AccountCard } from '~/components/accounts/account-card';
 import { AccountDisconnectDialog } from '~/components/accounts/account-disconnect-dialog';
 import { AddAccountSection } from '~/components/accounts/add-account-section';
-import type { ConnectedAccount } from '@pulsarr/shared';
+import { DiscordConnectDialog } from '~/components/accounts/discord-connect-dialog';
+import { PagePickerDialog } from '~/components/accounts/page-picker-dialog';
+import type { ConnectedAccount, SocialPlatform } from '@pulsarr/shared';
+
+const searchSchema = z.object({
+  connected: z.string().optional(),
+  error: z.string().optional(),
+  pick: z.string().optional(),
+  platform: z.string().optional(),
+});
 
 export const Route = createFileRoute('/_app/workspace/$workspaceId/accounts')({
+  validateSearch: searchSchema.parse,
   loader: async ({ params, context: { queryClient } }) => {
     await queryClient.prefetchQuery({
       queryKey: ['accounts', params.workspaceId],
@@ -27,15 +39,42 @@ export const Route = createFileRoute('/_app/workspace/$workspaceId/accounts')({
 
 function AccountsPage() {
   const { workspaceId } = Route.useParams();
+  const { connected, error, pick, platform } = Route.useSearch();
+  const navigate = Route.useNavigate();
   const { data: accounts, isLoading, isError } = useConnectedAccounts(workspaceId);
   const { mutate: disconnect, isPending } = useDisconnectAccount(workspaceId);
   const [toDisconnect, setToDisconnect] = useState<ConnectedAccount | null>(null);
   const [errorDismissed, setErrorDismissed] = useState(false);
+  const [discordOpen, setDiscordOpen] = useState(false);
+  const [pendingToken, setPendingToken] = useState<string | null>(pick ?? null);
 
-  const connected = accounts?.filter((a) => a.status === 'active').length ?? 0;
+  useEffect(() => {
+    if (connected) {
+      const label = PLATFORM_LABEL[connected as SocialPlatform] ?? connected;
+      toast.success(`${label} account connected.`);
+      void navigate({ search: {}, replace: true });
+    } else if (error) {
+      if (error !== 'connect_cancelled') {
+        toast.error('Failed to connect account. Check the credentials and try again.');
+      }
+      void navigate({ search: {}, replace: true });
+    } else if (pick) {
+      setPendingToken(pick);
+      void navigate({ search: {}, replace: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function handleReconnect(account: ConnectedAccount) {
+    if (account.platform === 'discord') { setDiscordOpen(true); return; }
+    const oauthPlatform = account.platform === 'instagram' ? 'facebook' : account.platform;
+    window.location.href = `/api/v1/accounts/connect/${oauthPlatform}?workspaceId=${workspaceId}`;
+  }
+
+  const connectedCount = accounts?.filter((a) => a.status === 'active').length ?? 0;
   const needsAttention = accounts?.filter((a) => a.status !== 'active').length ?? 0;
 
-  function handleConfirm(id: string) {
+  function handleConfirmDisconnect(id: string) {
     disconnect(id, {
       onSuccess: () => {
         toast.success('Account disconnected.');
@@ -54,7 +93,7 @@ function AccountsPage() {
         </p>
       </div>
 
-      <AddAccountSection />
+      <AddAccountSection workspaceId={workspaceId} onOpenDiscord={() => setDiscordOpen(true)} />
 
       {isError && !errorDismissed && (
         <Alert tone="error">
@@ -78,7 +117,7 @@ function AccountsPage() {
         <div className="flex items-center gap-4 text-sm">
           <span className="flex items-center gap-1.5">
             <span className="size-2 rounded-full bg-success" aria-hidden />
-            <span className="text-muted-foreground">{connected} connected</span>
+            <span className="text-muted-foreground">{connectedCount} connected</span>
           </span>
           {needsAttention > 0 && (
             <span className="flex items-center gap-1.5">
@@ -108,7 +147,9 @@ function AccountsPage() {
             <AccountCard
               key={account.id}
               account={account}
+              workspaceId={workspaceId}
               onDisconnect={setToDisconnect}
+              onReconnect={handleReconnect}
             />
           ))}
         </div>
@@ -117,8 +158,20 @@ function AccountsPage() {
       <AccountDisconnectDialog
         account={toDisconnect}
         isPending={isPending}
-        onConfirm={handleConfirm}
+        onConfirm={handleConfirmDisconnect}
         onClose={() => setToDisconnect(null)}
+      />
+
+      <DiscordConnectDialog
+        workspaceId={workspaceId}
+        open={discordOpen}
+        onClose={() => setDiscordOpen(false)}
+      />
+
+      <PagePickerDialog
+        workspaceId={workspaceId}
+        token={pendingToken}
+        onClose={() => setPendingToken(null)}
       />
     </div>
   );
