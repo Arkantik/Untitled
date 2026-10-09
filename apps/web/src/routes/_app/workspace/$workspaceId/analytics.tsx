@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { BarChartIcon } from '@hugeicons/core-free-icons';
 import { useWorkspace } from '~/contexts/workspace-route-context';

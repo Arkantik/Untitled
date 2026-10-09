@@ -1,4 +1,4 @@
-﻿import { Injectable, Inject, NotFoundException } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { eq, and } from 'drizzle-orm';
 import { sqliteSchema } from '@veypost/db';
 import type { DbClient } from '@veypost/db';

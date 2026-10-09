@@ -1,4 +1,4 @@
-﻿import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
 import { QueryClientProvider, type QueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { APP_NAME } from '@veypost/shared';

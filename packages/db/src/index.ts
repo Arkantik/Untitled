@@ -1,4 +1,4 @@
-﻿import { drizzle as drizzlePg } from 'drizzle-orm/node-postgres';
+import { drizzle as drizzlePg } from 'drizzle-orm/node-postgres';
 import { drizzle as drizzleSqlite } from 'drizzle-orm/better-sqlite3';
 import Database from 'better-sqlite3';
 import { Pool } from 'pg';

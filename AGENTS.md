@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 Guidance for agentic coding tools (Claude Code, Copilot, Cursor, Windsurf, etc.) working with the
 Veypost codebase.

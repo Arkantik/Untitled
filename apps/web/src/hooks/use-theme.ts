@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { readPreference, writePreference, removePreference } from '~/lib/preferences';
 
 type Theme = 'light' | 'dark';

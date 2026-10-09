@@ -1,4 +1,4 @@
-﻿import type { AnalyticsRange, AnalyticsSummary } from '@veypost/shared';
+import type { AnalyticsRange, AnalyticsSummary } from '@veypost/shared';
 
 const MOCK: Record<AnalyticsRange, AnalyticsSummary> = {
   '7d': {

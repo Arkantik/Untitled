@@ -1,4 +1,4 @@
-﻿import { eq, and } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 import { sqliteSchema } from '@veypost/db';
 import type { ConnectedAccount, SocialPlatform } from '@veypost/shared';
 

@@ -1,4 +1,4 @@
-﻿import { useApiQuery } from './use-api-query';
+import { useApiQuery } from './use-api-query';
 import type { PlatformSummaryItem } from '@veypost/shared';
 
 export function usePlatformSummary(workspaceId: string | undefined) {

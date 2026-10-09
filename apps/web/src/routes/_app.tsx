@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { useState, useEffect } from 'react';
 import { Sidebar } from '~/components/layout/sidebar';
 import { TopBar } from '~/components/layout/top-bar';

@@ -1,4 +1,4 @@
-﻿import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useWorkspace } from '~/contexts/workspace-route-context';
 import { Segmented } from '~/components/ui/segmented';

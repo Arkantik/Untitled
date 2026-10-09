@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Field } from '~/components/ui/field';
 import { PasswordInput } from '~/components/ui/password-input';

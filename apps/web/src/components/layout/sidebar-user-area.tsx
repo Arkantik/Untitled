@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Link, useRouter } from '@tanstack/react-router';
 import { useMediaQuery } from '~/hooks/use-media-query';
 import { HugeiconsIcon } from '@hugeicons/react';

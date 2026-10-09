@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useRouterState, useParams } from '@tanstack/react-router';
 import { useWorkspaceContext } from '~/contexts/workspace-context';
 import { HugeiconsIcon } from '@hugeicons/react';

@@ -1,4 +1,4 @@
-﻿import { HugeiconsIcon } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { LinkBackwardIcon, ReloadIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { Button } from '~/components/ui/button';

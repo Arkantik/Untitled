@@ -1,4 +1,4 @@
-﻿import { eq, and, count } from 'drizzle-orm';
+import { eq, and, count } from 'drizzle-orm';
 import { sqliteSchema, type DbClient } from '@veypost/db';
 import { PLAN_TIERS, type PlanTier } from '@veypost/shared';
 import { getEnv } from '../config/env.js';

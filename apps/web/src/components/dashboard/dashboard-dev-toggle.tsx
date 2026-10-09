@@ -1,4 +1,4 @@
-﻿// TODO: Remove this component when the dashboard is fully implemented.
+// TODO: Remove this component when the dashboard is fully implemented.
 // This is a temporary development toggle for testing different states of the dashboard without needing to manipulate the backend or database.
 
 import { cn } from '~/lib/utils';

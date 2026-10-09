@@ -1,4 +1,4 @@
-﻿import { HugeiconsIcon } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { PLATFORM_ICON, PLATFORM_COLOR, PLATFORM_LABEL } from '~/lib/platforms';

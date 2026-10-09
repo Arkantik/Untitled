@@ -1,4 +1,4 @@
-﻿import { useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useApiQuery } from './use-api-query';
 import { useApiMutation } from './use-api-mutation';
 import type { ConnectedAccount } from '@veypost/shared';

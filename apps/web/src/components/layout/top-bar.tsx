@@ -1,4 +1,4 @@
-﻿import {
+import {
   BarChartIcon,
   BubbleChatIcon,
   Building03Icon,

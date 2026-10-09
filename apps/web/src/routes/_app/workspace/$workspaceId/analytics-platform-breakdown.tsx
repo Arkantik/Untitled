@@ -1,4 +1,4 @@
-﻿import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { usePlatformEngagement } from '~/hooks/use-platform-engagement';

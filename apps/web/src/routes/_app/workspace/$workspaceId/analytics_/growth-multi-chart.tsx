@@ -1,4 +1,4 @@
-﻿import { useMemo, memo } from 'react';
+import { useMemo, memo } from 'react';
 import { useAnimateOnce } from '~/hooks/use-animate-once';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { HugeiconsIcon } from '@hugeicons/react';

@@ -1,4 +1,4 @@
-﻿import { Controller, Get, Post, Delete, Param, Query, Body, UseGuards, Redirect, HttpCode } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Param, Query, Body, UseGuards, Redirect, HttpCode } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { z } from 'zod';
 import { connectDiscordSchema, connectBlueskySchema, confirmPagesSchema } from '@veypost/shared';

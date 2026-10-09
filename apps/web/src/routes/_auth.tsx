@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { fetchSession } from '~/server/session';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar01Icon, BarChartIcon, MessageMultiple01Icon } from '@hugeicons/core-free-icons';

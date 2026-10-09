@@ -1,4 +1,4 @@
-﻿# Veypost
+# Veypost
 
 Self-hosted social media scheduling and publishing platform. Compose once, publish to X, Bluesky,
 LinkedIn, Facebook, Instagram, Threads, and Discord. Includes scheduling, analytics, team

@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { NewKeyBanner, CreateKeyForm } from './api-keys-form';
 import { ApiKeyList, ApiKeyInfoNote } from './api-keys-list';

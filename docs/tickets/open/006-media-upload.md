@@ -1,4 +1,4 @@
-﻿---
+---
 id: "006"
 title: Implement image upload for posts
 type: feature

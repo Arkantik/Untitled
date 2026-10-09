@@ -1,4 +1,4 @@
-﻿# Contributing to Veypost
+# Contributing to Veypost
 
 Thanks for your interest in contributing. This guide covers what you need to get started.
 

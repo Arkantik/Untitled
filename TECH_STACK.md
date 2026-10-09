@@ -1,4 +1,4 @@
-﻿# Veypost Technology Stack
+# Veypost Technology Stack
 
 ## Frontend
 

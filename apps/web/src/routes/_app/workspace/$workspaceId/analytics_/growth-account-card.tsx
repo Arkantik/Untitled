@@ -1,4 +1,4 @@
-﻿import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';

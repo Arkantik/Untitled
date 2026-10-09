@@ -1,4 +1,4 @@
-﻿import {
+import {
   NewTwitterIcon,
   BlueskyIcon,
   Linkedin01Icon,

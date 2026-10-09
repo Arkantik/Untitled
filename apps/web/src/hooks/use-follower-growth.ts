@@ -1,4 +1,4 @@
-﻿import { useMemo } from 'react';
+import { useMemo } from 'react';
 import type { AnalyticsRange, FollowerSeries } from '@veypost/shared';
 
 function series(start: number, end: number, days: number, seed: number): number[] {

@@ -1,4 +1,4 @@
-﻿import { HugeiconsIcon } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { HeartIcon, GithubIcon } from '@hugeicons/core-free-icons';
 import { useTranslation } from 'react-i18next';
 import { APP_GITHUB_SPONSORS_URL } from '@veypost/shared';

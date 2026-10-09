@@ -1,4 +1,4 @@
-﻿import type { ApiErrorResponse, ErrorCode } from '@veypost/shared';
+import type { ApiErrorResponse, ErrorCode } from '@veypost/shared';
 
 export class ApiError extends Error {
   readonly code: ErrorCode;

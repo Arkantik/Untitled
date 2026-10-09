@@ -1,4 +1,4 @@
-﻿import { useApiQuery } from './use-api-query';
+import { useApiQuery } from './use-api-query';
 import type { DashboardSummary } from '@veypost/shared';
 
 export function useDashboardSummary(workspaceId: string | undefined) {

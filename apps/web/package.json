@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "@veypost/web",
   "version": "0.1.0",
   "private": true,
@@ -43,7 +43,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",

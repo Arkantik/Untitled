@@ -1,4 +1,4 @@
-﻿import {
+import {
   Injectable,
   Inject,
   ServiceUnavailableException,

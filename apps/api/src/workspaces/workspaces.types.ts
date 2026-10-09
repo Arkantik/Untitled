@@ -1,4 +1,4 @@
-﻿import type { WorkspaceRole } from '@veypost/shared';
+import type { WorkspaceRole } from '@veypost/shared';
 
 export interface WorkspaceRow {
   id: string;

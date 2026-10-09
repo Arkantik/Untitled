@@ -1,4 +1,4 @@
-﻿import { Link } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { CheckmarkCircle01Icon, Alert01Icon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';

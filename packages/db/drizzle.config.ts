@@ -1,4 +1,4 @@
-﻿import { defineConfig } from 'drizzle-kit';
+import { defineConfig } from 'drizzle-kit';
 
 const dialect = process.env.DB_DIALECT || 'sqlite';
 

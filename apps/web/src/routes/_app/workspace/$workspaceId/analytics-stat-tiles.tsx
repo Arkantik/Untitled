@@ -1,4 +1,4 @@
-﻿import { HugeiconsIcon } from '@hugeicons/react';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { TrendingUpIcon, TrendingDownIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';
 import { Badge } from '~/components/ui/badge';

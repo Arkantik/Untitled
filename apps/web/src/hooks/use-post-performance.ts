@@ -1,4 +1,4 @@
-﻿import type { AnalyticsRange, PostPerformance, SocialPlatform } from '@veypost/shared';
+import type { AnalyticsRange, PostPerformance, SocialPlatform } from '@veypost/shared';
 
 const MOCK: PostPerformance[] = [
   {

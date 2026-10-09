@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { NewTwitterIcon } from '@hugeicons/core-free-icons';

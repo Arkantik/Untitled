@@ -1,4 +1,4 @@
-﻿import { cn } from '~/lib/utils';
+import { cn } from '~/lib/utils';
 import { Card } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import { useCountUp } from '~/hooks/use-count-up';

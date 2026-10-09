@@ -1,4 +1,4 @@
-﻿import type { SocialPlatform } from '@veypost/shared';
+import type { SocialPlatform } from '@veypost/shared';
 import type { OAuthPlatform } from './oauth.connector.js';
 
 export interface ProfileResult {

@@ -1,4 +1,4 @@
-﻿import { Injectable, Logger, Inject } from '@nestjs/common';
+import { Injectable, Logger, Inject } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { eq, lte, and, isNotNull, notInArray } from 'drizzle-orm';
 import { sqliteSchema } from '@veypost/db';

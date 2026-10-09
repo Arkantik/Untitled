@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { z } from 'zod';
 import { HugeiconsIcon } from '@hugeicons/react';

@@ -1,4 +1,4 @@
-﻿---
+---
 description: Code conventions enforced on every change: file size, comments, vocabulary, shared code
 ---
 

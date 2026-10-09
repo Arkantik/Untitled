@@ -1,4 +1,4 @@
-﻿import { useState, forwardRef } from 'react';
+import { useState, forwardRef } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar03Icon, SendHorizontalIcon } from '@hugeicons/core-free-icons';
 import { Card } from '~/components/ui/card';

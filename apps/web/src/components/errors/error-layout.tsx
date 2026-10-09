@@ -1,4 +1,4 @@
-﻿import { Link } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { APP_NAME } from '@veypost/shared';
 import { cn } from '~/lib/utils';
