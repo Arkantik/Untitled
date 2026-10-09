@@ -6,7 +6,6 @@ Generated 2026-10-09. Do not hand-edit.
 
 | ID | Title | Priority | Status | Blocked by |
 |----|-------|----------|--------|------------|
-| 002 | [Implement BullMQ publishing pipeline](open/002-publishing-pipeline.md) | p1 | ready | 001 |
 | 003 | [Implement per-platform post dispatch clients](open/003-platform-posting-clients.md) | p1 | ready | 001, 002 |
 | 004 | [Build post composer frontend](open/004-post-composer-ui.md) | p1 | ready | 001 |
 | 005 | [Build posts list, calendar, and queue views](open/005-content-views.md) | p2 | ready | 001, 004 |
