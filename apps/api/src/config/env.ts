@@ -21,6 +21,15 @@ const envSchema = z.object({
   BILLING_ENABLED: z.coerce.boolean().default(false),
   APP_URL: z.string().url().default('http://localhost:3000'),
   UPLOAD_DIR: z.string().default('./data/uploads'),
+
+  X_CLIENT_ID: z.string().optional(),
+  X_CLIENT_SECRET: z.string().optional(),
+  LINKEDIN_CLIENT_ID: z.string().optional(),
+  LINKEDIN_CLIENT_SECRET: z.string().optional(),
+  FACEBOOK_APP_ID: z.string().optional(),
+  FACEBOOK_APP_SECRET: z.string().optional(),
+  THREADS_APP_ID: z.string().optional(),
+  THREADS_APP_SECRET: z.string().optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;

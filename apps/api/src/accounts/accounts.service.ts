@@ -4,11 +4,9 @@ import { sqliteSchema } from '@pulsarr/db';
 import type { DbClient } from '@pulsarr/db';
 import type { ConnectedAccount } from '@pulsarr/shared';
 import { assertMember, assertAccountLimit } from '../workspaces/workspaces.helpers.js';
-
-function deriveStatus(tokenExpiresAt: string | null): ConnectedAccount['status'] {
-  if (!tokenExpiresAt) return 'active';
-  return new Date(tokenExpiresAt) < new Date() ? 'expired' : 'active';
-}
+import { connectDiscord } from './platforms/discord.connector.js';
+import { connectBluesky } from './platforms/bluesky.connector.js';
+import { upsertAccount, deriveStatus } from './accounts.helpers.js';
 
 @Injectable()
 export class AccountsService {
@@ -29,7 +27,6 @@ export class AccountsService {
       })
       .from(sqliteSchema.connectedAccounts)
       .where(eq(sqliteSchema.connectedAccounts.workspaceId, workspaceId));
-
     return rows.map((r: any) => ({
       id: r.id,
       platform: r.platform,
@@ -45,22 +42,20 @@ export class AccountsService {
     const [row] = await this.q
       .select({ id: sqliteSchema.connectedAccounts.id })
       .from(sqliteSchema.connectedAccounts)
-      .where(
-        and(
-          eq(sqliteSchema.connectedAccounts.id, id),
-          eq(sqliteSchema.connectedAccounts.workspaceId, workspaceId),
-        ),
-      );
+      .where(and(eq(sqliteSchema.connectedAccounts.id, id), eq(sqliteSchema.connectedAccounts.workspaceId, workspaceId)));
     if (!row) throw new NotFoundException('Account not found');
-    // Cascade: post_targets.connected_account_id ON DELETE CASCADE
-    await this.q
-      .delete(sqliteSchema.connectedAccounts)
-      .where(eq(sqliteSchema.connectedAccounts.id, id));
+    await this.q.delete(sqliteSchema.connectedAccounts).where(eq(sqliteSchema.connectedAccounts.id, id));
   }
 
-  async createConnectedAccount(workspaceId: string, userId: string): Promise<never> {
+  async connectDiscord(workspaceId: string, userId: string, webhookUrl: string): Promise<void> {
     await assertMember(this.q, workspaceId, userId);
     await assertAccountLimit(this.q, workspaceId);
-    throw new Error('OAuth not yet implemented');
+    await upsertAccount(this.q, workspaceId, 'discord', await connectDiscord(webhookUrl));
+  }
+
+  async connectBluesky(workspaceId: string, userId: string, handle: string, appPassword: string): Promise<void> {
+    await assertMember(this.q, workspaceId, userId);
+    await assertAccountLimit(this.q, workspaceId);
+    await upsertAccount(this.q, workspaceId, 'bluesky', await connectBluesky(handle, appPassword));
   }
 }
