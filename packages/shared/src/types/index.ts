@@ -84,3 +84,15 @@ export interface ConnectedAccount {
   status: AccountStatus;
   connectedAt: string;
 }
+
+export interface PageOption {
+  id: string;
+  name: string;
+  platformType: SocialPlatform;
+  avatarUrl: string | null;
+}
+
+export interface PendingPagesResult {
+  platform: string;
+  pages: PageOption[];
+}
