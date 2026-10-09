@@ -96,3 +96,29 @@ export interface PendingPagesResult {
   platform: string;
   pages: PageOption[];
 }
+
+export interface PostTarget {
+  id: string;
+  postId: string;
+  connectedAccountId: string;
+  platform: SocialPlatform;
+  status: PostStatus;
+  error: string | null;
+  publishedAt: string | null;
+}
+
+export interface Post {
+  id: string;
+  workspaceId: string;
+  authorId: string;
+  content: string;
+  status: PostStatus;
+  scheduledAt: string | null;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PostWithTargets extends Post {
+  targets: PostTarget[];
+}
